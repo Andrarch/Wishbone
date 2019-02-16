@@ -1,2 +1,7 @@
 eclipse.preferences.version=1
 include_path=0;/Wishbone
+<<<<<<< HEAD
+=======
+phpVersion=php7.2
+use_asp_tags_as_php=false
+>>>>>>> branch 'master' of https://github.com/Andrarch/Wishbone.git
