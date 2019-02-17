@@ -1,6 +1,6 @@
 <?php
 require_once('abstractDAO.php');
-require_once('./models/authentication.php');
+require_once('./model/authentication.php');
 
     class AuthenticationDAO extends AbstractDAO {
     
