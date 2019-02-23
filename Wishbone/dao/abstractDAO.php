@@ -13,7 +13,7 @@ class AbstractDAO{
 	function __construct(){
 		try{
 			$this->mysqli = new mysqli(self::$DB_HOST,self::$DB_USERNAME, self::$DB_PASSWORD, self::$DB_DATABASE);
-		}catch(mysqli_sql_exceptioin $e){
+		}catch(mysqli_sql_exception $e){
 			throw $e;
 		}
 			
