@@ -14,7 +14,8 @@ require_once('./models/authentication.php');
         
 
         public function addNewRegistrant($Registrant){
-            if($this->mysqli->connect_errno){
+			
+            if(!$this->mysqli->connect_errno){
                 $query = 'INSERT INTO authentication
                             (email, pass) VALUES(?,?)';
                 
@@ -27,7 +28,7 @@ require_once('./models/authentication.php');
                 if($stmt->error){
                     return $stmt->error;
                 }else{
-                    return $Registrant->getRegistrantEmail().' '.$Registrant->getRegistrantPassword().' added successfully';
+                    return $Registrant->getRegistrantFirstName().' '.$Registrant->getRegistrantLastName().' '.$Registrant->getRegistrantEmail().'added successfully';
                 }
             }else{
                 return 'Could not connect to Database';
