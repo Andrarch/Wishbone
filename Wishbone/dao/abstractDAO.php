@@ -1,11 +1,11 @@
 <?php
-phpinfo();
+//phpinfo();
 class AbstractDAO{
     protected $mysqli;
     
     protected static $DB_HOST = 'localhost';
     protected static $DB_USERNAME = 'root';
-    protected static $DB_PASSWORD = 'password';
+    protected static $DB_PASSWORD = '';
     protected static $DB_DATABASE = 'WishBone';
     
     function __construct(){
