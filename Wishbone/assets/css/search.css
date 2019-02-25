@@ -1,0 +1,101 @@
+@charset "ISO-8859-1";
+@charset "utf-8";
+/* CSS Document */
+/* Bordered form */
+
+/*
+body{
+    background:#E5E5E5; 
+}
+*/
+
+.row{
+    padding-left: 20px;
+}
+
+.row2{
+    padding-left: 20px;
+    margin: auto;
+}
+
+.search{
+    width: 100%;  
+}
+
+.searchbar{
+    width: 85%;
+    border: 3px solid #F19938;
+    padding: 11px;
+    border-radius: 15px;
+    margin-top: 20px;
+}
+
+.searchbtn{
+    background-color: #F19938;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 10%; 
+    border-radius: 15px;
+}
+
+.searchbtn:hover {
+  color: #fff;
+  background-color: #333333;
+}
+
+.w3-button{
+    background-color: #F19938;
+    color: white;
+    padding: 14px 20px;
+   
+    border: none;
+    cursor: pointer;
+    width: 10%; 
+    border-radius: 15px;
+}
+
+.textbox {
+    padding: 10px;
+    margin: 20px 0;
+    background-color: white;
+    text-align: left;
+    transition: all ease .3s;
+    border-radius: 15px;
+    border: 3px solid #F19938;
+}
+
+.textbox:hover {
+    box-shadow: 0 15px 50px 0 rgba(0, 0, 0, .2);
+}
+
+.textbox__title {
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.textbox__title1 {
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.textbox__title2{
+    font-weight: bold;
+    text-align: left;  
+}
+
+
+
+
+
+
+
+
+
+ 
