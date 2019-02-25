@@ -53,7 +53,7 @@
 	              $errorMessages['PasswordError']='Please enter your password';
 	          }
 	          
-	          if(!preg_match("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+.]).{8,12}$",$_POST['userEmail'])) {
+	          if(!preg_match("/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/",$_POST["userPwd"])) {
 	              $hasError = true;
 	              $errorMessages['PasswordError']='The password must contain at least one number, one alphabetic character, one special character, and suggested length is between 8 and 12';
 	          }
