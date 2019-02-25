@@ -19,6 +19,7 @@
     
     
     <ul id="hexGrid">
+       
       <li class="hex">
         <div class="hexIn">
           <a class="hexLink" href="#">
@@ -37,11 +38,12 @@
           </a>
         </div>
       </li>
-      <li class="hex">
-        <div class="hexIn">
-        
+      <li class="hexButton">
+        <div class="hexButtonIn">
+        	 <button type="button">Click Me!</button> 
+        	 <button type="button">Click Me!</button> 
         </div>
-      </li>
+  
       <li class="hex">
         <div class="hexIn">
           <a class="hexLink" href="#">

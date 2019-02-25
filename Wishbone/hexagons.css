@@ -23,6 +23,12 @@ body {
   visibility:hidden;
   outline:1px solid transparent; /* fix for jagged edges in FF on hover transition */
 }
+.hexButton {
+  grid-column-end: span 2;
+  position: relative;
+ 
+  outline:1px solid transparent; /* fix for jagged edges in FF on hover transition */
+}
 .hex::after{
   content:'';
   display:block;
@@ -54,6 +60,11 @@ body {
   -webkit-transform: skewY(-30deg) rotate3d(0,0,1,60deg);
       -ms-transform: skewY(-30deg) rotate3d(0,0,1,60deg);
           transform: skewY(-30deg) rotate3d(0,0,1,60deg);
+}
+.hexButtonIn{
+	
+	vertical-align: middle;
+	float: right;
 }
 
 /*** HEX CONTENT **********************************************************************/
