@@ -6,5 +6,5 @@
  echo $login;
  echo "<br>";
  echo $password;
- $link = mysqli_connect("localhost", "cst8276", "password", "wishbone");
+ $link = mysqli_connect("localhost", "root", "", "wishbone");
  

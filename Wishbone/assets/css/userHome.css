@@ -15,9 +15,15 @@ background-size: cover;
   display: flex;
   justify-content:space-between;
   word-spacing: 20px;
-  font-size: 8px;
+  font-size: 2px;
   border-radius: 20px;
   
+}
+.leftnav{
+	width:70%;
+}
+.pictureback{
+	padding:5px;
 }
 .mycontent{
 	display: flex;
@@ -28,10 +34,10 @@ background-size: cover;
 	
 }
 .rightContent{
-	width:500px;
+	width:1000px;
 }
 .feed{
-	width:200px;
+	width:300px;
 	background: white;
 	height:800px;
 	border-radius: 20px;
@@ -39,16 +45,20 @@ background-size: cover;
 .centerFeed{
 	background: white;
 	height: 500px;
-	width:390px;
+	width:800px;
 	margin:0 auto;
 	margin-top: 15px;
 	border-radius: 20px;
+
+	overflow-y:scroll;
 	
+
+
 }
 .bottomFeed{
     background: white;
-    height: 210px;
-    width:390px;
+    height: 225px;
+    width:800px;
     margin:0 auto;
     margin-top: 25px;
     border-radius: 20px;
@@ -56,15 +66,10 @@ background-size: cover;
 }
 
 
-.logout{
-	font-size:15px;
-}
-
-
 .topnav div a{
 	display: inline-block;
 	margin-left: 10px !important;
-	font-size: 15px;
+	font-size: 20px;
 	color:orange;
 }
 .card {
@@ -74,21 +79,26 @@ background-size: cover;
   margin-left:1px;
   background-color:white;
   border-radius: 20px;
+  padding-bottom:10px;
   
 }
 
 .oksana {
-	margin-top: -30px;
-	margin-bottom:-10px;
+	margin-top: -65px;
+
   vertical-align: middle;
   width: 80px;
-  height: 100px;
+  height: 120px;
   border-radius: 50%;
   border: solid orange;
  
 } 
 .oksana2{
-	height:150px;
+	
+	height:200px;
+	width:200px;
+	border-radius:20px;
+	border-radius: 20px 20px 0px 0px;
 }
 
 
@@ -96,9 +106,7 @@ background-size: cover;
 p{
 	font-size:18px;
 }
-p2{
-	font-size:15px;
-}
+
 
 .title {
   color: black;
@@ -108,7 +116,7 @@ p2{
 }
 
 .textarea{
-	width: 390px;
+	width: 800px;
 	border-radius: 20px;
 	margin-left:10px;
 	margin-right:25px;
@@ -116,6 +124,10 @@ p2{
 	
 }
 
+i{
+	color: blue;
+	justify-content: space-between;
+}
 
 a {
   text-decoration: none;
