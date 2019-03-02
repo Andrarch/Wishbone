@@ -12,6 +12,13 @@
     <link rel="stylesheet" type="text/css" href="assets/vendors/_jquery/jquery.min.css">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css family=Roboto:300,300i,400,400i,700,700i&amp;amp;subset=latin-ext">
     <link rel="stylesheet" type="text/css" href="assets/css/search.css">
+    
+    
+
+<link rel="stylesheet" type="text/css" href="assets/css/userHome.css">
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
    
     
 <title>Search</title>
@@ -19,7 +26,7 @@
     <style>
         body{
             background: #E5E5E5;
-            margin-top:60px;
+/*            margin-top:20px;*/
         }
         .block{background: url(assets/img/backgrounds/1.jpg);
         filter: brightness(95%);}
@@ -29,8 +36,27 @@
     
 <body>
     <?php session_start();?>
+    
+ 
+    
+    
         
 <div class="block">
+    
+        <div class="topnav">
+ <div>
+<a class="active" href="#home">Home</a>
+<a href="#messages">Messages</a>
+ <a href="#mynetwork">MyNetwork</a>
+  <a href="#myprofile">MyProfile</a>
+ <a href="#search">Search</a>
+ <a href="#viewuser">ViewUser</a>
+ </div>
+ <div>
+  <a class="Logout" href="#logout">LogOut</a>
+  </div>
+</div>
+    
     <form action="search_action.php" method="POST">
     <div class="row">
         <div class="col-md-8">
