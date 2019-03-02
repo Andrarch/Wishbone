@@ -6,8 +6,8 @@ background-size: cover;
 }
 
 .topnav {
- background-color: white;
- border-bottom: 8px solid orange;
+ background-color: orange;
+ border-bottom: 8px solid white;
   padding-top: 10px;
   padding-right: 5px;
   padding-bottom: 5px;
@@ -43,17 +43,20 @@ background-size: cover;
 	border-radius: 20px;
 }
 .centerFeed{
+	padding: 20px;
 	background: white;
 	height: 500px;
 	width:800px;
 	margin:0 auto;
 	margin-top: 15px;
 	border-radius: 20px;
-
+	font-size: 17px;
+   
 	overflow-y:scroll;
 	
-
-
+}
+.center p{
+	font-size:20px;
 }
 .bottomFeed{
     background: white;
@@ -70,7 +73,7 @@ background-size: cover;
 	display: inline-block;
 	margin-left: 10px !important;
 	font-size: 20px;
-	color:orange;
+	color:white;
 }
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -90,7 +93,7 @@ background-size: cover;
   width: 80px;
   height: 120px;
   border-radius: 50%;
-  border: solid orange;
+  border: 7px solid white;
  
 } 
 .oksana2{
@@ -100,9 +103,18 @@ background-size: cover;
 	border-radius:20px;
 	border-radius: 20px 20px 0px 0px;
 }
+.wishbone8, .wishbone10, .wishbone2, .wishbone5{
+	height:100px;
+	width:30px;
+}
 
-
-
+.wishbone7{
+	height:100px;
+	width:30px;
+}
+.adver1,.adver2{
+	margin:20px;
+}
 p{
 	font-size:18px;
 }
@@ -118,15 +130,15 @@ p{
 .textarea{
 	width: 800px;
 	border-radius: 20px;
-	margin-left:10px;
-	margin-right:25px;
+	margin-left:40px;
+	margin-right:10px;
 	
 	
 }
 
 i{
 	color: blue;
-	justify-content: space-between;
+	justify-content: space-between 5px;
 }
 
 a {
