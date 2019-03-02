@@ -1,3 +1,4 @@
+<?php include('dao/myNetworkDAO.php')?>
 <!doctype html>
 <html>
   <head>
@@ -15,7 +16,13 @@
   <a href="#contact">Contact</a>
   <a href="#about">About</a>
 </div> 
+    <?php 
+    $data=[];
+    $myNetworkDAO=new myNetworkDAO();
     
+    $data=$myNetworkDAO->getMyNetwork('1');
+    
+    ?>
     
     
     <ul id="hexGrid">
@@ -24,8 +31,11 @@
         <div class="hexIn">
           <a class="hexLink" href="#">
             <img src="https://farm9.staticflickr.com/8461/8048823381_0fbc2d8efb.jpg" alt="" />
-            <h1>First Last</h1>
-            <p>Artist Type(s)</p>
+            <?php 
+            $row=$data[1];
+            echo '<h1>'+$row[1]+' '+$row[2]+'</h1>';
+            echo '<p>'+$row[4]+'</p>';
+             ?>
           </a>
         </div>
       </li>
@@ -33,23 +43,29 @@
         <div class="hexIn">
           <a class="hexLink" href="#">
             <img src="https://farm5.staticflickr.com/4144/5053682635_b348b24698.jpg" alt="" />
-            <h1>First Last</h1>
-            <p>Artist Type(s)</p>
+            <?php 
+            $row=$data[1];
+            echo '<h1>'+$row[1]+' '+$row[2]+'</h1>';
+            echo '<p>'+$row[4]+'</p>';
+             ?>
           </a>
         </div>
       </li>
-      <li class="hexButton">
+   <!--   <li class="hexButton">
         <div class="hexButtonIn">
         	 <button type="button">Click Me!</button> 
         	 <button type="button">Click Me!</button> 
-        </div>
+        </div> -->
   
       <li class="hex">
         <div class="hexIn">
           <a class="hexLink" href="#">
             <img src="https://farm7.staticflickr.com/6217/6216951796_e50778255c.jpg" alt="" />
-            <h1>First Last</h1>
-            <p>Artist Type(s)</p>
+            <?php 
+            $row=$data[1];
+            echo '<h1>'+$row[1]+' '+$row[2]+'</h1>';
+            echo '<p>'+$row[4]+'</p>';
+             ?>
           </a>
         </div>
       </li>
@@ -58,8 +74,11 @@
         <div class="hexIn">
           <a class="hexLink" href="#">
             <img src="https://farm7.staticflickr.com/6083/6055581292_d94c2d90e3.jpg" alt="" />
-            <h1>First Last</h1>
-            <p>Artist Type(s)</p>
+            <?php 
+            $row=$data[1];
+            echo '<h1>'+$row[1]+' '+$row[2]+'</h1>';
+            echo '<p>'+$row[4]+'</p>';
+             ?>
           </a>
         </div>
       </li>
@@ -67,8 +86,11 @@
         <div class="hexIn">
           <a class="hexLink" href="#">
             <img src="https://farm3.staticflickr.com/2827/10384422264_d9c7299146.jpg" alt="" />
-            <h1>First Last</h1>
-            <p>Artist Type(s)</p>
+            <?php 
+            $row=$data[1];
+            echo '<h1>'+$row[1]+' '+$row[2]+'</h1>';
+            echo '<p>'+$row[4]+'</p>';
+             ?>
           </a>
         </div>
       </li>
@@ -76,8 +98,11 @@
         <div class="hexIn">
           <a class="hexLink" href="#">
             <img src="https://farm8.staticflickr.com/7187/6895047173_d4b1a0d798.jpg" alt="" />
-            <h1>First Last</h1>
-            <p>Artist Type(s)</p>
+            <?php 
+            $row=$data[1];
+            echo '<h1>'+$row[1]+' '+$row[2]+'</h1>';
+            echo '<p>'+$row[4]+'</p>';
+             ?>
           </a>
         </div>
       </li>
@@ -127,6 +152,6 @@
           </a>
         </div>
       </li>
-      
+     </ul> 
      </body>
 </html>
