@@ -1,4 +1,26 @@
-<!DOCTYPE html>
+<?php
+$receiverid = intval( $_GET["receiverid"] );
+
+if( $receiverid == 0 )
+{
+    header("HTTP/1.1 404 Not Found");
+    header("Location: 404.html");
+    exit("404 not found");
+}
+
+include 'Database.class.php';
+$conn = new Database("wishbone", "root", "");
+
+$receiver = $conn->selectOne("SELECT * FROM `users` WHERE `userid` = ?", $receiverid);
+
+if( $receiver == null )
+{
+    header("HTTP/1.1 404 Not Found");
+    header("Location: 404.html");
+    exit("404 not found");
+}
+
+?><!DOCTYPE html>
 <html>
 <head>
 <title>Contact</title>
@@ -33,6 +55,7 @@
 	crossorigin="anonymous"></script>
 
 <script>
+	var chathistory;
 	$(document).ready(function() {
 		$('#message').keyup(function(e) {
 			var message = $(this).val();
@@ -41,6 +64,8 @@
 				sendMessage();
 			}
 		});
+
+		chathistory = $("#chathistory");
 
 		getMessages();
 	});
@@ -54,7 +79,7 @@
 	}
 
 	var last_messageid = 0;
-	var receiverid = 3;
+	var receiverid = <?php echo $receiverid; ?>;
 	function getMessages()
 	{
 		$.get('ajax.php?action=getMessages&last_messageid=' + last_messageid + "&receiverid=" + receiverid, function(data) {
@@ -69,7 +94,8 @@
 					last_messageid = message.messageid;
 				});
 
-				$("#chathistory").append(appendHTML);
+				chathistory.append(appendHTML);
+				chathistory.animate({scrollTop: 999999}, "fast");
 			}
 
 			setTimeout(getMessages, 3000);
@@ -179,8 +205,8 @@
 
 							<div class="form__item form__item--02">
 								<p class="text-left"
-									style="margin-bottom: 5px; font-weight: 500; color: #c2c2c2;">From</p>
-								<input type="text" name="name" />
+									style="margin-bottom: 5px; font-weight: 500; color: #c2c2c2;">To</p>
+								<input type="text" name="name" disabled value="<?php echo $receiver["firstname"] . " " . $receiver["lastname"]; ?>" />
 							</div>
 
 
@@ -201,7 +227,7 @@
 							</div>
 
 							<div class="form__button form__item form__item--02 text-left">
-								<button class="btn btn-primary btn-w180" onClick="sendMessage()">send message</button>
+								<button class="btn btn-primary btn-w180" onClick="sendMessage(); return false;">send message</button>
 							</div>
 
 							<!-- 							<div class="form__button form__item form__item--02 text-right"> -->

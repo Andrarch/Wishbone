@@ -1,13 +1,7 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "wishbone";
+include 'Database.class.php';
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+$conn = new Database("wishbone", "root", "");
 
 if (isset($_REQUEST['action'])) {
     
@@ -20,29 +14,34 @@ if (isset($_REQUEST['action'])) {
         case "getMessages":
             $last_messageid = intval( $_GET["last_messageid"] );
             
-            $sql = "
-                SELECT `messageid`, `messagecontent`, ( `senderid` = $senderid ) AS `isSend`
+            $response = $conn->select(
+               "SELECT `messageid`, `messagecontent`, ( `senderid` = ? ) AS `isSend`
                 FROM `messages`
-                WHERE `messageid` > $last_messageid AND
-                ( ( `senderid` = $senderid AND `receiverid` = $receiverid ) OR ( `senderid` = $receiverid AND `receiverid` = $senderid ) )";
-            
-            $result = $conn->query($sql);
-            
-            if( $result->num_rows )
-            {
-                while ($row = $result->fetch_assoc())
-                {
-                    $response[] = $row;
-                }
-            }
+                WHERE `messageid` > ? AND
+                ( ( `senderid` = ? AND `receiverid` = ? ) OR ( `senderid` = ? AND `receiverid` = ? ) )",
+                $senderid,
+                $last_messageid,
+                $senderid,
+                $receiverid,
+                $receiverid,
+                $senderid
+            );
             break;
            
         case "sendMessage":
-            $message = $_GET['message'];
+            $message = trim($_GET['message']);
             
-            $sql = "INSERT INTO `messages`(`senderid`, `receiverid`, `messagecontent`) VALUES ($senderid, $receiverid, '$message')";
+            if( strlen($message) == 0 )
+            {
+                break;
+            }
             
-            $conn->query($sql);
+            $conn->insert(
+                "INSERT INTO `messages`(`senderid`, `receiverid`, `messagecontent`) VALUES (?, ?, ?)",
+                $senderid, 
+                $receiverid, 
+                $message
+            );
             
             break;
     }
