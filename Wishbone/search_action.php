@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('dao/abstractDAO.php');
+include('dao/searchDAO.php');
 
     $name =  $_POST['search_text'];
 
@@ -9,6 +9,16 @@ $interestSelected = !empty($_POST['interest']);
 $artTypeSelected = !empty($_POST['artType']);
 $locationSelected = !empty($_POST['location']);
 $ob = new SearchClass();
+if(strlen($name)==0 && !$interestSelected && !$artTypeSelected && !$locationSelected){
+    $_SESSION['error'] = 'You have to choose at least one option';
+}else if(preg_match("/^.*\d{1,}.*$/", $name)){
+    $_SESSION['error'] = 'Please do not include number';
+}else if(strlen($name)==1){
+    $_SESSION['error'] = 'Name should include more than one letter';
+}
+//else if(!preg_match("/^[A-Za-z_\-']{0,}$/", $name)){
+//    $_SESSION['error'] = 'Name should include letters or dash or underscore or apostrophe';
+//}
 if($interestSelected && !$artTypeSelected && !$locationSelected){
     $arrResult = $ob->getInterest($name, null);
 }else if(!$interestSelected && $artTypeSelected && !$locationSelected){
@@ -42,13 +52,14 @@ if($interestSelected && !$artTypeSelected && !$locationSelected){
     }
 }
 $_SESSION['array'] = $ob->getUserData($arrResult);
+
 header('Location: search.php');
 
 class SearchClass{
     protected $conn;
     function __construct(){
 		try{
-			$this->conn = new abstractDAO();
+			$this->conn = new searchDAO();
             $this->conn = $this->conn->getMysqli();
 		}catch(mysqli_sql_exception $e){
 			throw $e;
