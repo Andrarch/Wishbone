@@ -21,7 +21,7 @@
 	</head>
 	<body>
 		<div class="page-wrap">
-			<?php include('header.php')?>
+			
 			<?php
 				session_start();
 				require_once("config.php");
