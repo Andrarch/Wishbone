@@ -1,4 +1,11 @@
-<?php require_once('dao/mailinglistDAO.php');?>
+<?php require_once('dao/profilelistDAO.php');?>
+<?php require_once('dao/careerDAO.php');?>
+<?php 
+	$profilelistDAO = new profilelistDAO(); 
+	$profilelists = $profilelistDAO->getProfilelists(2); 
+	$careerDAO = new careerDAO();
+	$careers = $careerDAO->getCareers(2); 
+?>
 
 <!DOCTYPE html>
 <html>
@@ -85,14 +92,13 @@
 										<div class="row">
 											<div class="col-xl-12 offset-0 offset-sm-0 offset-md-0 offset-lg-0">
 												<?php
-													$mailinglistDAO = new mailinglistDAO();
-													$mailinglists = $mailinglistDAO->getMailinglists(2); //this is an array
-													if($mailinglists){
-														foreach($mailinglists as $mailinglist){
-															echo '<h1 class="text-center">'.$mailinglist->getCustomerfName().' '.$mailinglist->getCustomerlName().'</h1>';
-															echo '<div class="text-center">'.'Email : '.$mailinglist->getEmailAddress().'</div>';
-															echo '<div class="text-center">'.'Phone : '.$mailinglist->getPhoneNumber().'</div>';
-															echo '</br>';
+													if($profilelists){
+														foreach($profilelists as $profilelist){
+															echo '<h1 class="text-center">'.$profilelist->getUserfName().' '.$profilelist->getUserlName().'</h1>';
+															echo '<h4 class="text-center orange">'.$profilelist->getCareerName().'</h4>';
+															echo '<div class="text-center">'.'Area : '.$profilelist->getLifeArea().'</div>';
+															echo '<div class="text-center">'.'Email : '.$profilelist->getEmailAddress().'</div>';
+															echo '<br>';
 														}	
 													}
 										
@@ -104,23 +110,35 @@
 														<nav class="social-01__navSocial">
 															<a class="social-01__item" href="#"><i class="fa fa-facebook"></i></a>
 															<a class="social-01__item" href="#"><i class="fa fa-youtube"></i></a>
-															<a class="social-01__item" href="#"><i class="fa fa-twitter"></i></a>
 															<a class="social-01__item" href="#"><i class="fa fa-instagram"></i></a>
-															<a class="social-01__item" href="#"><i class="fa fa-cog"></i></a>
+															<a class="social-01__item" href="profile-setting.php"><i class="fa fa-cog"></i></a>
 														</nav>
 													</div>
 												</div>
 												<!-- End / social-01 -->
-
+												<div class="row">
+													<blockquote>
+														<p><?php 
+															//var_dump($careers); exit();
+															if($careers){
+																foreach($careers as $career){
+																	echo $career->getCareerDes();
+																	echo '<br>';	
+																}
+															}
+														?></p>
+													</blockquote>
+												</div>
+												<h3 class="orange">My Experience</h3>
 												<p class="text">
-													Nam elit ligula, egestas et ornare non, viverra eu justo. Aliquam ornare lectus ut pharetra dictum. Aliquam erat volutpat. 
-													In fringilla erat at eros pharetra faucibus. Nunc a magna eu lectus fringilla interdum luctus vitae diam. Morbi ac orci ac dolor pellentesque interdum vel accumsan risus. 
-													In vestibulum mattis turpis nec rhoncus. Maecenas facilisis commodo nunc, in blandit sem rutrum ac. Integer sit amet vehicula sem. 
-													Sed dictum arcu sit amet eros tempus pretium. Aenean lobortis risus purus.
+													<?php 
+														echo '<p><strong>'.$career->getExperienceTitle().'</strong>'.' ('.$career->getExperienceTime().')'.'</p>';
+														echo '<p>'.$career->getExperienceDes().'</p>';
+													?>
 												</p>
 											</div>
 										</div>
-
+										<h3 class="orange">My Work</h3>
 										<!-- Sound cloud link -->
 										<div class=" md-text-center">
 											<div class="post-01__media">
@@ -149,11 +167,7 @@
 										</div>
 
 										<!-- Carousel -->
-						
 
-										<blockquote>
-											<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
-										</blockquote>
 										<div class="row">
 											<div class="col-xl-11 offset-0 offset-sm-0 offset-md-0 offset-lg-0 offset-xl-1 ">
 												<p class="text">Suspendisse ac elit vitae est lacinia interdum eu sit amet mauris. Phasellus aliquam nisi sit amet libero mattis ornare. In varius nunc vel suscipit rhoncus. Nunc hendrerit nisl nec orci eleifend accumsan. Mauris nulla mi, egestas ac maximus ac, ultricies non tellus. Vestibulum varius purus nunc. Cr</p>
@@ -162,115 +176,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-lg-8 col-xl-6 offset-0 offset-sm-0 offset-md-0 offset-lg-2 offset-xl-3 ">
-									<h4 class="comment-heading">Comment <span>(2)</span></h4>
-									<ol class="comment-list">
-										<li class="comment parent">
-											<div class="comment-content">
-												<div class="comment-avatar">
-													<img alt="" src="assets/img/avatars/avatar-01.jpg" class="avatar photo">
-												</div><!-- .comment-avatar -->
-									
-												<div class="comment-body">
-													<div class="comment-metadata">
-														<a href="#">
-															<time datetime="2016-12-30T08:18:37+00:00">May 04, 2017</time>
-														</a>
-													</div><!-- .comment-metadata -->
-													
-													<span class="fn">John Doe</span>
-									
-													<div class="comment-text">
-														<p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisc</p>
-													</div>
-									
-													<div class="comment-button">
-														<a href="#" class="like">like</a>
-														<a href="#" class="reply">reply</a>
-													</div>
-												</div><!-- .comment-body -->
-											</div><!-- .comment-content -->
-									
-											<ol class="children">
-												<li class="comment">
-													<div class="comment-content">
-														<div class="comment-avatar">
-															<img alt="" src="assets/img/avatars/avatar-02.jpg" class="avatar photo">
-														</div><!-- .comment-avatar -->
-											
-														<div class="comment-body">
-															<div class="comment-metadata">
-																<a href="#">
-																	<time datetime="2016-12-30T08:18:37+00:00">May 04, 2017</time>
-																</a>
-															</div><!-- .comment-metadata -->
-															
-															<span class="fn">John Doe</span>
-									
-															<div class="comment-text">
-																<p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</p>
-															</div>
-															
-															<div class="comment-button">
-																<a href="#" class="like">like</a>
-																<a href="#" class="reply">reply</a>
-															</div>
-														</div><!-- .comment-body -->
-									
-													</div><!-- .comment-content -->
-												</li>
-											</ol>
-										</li>
-									
-										<li class="comment">
-											<div class="comment-content">
-												<div class="comment-avatar">
-													<img alt="" src="assets/img/avatars/avatar-01.jpg" class="avatar photo">
-												</div><!-- .comment-avatar -->
-									
-												<div class="comment-body">
-													<div class="comment-metadata">
-														<a href="#">
-															<time datetime="2016-12-30T08:18:37+00:00">May 04, 2017</time>
-														</a>
-													</div><!-- .comment-metadata -->
-													
-													<span class="fn">John Doe</span>
-									
-													<div class="comment-text">
-														<p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisc</p>
-													</div>
-									
-													<div class="comment-button">
-														<a href="#" class="like">like</a>
-														<a href="#" class="reply">reply</a>
-													</div>
-												</div><!-- .comment-body -->
-											</div><!-- .comment-content -->
-										</li>
-									</ol>
-									
-									<!-- form-01 -->
-									<div class="form-01 form-01__style-02">
-										<h2 class="form-01__title">Leave A Review</h2>
-										<form class="form-01__form">
-											<div class="form__item form__item--02">
-												<input type="text" name="name" placeholder="Your name"/>
-											</div>
-											<div class="form__item form__item--02">
-												<input type="email" name="phone" placeholder="Your Email"/>
-											</div>
-											<div class="form__item">
-												<textarea rows="3" name="Your comment" placeholder="Your review"></textarea>
-											</div>
-											<div class="form__button"><a class="btn btn-primary btn-w180" href="#">Post review</a>
-											</div>
-										</form>
-									</div><!-- End / form-01 -->
-									
-								</div>
-							</div>
+
 						</div>
 					</div>
 				</div>
@@ -278,89 +184,7 @@
 				
 				<!-- Section -->
 				<section class="md-section">
-					<div class="container">
-						
-						<!-- title-01 -->
-						<div class="title-01">
-							<h2 class="title-01__title">Some events for you</h2>
-						</div><!-- End / title-01 -->
-						
-						<div class="row">
-								<div class="col-lg-4 col-md-6 mb-4">
-									<div class="card h-100">
-										<a href="#"><img class="card-img-top" src="assets/img/projects/9.jpg" alt=""></a>
-										<div class="card-body text-center">
-											<h2 class="post-02__title" style="color:#f39c12;">
-												<a href="#">Jonathon Moody</a>
-											</h2>
-											<div class="post-02__department">Cover Band</div>
-											<p class="card-text" style="margin-top: 10px;">
-												From <span>$24.99 CAD</span> per hour
-											</p>
-											<p style="margin-top:50px;">
-												<button onclick="location.href='blog-detail.html';" type="button" class="btn btn-default btn-block">View</button>
-											</p>
-										</div>
-										<div class="card-footer">
-											<small class="text-muted">
-												&#9733; &#9733; &#9733; &#9733; &#9734;
-												<span>6</span>
-											</small>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-lg-4 col-md-6 mb-4">
-										<div class="card h-100">
-											<a href="#"><img class="card-img-top" src="assets/img/projects/9.jpg" alt=""></a>
-											<div class="card-body text-center">
-												<h2 class="post-02__title" style="color:#f39c12;">
-													<a href="#">Jonathon Moody</a>
-												</h2>
-												<div class="post-02__department">Cover Band</div>
-												<p class="card-text" style="margin-top: 10px;">
-													From <span>$24.99 CAD</span> per hour
-												</p>
-												<p style="margin-top:50px;">
-													<button onclick="location.href='blog-detail.html';" type="button" class="btn btn-default btn-block">View</button>
-												</p>
-											</div>
-											<div class="card-footer">
-												<small class="text-muted">
-													&#9733; &#9733; &#9733; &#9733; &#9734;
-													<span>6</span>
-												</small>
-											</div>
-										</div>
-									</div>
-
-									<div class="col-lg-4 col-md-6 mb-4">
-											<div class="card h-100">
-												<a href="#"><img class="card-img-top" src="assets/img/projects/9.jpg" alt=""></a>
-												<div class="card-body text-center">
-													<h2 class="post-02__title" style="color:#f39c12;">
-														<a href="#">Jonathon Moody</a>
-													</h2>
-													<div class="post-02__department">Cover Band</div>
-													<p class="card-text" style="margin-top: 10px;">
-														From <span>$24.99 CAD</span> per hour
-													</p>
-													<p style="margin-top:50px;">
-														<button onclick="location.href='blog-detail.html';" type="button" class="btn btn-default btn-block">View</button>
-													</p>
-												</div>
-												<div class="card-footer">
-													<small class="text-muted">
-														&#9733; &#9733; &#9733; &#9733; &#9734;
-														<span>6</span>
-													</small>
-												</div>
-											</div>
-										</div>
-						</div>
-						
-						
-						
+					<div class="container">		
 					</div>
 				</section>
 				<!-- End / Section -->
@@ -374,7 +198,7 @@
 					<div class="row row-eq-height">
 						<div class="col-8 col-sm-7 col-md-9 col-lg-3 ">
 							<div class="footer__item" style="top: -12px; position:relative;">
-								<a style="color: #f39c12; font-size: 35px; font-weight: 700;" href="index.html">WISHBONE</a>
+								<a style="font-size: 35px; font-weight: 700;" href="index.html">WISHBONE</a>
 								<p>Wishbone handles the entire booking process, including Management, ratings/ reviews, communication and payments.</p>
 							</div>
 						</div>
