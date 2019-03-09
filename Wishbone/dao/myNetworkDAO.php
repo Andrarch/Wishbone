@@ -36,13 +36,13 @@ require_once('./model/myNetworkModel.php');
         }
         public function getMyNetworkPair($userID){
             
-            $resultReturn=[];
+            $resultReturn=array( array ('',''), array('',''));
             if(!$this->mysqli->connect_errno){
                 $query = 'SELECT * from connected_friends where leftid='.$userID.' or rightid='.$userID;
                 
                 
                 if ($result = mysqli_query($this->mysqli, $query)) {
-                    $count=0;
+                    $count=2;
                     while ($row = $result->fetch_object()){
                         
                         $resultReturn[$count]=$row;
@@ -51,14 +51,11 @@ require_once('./model/myNetworkModel.php');
                         
                     }
                     mysqli_free_result($result);
-                    return $resultReturn;
+                    
                     
                 }
-                else{
-                    return FALSE;
-                    
-                }
-            
+                
+                return $resultReturn;
             }
         }
         
