@@ -50,7 +50,7 @@ contact information
 */
 CREATE TABLE contact (
 contactid int not null auto_increment,
-email varchar(50),
+email varchar(50) unique,
 phonenumber varchar(25),
 userid int,
 publicemail boolean,

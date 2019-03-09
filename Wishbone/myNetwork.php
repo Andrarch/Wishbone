@@ -29,7 +29,7 @@
         
                 <h1>First Last</h1>
               <p>
-                <button class=msgBtn onclick="location.href='http://www.google.com'" type="button">Message</button>
+                <button class=msgBtn onclick="location.href='chat.php?receiverid=2'" type="button">Message2</button>
                 </p>
 						
           </a>
@@ -42,7 +42,7 @@
         
                 <h1>First Last</h1>
               	<p>
-                <button class=msgBtn onclick="location.href='http://www.google.com'" type="button">Message</button>
+                <button class=msgBtn onclick="location.href='chat.php?receiverid=1'" type="button">Message1</button>
           		</p>
           </a>
         </div>
@@ -64,7 +64,7 @@
         
                 <h1>First Last</h1>
               	<p>
-                <button class=msgBtn onclick="location.href='http://www.google.com'" type="button">Request to add</button>
+                <button class=msgBtn onclick="location.href='chat.php?receiverid=2'" type="button">Request to add2</button>
 				</p>
           </a>
         </div>
@@ -77,7 +77,7 @@
         
                 <h1>First Last</h1>
               	<p>
-                <button class=msgBtn onclick="location.href='http://www.google.com'" type="button">Message</button>
+                <button class=msgBtn onclick="location.href='chat.php?receiverid=3'" type="button">Message3</button>
 				</p>
           </a>
         </div>
@@ -89,7 +89,7 @@
         
                 <h1>First Last</h1>
               	<p>
-                <button class=msgBtn onclick="location.href='http://www.google.com'" type="button">Message</button>
+                <button class=msgBtn onclick="location.href='chat.php?receiverid=4'" type="button">Message4</button>
 				</p>
           </a>
         </div>
@@ -101,7 +101,7 @@
         
                 <h1>First Last</h1>
               	<p>
-                <button class=msgBtn onclick="location.href='http://www.google.com'" type="button">Cancel Request</button>
+                <button class=msgBtn onclick="location.href='chat.php?receiverid=2'" type="button">Cancel Request</button>
 				</p>
           </a>
         </div>
@@ -117,7 +117,7 @@
         
                 <h1>First Last</h1>
               	<p>
-                <button class=msgBtn onclick="location.href='http://www.google.com'" type="button">Request to add</button>
+                <button class=msgBtn onclick="location.href='chat.php?receiverid=2'" type="button">Request to add</button>
           		</p>
           </a>
         </div>
@@ -130,7 +130,7 @@
         
                 <h1>First Last</h1>
               	<p>
-                <button class=msgBtn onclick="location.href='http://www.google.com'" type="button">Message</button>
+                <button class=msgBtn onclick="location.href='chat.php?receiverid=2'" type="button">Message</button>
           		</p>
           </a>
         </div>
@@ -142,7 +142,7 @@
          
                 <h1>First Last</h1>
               	<p>
-                <button class=msgBtn onclick="location.href='http://www.google.com'" type="button">Accept Request</button>
+                <button class=msgBtn onclick="location.href='chat.php?receiverid=2'" type="button">Accept Request</button>
           		</p>
           </a>
         </div>
@@ -159,7 +159,7 @@
         
                 <h1>First Last</h1>
               	<p>
-                <button class=msgBtn onclick="location.href='http://www.google.com'" type="button">Request to add</button>
+                <button class=msgBtn onclick="location.href='chat.php?receiverid=2'" type="button">Request to add</button>
           		</p>
           </a>
         </div>
