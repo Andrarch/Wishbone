@@ -5,21 +5,9 @@ background-size: cover;
 
 }
 
-.topnav {
 
- background-color: white;
- border-bottom: 8px solid orange;
-  padding-top: 10px;
-  padding-right: 5px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  display: flex;
-  justify-content:space-between;
-  word-spacing: 20px;
-  font-size: 2px;
-  border-radius: 20px;
-  
-}
+
+
 .leftnav{
 	width:70%;
 }
@@ -30,39 +18,48 @@ background-size: cover;
 	display: flex;
 	/*builds divs from left to the right by blocks*/
 	justify-content: space-between;
-	margin-top: 20px;
+	margin-top: -100px;
 	font-size: 8px;
+	background: url("../../assets/img/slider.jpg");
 	
 }
 .rightContent{
 	width:1000px;
 }
+
+.leftContent{
+	margin-top:100px;
+}
 .feed{
+	margin-top:100px;
 	width:300px;
-	background: white;
+	background: rgba(248,247,216,0.7);
 	height:800px;
-	border-radius: 20px;
+	
 }
 .centerFeed{
-	background: white;
-	height: 500px;
+	background: rgba(248,247,216,0.7);
+	height: 450px;
+	padding: 20px;
 	width:800px;
 	margin:0 auto;
-	margin-top: 15px;
-	border-radius: 20px;
+	
+	font-size: 17px;
 
 	overflow-y:scroll;
 	
 
 
 }
+.center p{
+	font-size:20px;
+}
 .bottomFeed{
-    background: white;
+    background: rgba(248,247,216,0.7);
     height: 225px;
     width:800px;
     margin:0 auto;
     margin-top: 25px;
-    border-radius: 20px;
     
 }
 
@@ -71,17 +68,17 @@ background-size: cover;
 	display: inline-block;
 	margin-left: 10px !important;
 	font-size: 20px;
-	color:orange;
+	color:white;
 }
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 200px;
   text-align: center;
   margin-left:1px;
-  background-color:white;
-  border-radius: 20px;
+  background-color:rgba(248,247,216,0.7);
+  marging-top: 30px;
   padding-bottom:10px;
-  
+  height:
 }
 
 .oksana {
@@ -91,19 +88,28 @@ background-size: cover;
   width: 80px;
   height: 120px;
   border-radius: 50%;
-  border: solid orange;
+  border: 7px solid white;
  
 } 
 .oksana2{
 	
 	height:200px;
 	width:200px;
-	border-radius:20px;
-	border-radius: 20px 20px 0px 0px;
+	
+	
+}
+.wishbone8, .wishbone10, .wishbone2, .wishbone5{
+	height:100px;
+	width:30px;
 }
 
-
-
+.wishbone7{
+	height:100px;
+	width:30px;
+}
+.adver1,.adver2{
+	margin:20px;
+}
 p{
 	font-size:18px;
 }
@@ -121,13 +127,24 @@ p{
 	border-radius: 20px;
 	margin-left:10px;
 	margin-right:25px;
+.serverText{
+	margin-top: 100px;
+	width: 600px;
+	height:30px !important;
+	margin-left:50px;
+	margin-right:10px;
+	font-size:16px;
+	margin-buttom:20px;
 	
+}
 	
+.button{
+	margin-left:50px;
 }
 
 i{
 	color: blue;
-	justify-content: space-between;
+	justify-content: space-between 5px;
 }
 
 a {
