@@ -5,6 +5,7 @@
         private $registrantEmail;
         private $registrantPassword;
         
+        
         function __construct($registrantFirstName, $registrantLastName, $registrantEmail, $registrantPassword){
            $this->setRegistrantFirstName($registrantFirstName);
            $this->setRegistrantLastName($registrantLastName);

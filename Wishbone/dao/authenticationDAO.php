@@ -12,6 +12,7 @@ require_once('./model/authentication.php');
             }
         }
         
+        
 
         public function addNewRegistrant($Registrant){
 			
