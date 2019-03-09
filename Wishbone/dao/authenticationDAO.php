@@ -12,23 +12,31 @@ require_once('./model/authentication.php');
             }
         }
         
+        
 
         public function addNewRegistrant($Registrant){
 			
             if(!$this->mysqli->connect_errno){
-                $query = 'INSERT INTO authentication
+                $query1 = 'INSERT INTO authentication
                             (email, pass) VALUES(?,?)';
-                
                 $email = $Registrant->getRegistrantEmail();
                 $pass = $Registrant->getRegistrantPassword();
-                
-                $stmt = $this->mysqli->prepare($query);
+                $stmt = $this->mysqli->prepare($query1);
                 $stmt->bind_param('ss', $email,$pass);
                 $stmt->execute();
-                if($stmt->error){
+				
+				$query2 = 'INSERT INTO users(authid, firstname, lastname)
+							VALUES(LAST_INSERT_ID(),?,?)';
+				$firstname = $Registrant->getRegistrantFirstName();
+				$lastname = $Registrant->getRegistrantLastName();
+				$stmt2 = $this->mysqli->prepare($query2);
+				$stmt2->bind_param('ss', $firstname,$lastname);
+				$stmt2->execute();
+				
+                if($stmt->error || $stmt2->error){
                     return $stmt->error;
                 }else{
-                    return $Registrant->getRegistrantFirstName().' '.$Registrant->getRegistrantLastName().' '.$Registrant->getRegistrantEmail().'added successfully';
+                    return $Registrant->getRegistrantFirstName().' '.$Registrant->getRegistrantLastName().' '.$Registrant->getRegistrantEmail().' added successfully';
                 }
             }else{
                 return 'Could not connect to Database';
