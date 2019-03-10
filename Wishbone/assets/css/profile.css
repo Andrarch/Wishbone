@@ -24,3 +24,9 @@
 .margn-center{
   margin: 0 auto;
 }
+.pro-background img{
+  max-height: 300px;
+}
+.orange{
+  color: #f39c12!important; 
+}

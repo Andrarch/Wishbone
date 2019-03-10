@@ -4669,3 +4669,35 @@ mark, .mark {
     bottom: 50px;
     position: absolute;
 }
+
+
+#chathistory {
+	width: 100%;
+	height: 400px;
+	overflow-y:scroll;
+	list-style:none;
+	border: 1px solid rgb(235, 235, 235);
+	padding: 15px;
+}
+
+.message div {
+	font-size: 12px;
+	display: inline-block;
+	padding: 5px;
+	-webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+	
+}
+.message.send {
+    text-align: right;
+}
+.message.received {
+    text-align: left;
+}
+.message.send div {
+    background-color: #badc58;
+}
+.message.received div {
+    background-color: #c8d6e5;
+}

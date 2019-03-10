@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data-sources>
+	<data-source id="h2_server-168ec7e38fc-71a75af6fa853f6" provider="generic" driver="h2_server" name="H2 - MySQL" save-password="true" show-system-objects="true" read-only="false">
+		<connection host="localhost" port="12345" server="" database="~/test;IFEXISTS=TRUE;MODE=MySQL" url="jdbc:h2:tcp://localhost:12345/~/test;IFEXISTS=TRUE;MODE=MySQL" user="sa" password="AwUVM1ZMVhJl8w==" type="dev"/>
+	</data-source>
+	<filters/>
+</data-sources>
