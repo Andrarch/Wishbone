@@ -15,14 +15,22 @@ require_once('./model/myNetworkModel.php');
        
         public function getMyNetwork($userid){
             
-            $resultReturn=array( new myNetworkUser('', '', '', 0),new myNetworkUser('', '', '', 0),new myNetworkUser('', '', '', 0),
-                new myNetworkUser('', '', '', 0),new myNetworkUser('', '', '', 0),new myNetworkUser('', '', '', 0),new myNetworkUser('', '', '', 0));
+            $temp =new myNetworkUser('', '', '', 0);
+            $_SESSION['myNetworkSet']=array();
+            $_SESSION['myNetworkSet'][0]=$temp;
+            $_SESSION['myNetworkSet'][1]=$temp;
+            $_SESSION['myNetworkSet'][2]=$temp;
+            $_SESSION['myNetworkSet'][3]=$temp;
+            $_SESSION['myNetworkSet'][4]=$temp;
+            $_SESSION['myNetworkSet'][5]=$temp;
+            $_SESSION['myNetworkSet'][6]=$temp;
+            
             if(!$this->mysqli->connect_errno){
-                $query = "select connected_friends.leftid, connected_friends.rightid, leftside.firstname, leftside.lastname, rightside.firstname, rightside.lastname, connected_friends.confirmright
+                $query = "select connected_friends.leftid as leftid, connected_friends.rightid as rightid, leftside.firstname as leftFirst, leftside.lastname as leftLast, rightside.firstname as rightFirst, rightside.lastname as rightLast, connected_friends.confirmright as confirm
                     from connected_friends
                     inner join users leftside on connected_friends.leftid=leftside.userid
                     inner join users rightside on connected_friends.rightid=rightside.userid
-                    where connected_friends.leftid="+$userid+" or connected_friends.rightid="+$userid;
+                    where connected_friends.leftid=".$userid." or connected_friends.rightid=".$userid;
                 
                 if ($result = mysqli_query($this->mysqli, $query)) {
                     $count=0;
@@ -32,31 +40,31 @@ require_once('./model/myNetworkModel.php');
                     $userLName='';
                     
                     while ($row = $result->fetch_object()){
-                        if ($row[0]==$userid){
-                            if ($row[6]==1){
+                        if ($row->leftid==$userid){
+                            if ($row->confirm==1){
                               $status=1;  
                             }
                             else{
                                 $status=3;
                             }
-                            $userFName=$row[4];
-                            $userLName=$row[5];
-                            $otherID=$row[1];
+                            $userFName=$row->rightFirst;
+                            $userLName=$row->rightLast;
+                            $otherID=$row->rightid;
                           
                         }
-                        if ($row[1]==$userid){
-                            if ($row[6]==1){
+                        if ($row->rightid==$userid){
+                            if ($row->confirm==1){
                                 $status=1;
                             }
                             else{
                                 $status=2;
                             }
-                            $userFName=$row[2];
-                            $userLName=$row[3];
-                            $otherID=$row[0];
+                            $userFName=$row->leftFirst;
+                            $userLName=$row->leftLast;
+                            $otherID=$row->leftid;
                         }
                         
-                        $resultReturn[int($count)]=new myNetworkUser($userFName, $userLName, $otherID, $status);
+                        $_SESSION['myNetworkSet'][(int)$count]=new myNetworkUser($userFName, $userLName, $otherID, $status);
                         $count++;
                         
                         
@@ -68,8 +76,6 @@ require_once('./model/myNetworkModel.php');
                 
 
            }
-
-           return $resultReturn;
            
         }
         public function getNames($idNum){

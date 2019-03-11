@@ -1,4 +1,7 @@
-<?php include('dao/myNetworkDAO.php')?>
+<?php include('dao/myNetworkDAO.php');
+include_once('model/myNetworkModel.php');
+?>
+
 <!doctype html>
 <html>
   <head>
@@ -7,16 +10,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="assets/css/myNetwork.css">
     <link href='https://fonts.googleapis.com/css?family=Raleway:300' rel='stylesheet' type='text/css'>
-  	        <link rel="stylesheet" type="text/css" href="assets/fonts/fontawesome/font-awesome.min.css">
+         <link rel="stylesheet" type="text/css" href="assets/fonts/fontawesome/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="assets/vendors/bootstrap4/bootstrap-grid.min.css">
         <link rel="stylesheet" type="text/css" href="assets/vendors/bootstrap4/bootstrap-social.css">
         <link rel="stylesheet" type="text/css" href="assets/vendors/magnific-popup/magnific-popup.min.css">
+
+
         <link rel="stylesheet" type="text/css" href="assets/vendors/owl.carousel/owl.carousel.css">
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i&amp;amp;subset=latin-ext">
-        <link rel="stylesheet" type="text/css" href="assets/css/main.css">
-  	
-  	
-  	<link rel="stylesheet" type="text/css" href="Menu.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/main.css"> 
+
+  	<link rel="stylesheet" type="text/css" href="assets/css/myNetwork.css">
   </head>
   <body>
  <div class="page-wrap">
@@ -51,37 +55,23 @@
         
         
     </div>
-   <div style="margin-top: 100px"> 
-
-    
+   <div class="myNetwork" style="margin-top: 100px"> 
+	<?php 
+	session_start();
+	$myNet=new myNetworkDAO();
+	$myNet->getMyNetwork(1);
+	$start=0;
+	?>
+	
+	
     <ul id="hexGrid">
-       
-      <li class="hex">
-         
-        <div class="hexIn">
-          <a class="hexLink" href="#">
-          	<img src="https://farm9.staticflickr.com/8461/8048823381_0fbc2d8efb.jpg" alt="" />
-        
-                <h1>First Last</h1>
-              <p>
-                <button class=msgBtn onclick="location.href='chat.php?receiverid=2'" type="button">Message2</button>
-                </p>
-						
-          </a>
-        </div>
-      </li>
-      <li class="hex">
-        <div class="hexIn">
-          <a class="hexLink" href="#">
-            <img src="https://farm5.staticflickr.com/4144/5053682635_b348b24698.jpg" alt="" />
-        
-                <h1>First Last</h1>
-              	<p>
-                <button class=msgBtn onclick="location.href='chat.php?receiverid=1'" type="button">Message1</button>
-          		</p>
-          </a>
-        </div>
-      </li>
+      <?php 
+      
+      $_SESSION['myNetworkSet'][0]->generateMyNetworkCell();
+      $_SESSION['myNetworkSet'][1]->generateMyNetworkCell();
+      
+      ?>
+      
    <!--   <li class="hexButton">
         <div class="hexButtonIn">
         	 <button type="button">Click Me!</button> 
@@ -107,12 +97,13 @@
       
       <li class="hex">
         <div class="hexIn">
-          <a class="hexLink" href="#">
+          <a class="hexLink" href="location.href='profile.php?receiverid=3'" type="button">Message3</button>
+				</p>">
             <img src="https://farm7.staticflickr.com/6083/6055581292_d94c2d90e3.jpg" alt="" />
         
                 <h1>First Last</h1>
               	<p>
-                <button class=msgBtn onclick="location.href='chat.php?receiverid=3'" type="button">Message3</button>
+                <button class=msgBtn onclick="window.location.href='chat.php?receiverid=3'" type="button">Message3</button>
 				</p>
           </a>
         </div>
@@ -145,7 +136,7 @@
         <div class="hexIn">
         </div>
       </li>
-      <li class="hexSuggest">
+      <li class="hexNone">
         <div class="hexIn">
           <a class="hexLink" href="#">
             <img src="https://farm7.staticflickr.com/6139/5986939269_10721b8017.jpg" alt="" />
