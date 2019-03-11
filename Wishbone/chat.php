@@ -1,5 +1,8 @@
 <?php
+//session_start();
 $receiverid = intval( $_GET["receiverid"] );
+
+//printf("<pre>%s</pre>", print_r($_SESSION, true));
 
 if( $receiverid == 0 )
 {
@@ -106,88 +109,35 @@ if( $receiver == null )
 <body>
 	<div class="page-wrap">
 
-		<!-- header -->
-		<header class="header">
+    <div class="page-wrap">
+        <!-- header -->
+        <header class="header">
 			<div class="container">
 				<div class="header__logo">
-					<a style="color: #f39c12; font-size: 25px; font-weight: 700;"
-						href="index.html">WISHBONE</a>
+					<a style="color: #f39c12; font-size: 25px; font-weight: 700;" href="index.html">WISHBONE</a>
 				</div>
-
-				<!--
-                    <div class="header__toogleGroup">
-                        <div class="header__chooseLanguage">
-                                        
-                                        <div class="dropdown" data-init="dropdown"><a class="dropdown__toggle" href="javascript:void(0)">EN <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                                            <div class="dropdown__content" data-position="right">
-                                                <ul class="list-style-none">
-                                                    <li><a href="#">EN</a></li>
-                                                    <li><a href="#">DE</a></li>
-                                                    <li><a href="#">VI</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        
-                        </div>
-                        <div class="search-form">
-                            <div class="search-form__toggle"><i class="ti-search"></i></div>
-                            <div class="search-form__form">
-                                                
-                                                <div class="form-search">
-                                                    <form>
-                                                        <input class="form-control" type="text" placeholder="Hit enter to search or ESC to close"/>
-                                                    </form>
-                                                </div>
-                                                
-                            </div>
-                        </div>
-                    </div>
-                    -->
-
-				<!-- consult-nav -->
-				<nav class="consult-nav">
-
-					<!-- consult-menu -->
+                
+                <nav class="consult-nav">
+                    <!-- consult-menu -->
 					<ul class="consult-menu">
 						<li><a href="index.html">Home</a></li>
-
-						<!--
-                            <li class="menu-item-has-children"><a href="#">page</a>
-                                <ul class="sub-menu">
-                                    <li>
-                                        <a href="comming-soon.html">Comming Soon</a>
-                                    </li>
-                                    <li>
-                                        <a href="404.html">404</a>
-                                    </li>
-                                    <li>
-                                        <a href="typography.html">Typography</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            -->
-
-						<li class="menu-item-has-children"><a href="entertainer.html">Entertainer</a>
-							<ul class="sub-menu">
-								<li><a href="entertainer.html">Find Entertainer</a></li>
-								<li><a href="#">Become Entertainer</a></li>
-							</ul></li>
-						<li><a href="event.html">Events</a></li>
-						<li><a href="about.html">about</a>
-						
-						<li class="current-menu-item"><a href="contact.html">contact</a></li>
+				        <li><a href="chat.php">My Messages</a></li>
+						<li><a href="mynetwork.php">My Network</a></li>
+						<li><a href="profile.php">My Profile</a>
+						<li><a href="userHome.php">My Page</a>
+						<li><a href="search.php">Search</a>
+						<li><a href="logOut.php">Log out</a>    
 					</ul>
 					<!-- consult-menu -->
-
-					<div class="navbar-toggle">
+                    <div class="navbar-toggle">
 						<span></span><span></span><span></span>
 					</div>
-				</nav>
+                </nav>
 				<!-- End / consult-nav -->
-
-			</div>
-		</header>
-		<!-- End / header -->
+            </div>
+        </header>
+    </div>
+    
 
 		<!-- Content-->
 
