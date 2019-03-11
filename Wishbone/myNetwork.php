@@ -54,7 +54,6 @@
    <div style="margin-top: 100px"> 
 
     
-    
     <ul id="hexGrid">
        
       <li class="hex">
