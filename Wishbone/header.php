@@ -1,6 +1,8 @@
 <?php
 class header{
+   
     public function getHeader(){
+        
         echo "<div class=\"page-wrap\">
         <!-- header -->
         <header class=\"header\">
