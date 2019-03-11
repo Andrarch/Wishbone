@@ -47,7 +47,7 @@ $_SESSION['userlastname']=$login_user_lastname;
 
 </head>
 
-  <form action="http://localhost:8728/Wishbone/insertPost.php" method="post"> 
+  <form action="/wishbone/insertPost.php" method="post"> 
 <div class="page-wrap">
 
 		<!-- header -->
@@ -107,7 +107,7 @@ $_SESSION['userlastname']=$login_user_lastname;
 	</div> 
 	</div>
 	<div class="rightContent">
-	<form action ="http://localhost:8728/Wishbone/insertPost.php" method="post">
+	<form action ="/wishbone/insertPost.php" method="post">
 		<div class="posts">
 			<textarea class="serverText" name= "dataPost">
    Type your post here
