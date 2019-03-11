@@ -51,7 +51,7 @@ body {
   outline:1px solid transparent; /* fix for jagged edges in FF on hover transition */
 }
 .hexLink {
-  display:block;
+  display:inline;
   width: 100%;
   position:absolute;
   height: 100%;
@@ -383,8 +383,8 @@ body {
 
 .msgBtn {
   display:block;
-  position:absolute;
-  z-index:100000;
+  position:relative;
+ 
   background-color: DodgerBlue; /* Blue background */
   border: none; /* Remove borders */
   color: white; /* White text */

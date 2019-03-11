@@ -58,7 +58,7 @@
                 
                 echo "<li class=\"hexNone\">";
                 echo " <div class=\"hexIn\">";
-                echo "<a class='hexLink' href=\"#\"";
+                echo "<a class='hexLink' href=\"#\">";
                 echo "<img src=\"https://farm7.staticflickr.com/6139/5986939269_10721b8017.jpg\" alt=\"\" />";
                 echo "<h1></h1><p>";
                 echo "</p> </a> </div> </li>";
@@ -67,10 +67,12 @@
             if ($this->getStatus()==1){
                 echo "<li class='hex'>";
                 echo " <div class='hexIn'>";
-                echo "<a class='hexLink' href=\"location.href='profile.php?id=".$this->getUserID(). "'\">";
+                echo "<a class=\"hexLink\" href=\"#\">";
                 echo "<img src=\"https://farm4.staticflickr.com/3165/5733278274_2626612c70.jpg\" alt=\"\" />";
                 echo "<h1>".$this->getUserFName()." ".$this->getUserLName()."</h1><p>";
-                echo "<button class=msgBtn onclick=\"location.href='chat.php?receiverid=".$this->getUserID(). "'\" type=\"button\">Message ".$this->getUserFName()."</button>";
+                echo "<button class=msgBtn onclick=\"location.href='chat.php?receiverid=".$this->getUserID(). "'\" type=\"button\">Message ".$this->getUserFName()."</button><br><br>";
+                echo "<button class=msgBtn onclick=\"location.href='profile.php?id=".$this->getUserID()."' \" type=\"button\">".$this->getUserFName()."'s Profile</button>";
+                
                 echo "</p> </a> </div> </li>";
             }
             if ($this->getStatus()==2){

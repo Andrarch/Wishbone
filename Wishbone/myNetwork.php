@@ -84,6 +84,7 @@ include_once('model/myNetworkModel.php');
       </li>
       <li class="hexSuggest">
         <div class="hexIn">
+
           <a class="hexLink" href="#">
             <img src="https://farm7.staticflickr.com/6217/6216951796_e50778255c.jpg" alt="" />
         
@@ -96,16 +97,19 @@ include_once('model/myNetworkModel.php');
       </li>
       
       <li class="hex">
+      
         <div class="hexIn">
-          <a class="hexLink" href="location.href='profile.php?receiverid=3'" type="button">Message3</button>
-				</p>">
+          
+          <a class="hexLink" href='profile.php?receiverid=3'>
+			
             <img src="https://farm7.staticflickr.com/6083/6055581292_d94c2d90e3.jpg" alt="" />
         
                 <h1>First Last</h1>
               	<p>
-                <button class=msgBtn onclick="window.location.href='chat.php?receiverid=3'" type="button">Message3</button>
+               <button class=msgBtn onclick="location.href='chat.php?receiverid=2'" type="button">Message test</button>
 				</p>
           </a>
+           
         </div>
       </li>
       <li class="hex">
