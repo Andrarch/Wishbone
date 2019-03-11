@@ -78,25 +78,14 @@ require_once('./model/myNetworkModel.php');
            }
            
         }
-        public function getNames($idNum){
+        public function cancelRequest($id){
             
-            if(!$this->mysqli->connect_errno){
-                $query = 'SELECT firstname, lastname from users where userid='.$idNum;
-                
-                
-                if ($result = mysqli_query($this->mysqli, $query)) {
-                    $row = $result->fetch_object();
-                    
-                    mysqli_free_result($result);
-                    return $row;
-                    
-                }
-                else{
-                    return FALSE;
-                    
-                }
-                
-            }
+        }
+        public function acceptRequest($id){
+            
+        }
+        public function sendRequest($id){
+            
         }
         
     }
