@@ -12,40 +12,59 @@ require_once('./model/myNetworkModel.php');
             }
         }
         
-
-        public function addNewRegistrant($Registrant){
-			
-            if(!$this->mysqli->connect_errno){
-                $query = 'INSERT INTO authentication
-                            (email, pass) VALUES(?,?)';
-                
-                $email = $Registrant->getRegistrantEmail();
-                $pass = $Registrant->getRegistrantPassword();
-                
-                $stmt = $this->mysqli->prepare($query);
-                $stmt->bind_param('ss', $email,$pass);
-                $stmt->execute();
-                if($stmt->error){
-                    return $stmt->error;
-                }else{
-                    return $Registrant->getRegistrantFirstName().' '.$Registrant->getRegistrantLastName().' '.$Registrant->getRegistrantEmail().'added successfully';
-                }
-            }else{
-                return 'Could not connect to Database';
-            }
-        }
-        public function getMyNetworkPair($userID){
+       
+        public function getMyNetwork($userid){
+            session_start();
+            $temp =new myNetworkUser('', '', '', 0);
+            $_SESSION['myNetworkSet']=array();
+            $_SESSION['myNetworkSet'][0]=$temp;
+            $_SESSION['myNetworkSet'][1]=$temp;
+            $_SESSION['myNetworkSet'][2]=$temp;
+            $_SESSION['myNetworkSet'][3]=$temp;
+            $_SESSION['myNetworkSet'][4]=$temp;
+            $_SESSION['myNetworkSet'][5]=$temp;
+            $_SESSION['myNetworkSet'][6]=$temp;
             
-            $resultReturn=array( array ('',''), array('',''));
             if(!$this->mysqli->connect_errno){
-                $query = 'SELECT * from connected_friends where leftid='.$userID.' or rightid='.$userID;
-                
+                $query = "select connected_friends.leftid as leftid, connected_friends.rightid as rightid, leftside.firstname as leftFirst, leftside.lastname as leftLast, rightside.firstname as rightFirst, rightside.lastname as rightLast, connected_friends.confirmright as confirm
+                    from connected_friends
+                    inner join users leftside on connected_friends.leftid=leftside.userid
+                    inner join users rightside on connected_friends.rightid=rightside.userid
+                    where connected_friends.leftid=".$userid." or connected_friends.rightid=".$userid;
                 
                 if ($result = mysqli_query($this->mysqli, $query)) {
-                    $count=2;
+                    $count=0;
+                    $status=0; /* Status 0 = nothing, 1 = linked, 2=request in, 3=request out */
+                    $otherID='';
+                    $userFName='';
+                    $userLName='';
+                    
                     while ($row = $result->fetch_object()){
+                        if ($row->leftid==$userid){
+                            if ($row->confirm==1){
+                              $status=1;  
+                            }
+                            else{
+                                $status=3;
+                            }
+                            $userFName=$row->rightFirst;
+                            $userLName=$row->rightLast;
+                            $otherID=$row->rightid;
+                          
+                        }
+                        if ($row->rightid==$userid){
+                            if ($row->confirm==1){
+                                $status=1;
+                            }
+                            else{
+                                $status=2;
+                            }
+                            $userFName=$row->leftFirst;
+                            $userLName=$row->leftLast;
+                            $otherID=$row->leftid;
+                        }
                         
-                        $resultReturn[$count]=$row;
+                        $_SESSION['myNetworkSet'][(int)$count]=new myNetworkUser($userFName, $userLName, $otherID, $status);
                         $count++;
                         
                         
@@ -55,73 +74,110 @@ require_once('./model/myNetworkModel.php');
                     
                 }
                 
-                return $resultReturn;
-            }
+
+           }
+           
         }
-        
-        public function getMyNetwork($userid){
-           $resultset=[] ;
-           
-           
-           $resultset[]=$this->getMyNetworkPair($userid);
-           $names=[];
-           
-           $myNetReturn=[];
-           foreach($resultset as $result){
-               if($result[2]==0){
-                   if($result[1]==$userid){
-                       $names=$this->getNames($result[0]);
-                       $status='unconfirmed';
-                   }
-                   else{
-                       $names=$this->getNames($result[1]);
-                       $status='waiting';
-                   }
-               }
-               else{
-                   if($result[1]==$userid){
-                       $names=$this->getNames($result[0]);
-                       $status='confirmed';
-                   }
-                   else{
-                       $names=$this->getNames($result[1]);
-                       $status='confirmed';
-                   }
-                       
-               }
-                       
-               
-               
-               $myNet=new myNetworkUser($names[0], $names[1], $userid, $status);
-               $myNetReturn[]=$myNet;
-           }
-           
-           while(sizeof($myNetReturn,0)<7){
-               $myNetReturn[]=new myNetworkUser('Empty','Empty','Empty','Empty');
-           }
-            return $myNetReturn;
+        public function cancelRequest($userID,$id){
+            session_start();
+            if(isset($_SESSION['userID'])){
+                $userID=$_SESSION['userID'];
+            }
+            if(!$this->mysqli->connect_errno){
+                $query = "delete from connected_friends where leftid=".$userID." and rightid=".$id;                 
+                $result = mysqli_query($this->mysqli, $query);
+                
+                }
+                header( 'Location:myNetwork.php');
+        }
+        public function acceptRequest($userID,$id){
+            session_start();
+            if(isset($_SESSION['userID'])){
+                $userID=$_SESSION['userID'];
+            }
+            if(!$this->mysqli->connect_errno){
+                $query = "update from connected_friends set confirmright=1 where leftid=".$id." and rightid=".$userID;
+                $result = mysqli_query($this->mysqli, $query);
+                
+            }
+            header( 'Location:myNetwork.php');
+        }
+        public function sendRequest($userID,$id){
+            session_start();
+            if(isset($_SESSION['userID'])){
+                $userID=$_SESSION['userID'];
+            }
+            if(!$this->mysqli->connect_errno){
+                $query = "Insert into connected_friends (leftid, rightid, confirmright) values (".$userID.','.$id.','.'0)';
+                $result = mysqli_query($this->mysqli, $query);
+                
+            }
+            header( 'Location:myNetwork.php');
+            
             
         }
-        public function getNames($idNum){
+        public function getMyNetworkSuggest($userid){
+            session_start();
+            $temp =new myNetworkUser('', '', '', 0);
+            $_SESSION['myNetworkSetSug']=array();
+            $_SESSION['myNetworkSet'][0]=$temp;
+            $_SESSION['myNetworkSet'][1]=$temp;
+            $_SESSION['myNetworkSet'][2]=$temp;
+            
             
             if(!$this->mysqli->connect_errno){
-                $query = 'SELECT firstname, lastname from users where userid='.$idNum;
-                
-                
+              /*  $query = "select users.userid, users.firstname, users.lastname
+                    from address
+                    inner join users on address.userid=users.userid
+                    where city='Ottawa'"; */
+                    $query= "select * from users where userid not in (
+select leftid, rightid from connected_friends where leftid=".$userid." and rightid=".$userid.")";
+                    
                 if ($result = mysqli_query($this->mysqli, $query)) {
-                    $row = $result->fetch_object();
+                    $count=0;
+                    $status=0; /* Status 0 = nothing, 1 = linked, 2=request in, 3=request out */
+                    $otherID='';
+                    $userFName='';
+                    $userLName='';
                     
+                    while ($row = $result->fetch_object()){
+                        if ($row->leftid==$userid){
+                            if ($row->confirm==1){
+                                $status=1;
+                            }
+                            else{
+                                $status=3;
+                            }
+                            $userFName=$row->rightFirst;
+                            $userLName=$row->rightLast;
+                            $otherID=$row->rightid;
+                            
+                        }
+                        if ($row->rightid==$userid){
+                            if ($row->confirm==1){
+                                $status=1;
+                            }
+                            else{
+                                $status=2;
+                            }
+                            $userFName=$row->leftFirst;
+                            $userLName=$row->leftLast;
+                            $otherID=$row->leftid;
+                        }
+                        
+                        $_SESSION['myNetworkSet'][(int)$count]=new myNetworkUser($userFName, $userLName, $otherID, $status);
+                        $count++;
+                        
+                        
+                    }
                     mysqli_free_result($result);
-                    return $row;
+                    
                     
                 }
-                else{
-                    return FALSE;
-                    
-                }
+                
                 
             }
+            
         }
-        
     }
 ?>

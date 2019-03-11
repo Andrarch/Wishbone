@@ -1,5 +1,8 @@
 <?php
+//session_start();
 $receiverid = intval( $_GET["receiverid"] );
+
+//printf("<pre>%s</pre>", print_r($_SESSION, true));
 
 if( $receiverid == 0 )
 {
@@ -20,7 +23,11 @@ if( $receiver == null )
     exit("404 not found");
 }
 
-?><!DOCTYPE html>
+?>
+
+
+ 
+ <!DOCTYPE html>
 <html>
 <head>
 <title>Contact</title>
@@ -104,90 +111,16 @@ if( $receiver == null )
 </script>
 
 <body>
-	<div class="page-wrap">
 
-		<!-- header -->
-		<header class="header">
-			<div class="container">
-				<div class="header__logo">
-					<a style="color: #f39c12; font-size: 25px; font-weight: 700;"
-						href="index.html">WISHBONE</a>
-				</div>
+ <?php 
+ 
+ include('header.php');
+ $header=new header();
+ $header->getHeader();
+ 
+ ?>
 
-				<!--
-                    <div class="header__toogleGroup">
-                        <div class="header__chooseLanguage">
-                                        
-                                        <div class="dropdown" data-init="dropdown"><a class="dropdown__toggle" href="javascript:void(0)">EN <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                                            <div class="dropdown__content" data-position="right">
-                                                <ul class="list-style-none">
-                                                    <li><a href="#">EN</a></li>
-                                                    <li><a href="#">DE</a></li>
-                                                    <li><a href="#">VI</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        
-                        </div>
-                        <div class="search-form">
-                            <div class="search-form__toggle"><i class="ti-search"></i></div>
-                            <div class="search-form__form">
-                                                
-                                                <div class="form-search">
-                                                    <form>
-                                                        <input class="form-control" type="text" placeholder="Hit enter to search or ESC to close"/>
-                                                    </form>
-                                                </div>
-                                                
-                            </div>
-                        </div>
-                    </div>
-                    -->
-
-				<!-- consult-nav -->
-				<nav class="consult-nav">
-
-					<!-- consult-menu -->
-					<ul class="consult-menu">
-						<li><a href="index.html">Home</a></li>
-
-						<!--
-                            <li class="menu-item-has-children"><a href="#">page</a>
-                                <ul class="sub-menu">
-                                    <li>
-                                        <a href="comming-soon.html">Comming Soon</a>
-                                    </li>
-                                    <li>
-                                        <a href="404.html">404</a>
-                                    </li>
-                                    <li>
-                                        <a href="typography.html">Typography</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            -->
-
-						<li class="menu-item-has-children"><a href="entertainer.html">Entertainer</a>
-							<ul class="sub-menu">
-								<li><a href="entertainer.html">Find Entertainer</a></li>
-								<li><a href="#">Become Entertainer</a></li>
-							</ul></li>
-						<li><a href="event.html">Events</a></li>
-						<li><a href="about.html">about</a>
-						
-						<li class="current-menu-item"><a href="contact.html">contact</a></li>
-					</ul>
-					<!-- consult-menu -->
-
-					<div class="navbar-toggle">
-						<span></span><span></span><span></span>
-					</div>
-				</nav>
-				<!-- End / consult-nav -->
-
-			</div>
-		</header>
-		<!-- End / header -->
+    
 
 		<!-- Content-->
 
