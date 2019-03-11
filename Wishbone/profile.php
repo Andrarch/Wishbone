@@ -103,12 +103,12 @@
 												<!--<h1 class="text-center">Lynda King</h1>-->
 												<!-- social-01 -->
 												<div class="row mb-3">
-													<div class="social-01 social-01__style-02 margn-center">
+													<div class="social-01__style-02 margn-center">
 														<nav class="social-01__navSocial">
-															<a class="social-01__item" href="#"><i class="fa fa-facebook"></i></a>
-															<a class="social-01__item" href="#"><i class="fa fa-youtube"></i></a>
-															<a class="social-01__item" href="#"><i class="fa fa-instagram"></i></a>
-															<a class="social-01__item" href="profile-setting.php"><i class="fa fa-cog"></i></a>
+															<a class="social-01__item text-center" href="#"><i class="fa fa-facebook"></i></a>
+															<a class="social-01__item text-center" href="#"><i class="fa fa-youtube"></i></a>
+															<a class="social-01__item text-center" href="#"><i class="fa fa-instagram"></i></a>
+															<a class="social-01__item text-center" href="profile-setting.php"><i class="fa fa-cog"></i></a>
 														</nav>
 													</div>
 												</div>
