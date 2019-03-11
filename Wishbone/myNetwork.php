@@ -57,6 +57,7 @@ include_once('model/myNetworkModel.php');
     </div>
    <div class="myNetwork" style="margin-top: 100px"> 
 	<?php 
+	session_start();
 	$myNet=new myNetworkDAO();
 	$myNet->getMyNetwork($_SESSION['userid']);
 	$start=0;
