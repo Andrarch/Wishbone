@@ -28,16 +28,16 @@
 	
 	<body>
 		<div class="page-wrap">
-			
+			 <?php 
+				 include('header.php');
+				 $header=new header();
+				 $header->getHeader();
+			 ?>
 			<!-- header -->
-			<header class="header">
+			<!-- <header class="header">
 				<div class="container">
 					<div class="header__logo"><a class="logo" href="index.html">WISHBONE</a></div>
-					
-					<!-- consult-nav -->
-					<nav class="consult-nav">
-							
-						<!-- consult-menu -->
+					<nav class="consult-nav">			
 						<ul class="consult-menu">
 							<li>
 								<a href="index.html">Home</a>
@@ -60,12 +60,13 @@
 							<li><a href="about.html">about</a>
 							<li><a href="contact.html">contact</a>
 							</li>
-						</ul><!-- consult-menu -->
+						</ul>
 						
-					</nav><!-- End / consult-nav -->
+					</nav>
 					
 				</div>
-			</header><!-- End / header -->
+			</header> -->
+			<!-- End / header -->
 			
 			<!-- Content-->
 			<div class="md-content">
