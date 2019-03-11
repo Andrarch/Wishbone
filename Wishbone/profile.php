@@ -1,10 +1,9 @@
 <?php require_once('dao/profilelistDAO.php');?>
-<?php require_once('dao/careerDAO.php');?>
 <?php 
+	session_start();
+	$userid = $_SESSION['userid'];
 	$profilelistDAO = new profilelistDAO(); 
-	$profilelists = $profilelistDAO->getProfilelists(2); 
-	$careerDAO = new careerDAO();
-	$careers = $careerDAO->getCareers(2); 
+	$profilelists = $profilelistDAO->getProfilelists($userid); 
 ?>
 
 <!DOCTYPE html>
@@ -92,14 +91,12 @@
 										<div class="row">
 											<div class="col-xl-12 offset-0 offset-sm-0 offset-md-0 offset-lg-0">
 												<?php
+													echo '<h1 class="text-center">'.$profilelists['firstname'].' '.$profilelists['lastname'].'</h1>';
 													if($profilelists){
-														foreach($profilelists as $profilelist){
-															echo '<h1 class="text-center">'.$profilelist->getUserfName().' '.$profilelist->getUserlName().'</h1>';
-															echo '<h4 class="text-center orange">'.$profilelist->getCareerName().'</h4>';
-															echo '<div class="text-center">'.'Area : '.$profilelist->getLifeArea().'</div>';
-															echo '<div class="text-center">'.'Email : '.$profilelist->getEmailAddress().'</div>';
+															echo '<h4 class="text-center orange">'.$profilelists['role'].'</h4>';
+															echo '<div class="text-center">'.'Area : '.$profilelists['city'].' '.$profilelists['province'].'</div>';
+															echo '<div class="text-center">'.'Email : '.$profilelists['email'].'</div>';
 															echo '<br>';
-														}	
 													}
 										
 												?>
@@ -119,58 +116,44 @@
 												<div class="row">
 													<blockquote>
 														<p><?php 
-															//var_dump($careers); exit();
-															if($careers){
-																foreach($careers as $career){
-																	echo $career->getCareerDes();
+															if($profilelists){
+																	echo $profilelists['bio'];
 																	echo '<br>';	
-																}
 															}
 														?></p>
 													</blockquote>
 												</div>
 												<h3 class="orange">My Experience</h3>
-												<p class="text">
+												<p>
 													<?php 
-														echo '<p><strong>'.$career->getExperienceTitle().'</strong>'.' ('.$career->getExperienceTime().')'.'</p>';
-														echo '<p>'.$career->getExperienceDes().'</p>';
+														if($profilelists){
+															echo '<p><strong>'.$profilelists['experience']->getExperienceTitle().'</strong>'.' ('.$profilelists['experience']->getExperienceTime().')'.'</p>';
+															echo '<p>'.$profilelists['experience']->getExperienceDes().'</p>';
+														}
 													?>
 												</p>
 											</div>
 										</div>
-										<h3 class="orange">My Work</h3>
+
+										<h3 class="orange mt-3">My Work</h3>
 										<!-- Sound cloud link -->
 										<div class=" md-text-center">
 											<div class="post-01__media">
-												<div><iframe width="100%" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/308178330&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true"></iframe></div>
+												<div>
+												<?php
+													echo '<iframe width="100%" scrolling="no" frameborder="no" src='.$profilelists['url'].'></iframe>';
+												?>
+												</div>
 											</div>
 										</div><!-- End /  -->
 
 										<div class="row">
 											<div class="col-xl-12">
-												<p class="text">Maecenas lorem ex, euismod eget pulvinar non, facilisis ut leo. Quisque placerat purus in neque efficitur ornare. Nam at justo magna. Aliquam venenatis odio ante, non euismod augue porttitor eget. Maecenas nec viverra eros, eget euismod felis. Integer cursus libero sed lorem euismod, vel iaculis felis placerat. Pellentesque augue lacus, sodales et eros sed, molestie rhoncus ligula. Vivamus sed massa lorem. Suspendisse mollis lectus nec ex fermentum, in consectetur dolor egestas. Phasellus quis ipsum quis nisl ultricies sollicitudin id in dolor. Proin at consequat dui.</p>
-											</div>
-										</div>
-
-										<div class="row">
-											<div class="col-lg-6 ">
-												<div class="image-full"><img src="assets/img/blogs/detail/4.jpg" alt=""></div>
-											</div>
-											<div class="col-lg-6 ">
-												<div class="image-full"><img src="assets/img/blogs/detail/3.jpg" alt=""></div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-xl-11 offset-0 offset-sm-0 offset-md-0 offset-lg-0 offset-xl-1 ">
-												<p class="text">Sed ante nisl, fermentum et facilisis in, maximus sed ipsum. Cras hendrerit feugiat eros, ut fringilla nunc finibus sed. Quisque vitae dictum augue, vitae pretium sem. Proin tristique lobortis mauris nec mollis. Mauris id nibh sem. Vivamus ac ligula ac erat ultricies cursus semper ac enim. Aenean ac</p>
-											</div>
-										</div>
-
-										<!-- Carousel -->
-
-										<div class="row">
-											<div class="col-xl-11 offset-0 offset-sm-0 offset-md-0 offset-lg-0 offset-xl-1 ">
-												<p class="text">Suspendisse ac elit vitae est lacinia interdum eu sit amet mauris. Phasellus aliquam nisi sit amet libero mattis ornare. In varius nunc vel suscipit rhoncus. Nunc hendrerit nisl nec orci eleifend accumsan. Mauris nulla mi, egestas ac maximus ac, ultricies non tellus. Vestibulum varius purus nunc. Cr</p>
+												<p>
+												<?php
+													echo $profilelists['urldes'];
+												?>
+												</p>
 											</div>
 										</div>
 									</div>
