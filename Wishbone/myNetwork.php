@@ -95,47 +95,12 @@ include_once('model/myNetworkModel.php');
           </a>
         </div>
       </li>
-      
-      <li class="hex">
-      
-        <div class="hexIn">
-          
-          <a class="hexLink" href='profile.php?receiverid=3'>
-			
-            <img src="https://farm7.staticflickr.com/6083/6055581292_d94c2d90e3.jpg" alt="" />
-        
-                <h1>First Last</h1>
-              	<p>
-               <button class=msgBtn onclick="location.href='chat.php?receiverid=2'" type="button">Message test</button>
-				</p>
-          </a>
-           
-        </div>
-      </li>
-      <li class="hex">
-        <div class="hexIn">
-          <a class="hexLink" href="#">
-            <img src="https://farm3.staticflickr.com/2827/10384422264_d9c7299146.jpg" alt="" />
-        
-                <h1>First Last</h1>
-              	<p>
-                <button class=msgBtn onclick="location.href='chat.php?receiverid=4'" type="button">Message4</button>
-				</p>
-          </a>
-        </div>
-      </li>
-      <li class="hexRequest">
-        <div class="hexIn">
-          <a class="hexLink" href="#">
-            <img src="https://farm8.staticflickr.com/7187/6895047173_d4b1a0d798.jpg" alt="" />
-        
-                <h1>First Last</h1>
-              	<p>
-                <button class=msgBtn onclick="location.href='chat.php?receiverid=2'" type="button">Cancel Request</button>
-				</p>
-          </a>
-        </div>
-      </li>
+      <?php 
+            $_SESSION['myNetworkSet'][2]->generateMyNetworkCell();
+            $_SESSION['myNetworkSet'][3]->generateMyNetworkCell();
+            $_SESSION['myNetworkSet'][4]->generateMyNetworkCell();
+            
+      ?>
       <li class="hex">
         <div class="hexIn">
         </div>
