@@ -12,7 +12,6 @@ require_once('./model/myNetworkModel.php');
             }
         }
         
-
        
         public function getMyNetwork($userid){
             
@@ -67,9 +66,11 @@ require_once('./model/myNetworkModel.php');
                     
                 }
                 
+
            }
+
            return $resultReturn;
-            
+           
         }
         public function getNames($idNum){
             
