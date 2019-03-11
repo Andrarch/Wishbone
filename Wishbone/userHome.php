@@ -1,4 +1,30 @@
- <html>
+<?php
+	include('config.php');
+	session_start();
+   
+	$user_check = $_SESSION['useremail'];
+
+	$infoQuery ="SELECT users.userid, users.firstname, users.lastname 
+			FROM users JOIN authentication
+			ON authentication.authid = users.authid
+			WHERE authentication.email = '$user_check'";
+   
+	$result = mysqli_query($connection, $infoQuery) or die(mysqli_error($connection));
+	
+	$row = mysqli_fetch_array($result, MYSQLI_ASSOC) or die(mysqli_error($connection));
+	
+	
+	$login_user_firstname = $row['firstname'];
+	$login_user_lastname = $row['lastname'];
+	$login_user_userid = $row['userid'];
+	
+	$_SESSION['userfirstname'] = $login_user_firstname;
+	$_SESSION['userlastname']=$login_user_lastname;
+	$_SESSION['userid']=$login_user_userid;
+	
+	mysqli_close($connection);
+?>
+<html>
 <head>
 
 <link rel="stylesheet" type="text/css" href="assets/css/userHome.css">
@@ -69,7 +95,7 @@
     </div>
 	 
 	
-	  <p class="title">Oksana Shapoval</p>
+	  <p class="title"><?php echo $login_user_firstname.' '.$login_user_lastname?></p>
 	  <p>Dancer</p>
 	  <p>Ottawa</p>
 	  <div>
