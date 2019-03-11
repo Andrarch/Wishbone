@@ -8,29 +8,34 @@ drop table if exists connected_friends;
 drop table if exists messages;
 drop table if exists contact;
 drop table if exists address;
-drop table if exists authentication;
+-- drop table if exists authentication;  -- Use this for old table take out the remark
 drop table if exists users;
+drop table if exists authentication; -- Remark this out for old table
+
+/*
+Table for Authentication - may later be moved so it is only table on server directly exposed
+*/
+CREATE TABLE authentication (
+	authid int not null auto_increment,
+	email varchar(50) unique,
+	pass varchar(50),
+
+	primary key (authid)
+);
+
 /*
 User table - generic user for service - without gigs or artist connect functionality
 */
 CREATE TABLE users (
     userid int not null auto_increment,
+	authid int not null,
     firstname varchar(50),
     lastname varchar(50),
-   
-    PRIMARY KEY (userid)
+	FOREIGN KEY (authid) REFERENCES authentication(authid),
+	PRIMARY KEY (userid)
 ); 
-/*
-Table for Authentication - may later be moved so it is only table on server directly exposed
 
-*/
-CREATE TABLE authentication (
-	userid int not null auto_increment,
-	email varchar(50) unique,
-	pass varchar(50),
 
-	FOREIGN KEY (userid) REFERENCES users(userid)
-);
 /*
 Address information of a user
 */
@@ -50,7 +55,7 @@ contact information
 */
 CREATE TABLE contact (
 contactid int not null auto_increment,
-email varchar(50) unique,
+email varchar(50),
 phonenumber varchar(25),
 userid int,
 publicemail boolean,
