@@ -13,27 +13,8 @@ require_once('./model/myNetworkModel.php');
         }
         
 
-        public function addNewRegistrant($Registrant){
-			
-            if(!$this->mysqli->connect_errno){
-                $query = 'INSERT INTO authentication
-                            (email, pass) VALUES(?,?)';
-                
-                $email = $Registrant->getRegistrantEmail();
-                $pass = $Registrant->getRegistrantPassword();
-                
-                $stmt = $this->mysqli->prepare($query);
-                $stmt->bind_param('ss', $email,$pass);
-                $stmt->execute();
-                if($stmt->error){
-                    return $stmt->error;
-                }else{
-                    return $Registrant->getRegistrantFirstName().' '.$Registrant->getRegistrantLastName().' '.$Registrant->getRegistrantEmail().'added successfully';
-                }
-            }else{
-                return 'Could not connect to Database';
-            }
-        }
+ 
+        
         public function getMyNetworkPair($userID){
             
             $resultReturn=array( array ('',''), array('',''));
@@ -60,7 +41,22 @@ require_once('./model/myNetworkModel.php');
         }
         
         public function getMyNetwork($userid){
-           $resultset=[] ;
+            $myNetReturn[]=array(
+                new myNetworkUser('Empty','Empty','Empty','Empty'),
+                new myNetworkUser('Empty','Empty','Empty','Empty'),
+                new myNetworkUser('Empty','Empty','Empty','Empty'),
+                new myNetworkUser('Empty','Empty','Empty','Empty'),
+                new myNetworkUser('Empty','Empty','Empty','Empty'),
+                new myNetworkUser('Empty','Empty','Empty','Empty'),
+                new myNetworkUser('Empty','Empty','Empty','Empty'),
+                new myNetworkUser('Empty','Empty','Empty','Empty'),
+                new myNetworkUser('Empty','Empty','Empty','Empty'),
+                new myNetworkUser('Empty','Empty','Empty','Empty')
+                );
+            
+            
+            
+            $resultset=[] ;
            
            
            $resultset[]=$this->getMyNetworkPair($userid);
@@ -97,7 +93,7 @@ require_once('./model/myNetworkModel.php');
            }
            
            while(sizeof($myNetReturn,0)<7){
-               $myNetReturn[]=new myNetworkUser('Empty','Empty','Empty','Empty');
+              
            }
             return $myNetReturn;
             
