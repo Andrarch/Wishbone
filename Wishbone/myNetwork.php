@@ -1,4 +1,6 @@
 <?php include('dao/myNetworkDAO.php')?>
+<?php include('model/myNetworkModel.php')?>
+
 <!doctype html>
 <html>
   <head>
