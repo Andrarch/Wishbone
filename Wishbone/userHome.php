@@ -1,29 +1,28 @@
-<?php
+ <?php
 	include('config.php');
-	session_start();
+session_start();
    
-	$user_check = $_SESSION['useremail'];
+$user_check = $_SESSION['useremail'];
 
-	$infoQuery ="SELECT users.userid, users.firstname, users.lastname 
-			FROM users JOIN authentication
-			ON authentication.authid = users.authid
-			WHERE authentication.email = '$user_check'";
-   
-	$result = mysqli_query($connection, $infoQuery) or die(mysqli_error($connection));
+$infoQuery ="SELECT users.userid, users.firstname, users.lastname 
+		FROM users JOIN authentication
+ 			ON authentication.authid = users.authid
+ 			WHERE authentication.email = '$user_check'";
+
+$result = mysqli_query($connection, $infoQuery) or die(mysqli_error($connection));
+
+$row = mysqli_fetch_array($result, MYSQLI_ASSOC) or die(mysqli_error($connection));
 	
-	$row = mysqli_fetch_array($result, MYSQLI_ASSOC) or die(mysqli_error($connection));
 	
+$login_user_firstname = $row['firstname'];
+$login_user_lastname = $row['lastname'];
+$login_user_userid = $row['userid'];
 	
-	$login_user_firstname = $row['firstname'];
-	$login_user_lastname = $row['lastname'];
-	$login_user_userid = $row['userid'];
-	
-	$_SESSION['userfirstname'] = $login_user_firstname;
-	$_SESSION['userlastname']=$login_user_lastname;
-	$_SESSION['userid']=$login_user_userid;
-	
-	mysqli_close($connection);
-?>
+$_SESSION['userfirstname'] = $login_user_firstname;
+$_SESSION['userlastname']=$login_user_lastname;
+ $_SESSION['userid']=$login_user_userid;
+ 	mysqli_close($connection);
+ ?>
 <html>
 <head>
 
@@ -48,7 +47,7 @@
 
 </head>
 
-<form action="models/out.php" method="post">
+  <form action="/wishbone/insertPost.php" method="post"> 
 <div class="page-wrap">
 
 		<!-- header -->
@@ -91,14 +90,14 @@
 	
 	<img src="wishbone pictures/oksana2.jpg" alt="oksana2" class="oksana2" style="width:100%">
      
-       <img src="wishbone pictures/oksana.jpg" alt="oksana" class="oksana" style="width:70%">
+       <img src="http://chittagongit.com/images/default-user-icon/default-user-icon-8.jpg" alt="oksana" class="oksana" style="width:70%">
     </div>
 	 
 	
 	  <p class="title"><?php echo $login_user_firstname.' '.$login_user_lastname?></p>
 	  <p>Dancer</p>
 	  <p>Ottawa</p>
-	  <div>
+	  <div class="networkPic">
 		  <a href="#"><i class="fa fa-twitter"></i></a> 
 		  <a href="#"><i class="fa fa-linkedin"></i></a> 
 		  <a href="#"><i class="fa fa-facebook"></i></a> 
@@ -108,14 +107,16 @@
 	</div> 
 	</div>
 	<div class="rightContent">
+	<form action ="/wishbone/insertPost.php" method="post">
 		<div class="posts">
-			<textarea class="serverText">
+			<textarea class="serverText" name= "dataPost">
    Type your post here
   </textarea>
   <div class="button">
-  <button type="button">Post</button> 
+  <button class ="createPost" type="submit">Create Post</button> 
   	</div>
   	</div>
+  	</form>
 		
 	    <div class="centerFeed">
 
