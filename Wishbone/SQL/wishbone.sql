@@ -33,7 +33,7 @@ SELECT @int_party := LAST_INSERT_ID( );
 use wishbone;
 insert into authentication (email,pass) values ('andrew@archibald.com','password');
 SELECT @auth_id := last_insert_id();
-insert into users (authid,firstname,lastname) values (@auth_id,'Andrew','Archibald');
+insert into users (authid,firstname,lastname,imagelocation) values (@auth_id,'Andrew','Archibald','assets/img/profile/M1.jpg');
 SELECT @user_id := LAST_INSERT_ID( ); -- gives us user id from the insert above
 insert into address (city,province,country,userid,publicaddress) values ('Ottawa','Ontario','Canada',@user_id,true);
 insert into contact (email, phonenumber, userid, publicemail, publicphone) values ('Andrew@archibald.come','613-000-0000',@user_id,true,false);
@@ -49,7 +49,7 @@ insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`
 use wishbone;
 insert into authentication (email,pass) values ('mike@smith.com','password');
 SELECT @auth_id := last_insert_id();
-insert into users (authid,firstname,lastname) values (@auth_id,'Mike','Smith');
+insert into users (authid,firstname,lastname,imagelocation) values (@auth_id,'Mike','Smith','assets/img/profile/M2.jpg');
 SELECT @user_id := LAST_INSERT_ID( ); -- gives us user id from the insert above
 insert into address (city,province,country,userid,publicaddress) values ('Ottawa','Ontario','Canada',@user_id,true);
 insert into contact (email, phonenumber, userid, publicemail, publicphone) values ('mike@smith.come','613-100-0001',@user_id,true,false);
@@ -65,7 +65,7 @@ insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`
 use wishbone;
 insert into authentication (email,pass) values ('oksana@shapoval.com','password');
 SELECT @auth_id := last_insert_id();
-insert into users (authid,firstname,lastname) values (@auth_id,'Oksana','Shapoval');
+insert into users (authid,firstname,lastname,imagelocation) values (@auth_id,'Oksana','Shapoval','assets/img/profile/pro-photo.jpg');
 SELECT @user_id := LAST_INSERT_ID( ); -- gives us user id from the insert above
 insert into address (city,province,country,userid,publicaddress) values ('Ottawa','Ontario','Canada',@user_id,true);
 insert into contact (email, phonenumber, userid, publicemail, publicphone) values ('oksana@shapoval.come','613-100-8090',@user_id,true,false);
@@ -81,7 +81,7 @@ insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`
 use wishbone;
 insert into authentication (email,pass) values ('svetlana@netchaeva.com','password');
 SELECT @auth_id := last_insert_id();
-insert into users (authid,firstname,lastname) values (@auth_id,'Svetlana','Netchaeva');
+insert into users (authid,firstname,lastname,imagelocation) values (@auth_id,'Svetlana','Netchaeva','assets/img/profile/F1.jpg');
 SELECT @user_id := LAST_INSERT_ID( ); -- gives us user id from the insert above
 insert into address (city,province,country,userid,publicaddress) values ('Toronto','Ontario','Canada',@user_id,true);
 insert into contact (email, phonenumber, userid, publicemail, publicphone) values ('svetlana@netchaeva.come','613-100-8330',@user_id,true,false);
@@ -97,7 +97,7 @@ insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`
 use wishbone;
 insert into authentication (email,pass) values ('zeyang@hu.com','password');
 SELECT @auth_id := last_insert_id();
-insert into users (authid,firstname,lastname) values (@auth_id,'Zyang','Hu');
+insert into users (authid,firstname,lastname,imagelocation) values (@auth_id,'Zyang','Hu','assets/img/profile/M3.jpg');
 SELECT @user_id := LAST_INSERT_ID( ); -- gives us user id from the insert above
 insert into address (city,province,country,userid,publicaddress) values ('London','Ontario','Canada',@user_id,true);
 insert into contact (email, phonenumber, userid, publicemail, publicphone) values ('zeyang@hu.come','613-100-5550',@user_id,true,false);
@@ -113,7 +113,7 @@ insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`
 use wishbone;
 insert into authentication (email,pass) values ('minyi@yang.com','password');
 SELECT @auth_id := last_insert_id();
-insert into users (authid,firstname,lastname) values (@auth_id,'Minyi','Yang');
+insert into users (authid,firstname,lastname,imagelocation) values (@auth_id,'Minyi','Yang','assets/img/profile/M4.jpg');
 SELECT @user_id := LAST_INSERT_ID( ); -- gives us user id from the insert above
 insert into address (city,province,country,userid,publicaddress) values ('Ottawa','Ontario','Canada',@user_id,true);
 insert into contact (email, phonenumber, userid, publicemail, publicphone) values ('minyi@yang.come','613-145-8090',@user_id,true,false);
@@ -129,7 +129,7 @@ insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`
 use wishbone;
 insert into authentication (email,pass) values ('ksenia@lopukhina.com','password');
 SELECT @auth_id := last_insert_id();
-insert into users (authid,firstname,lastname) values (@auth_id,'Ksenia','Lopukhina');
+insert into users (authid,firstname,lastname,imagelocation) values (@auth_id,'Ksenia','Lopukhina','assets/img/profile/F3.jpg');
 SELECT @user_id := LAST_INSERT_ID( ); -- gives us user id from the insert above
 insert into address (city,province,country,userid,publicaddress) values ('Montreal','Quebec','Canada',@user_id,true);
 insert into contact (email, phonenumber, userid, publicemail, publicphone) values ('ksenia@lopukhina.come','613-900-8090',@user_id,true,false);
@@ -146,7 +146,7 @@ insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`
 use wishbone;
 insert into authentication (email,pass) values ('name1@nam1.com','password');
 SELECT @auth_id := last_insert_id();
-insert into users (authid,firstname,lastname) values (@auth_id,'name','name1');
+insert into users (authid,firstname,lastname,imagelocation) values (@auth_id,'name','name1','assets/img/profile/M5.jpg');
 SELECT @user_id := LAST_INSERT_ID( ); -- gives us user id from the insert above
 insert into address (city,province,country,userid,publicaddress) values ('Montreal','Quebec','Canada',@user_id,true);
 insert into contact (email, phonenumber, userid, publicemail, publicphone) values ('name@name.com','613-510-1123',@user_id,true,false);
@@ -162,7 +162,7 @@ insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`
 use wishbone;
 insert into authentication (email,pass) values ('name11@n1am1.com','password');
 SELECT @auth_id := last_insert_id();
-insert into users (authid,firstname,lastname) values (@auth_id,'nam1e','name11');
+insert into users (authid,firstname,lastname,imagelocation) values (@auth_id,'nam1e','name11','assets/img/profile/M6.jpg');
 SELECT @user_id := LAST_INSERT_ID( ); -- gives us user id from the insert above
 insert into address (city,province,country,userid,publicaddress) values ('Montreal','Quebec','Canada',@user_id,true);
 insert into contact (email, phonenumber, userid, publicemail, publicphone) values ('name1@nam1e.com','613-510-1123',@user_id,true,false);
@@ -178,7 +178,7 @@ insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`
 use wishbone;
 insert into authentication (email,pass) values ('na5me1@na5m1.com','password');
 SELECT @auth_id := last_insert_id();
-insert into users (authid,firstname,lastname) values (@auth_id,'nam1e','nam1e1');
+insert into users (authid,firstname,lastname,imagelocation) values (@auth_id,'nam1e','nam1e1','assets/img/profile/F4.jpg');
 SELECT @user_id := LAST_INSERT_ID( ); -- gives us user id from the insert above
 insert into address (city,province,country,userid,publicaddress) values ('Montreal','Quebec','Canada',@user_id,true);
 insert into contact (email, phonenumber, userid, publicemail, publicphone) values ('na23me@na1me.com','613-510-1123',@user_id,true,false);
@@ -194,7 +194,7 @@ insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`
 use wishbone;
 insert into authentication (email,pass) values ('na123me1@nam211.com','password');
 SELECT @auth_id := last_insert_id();
-insert into users (authid,firstname,lastname) values (@auth_id,'na221me','na23me1');
+insert into users (authid,firstname,lastname,imagelocation) values (@auth_id,'na221me','na23me1','assets/img/profile/F5.jpg');
 SELECT @user_id := LAST_INSERT_ID( ); -- gives us user id from the insert above
 insert into address (city,province,country,userid,publicaddress) values ('Montreal','Quebec','Canada',@user_id,true);
 insert into contact (email, phonenumber, userid, publicemail, publicphone) values ('na12me@na21me.com','613-510-1123',@user_id,true,false);
@@ -210,7 +210,7 @@ insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`
 use wishbone;
 insert into authentication (email,pass) values ('test@test.com','password');
 SELECT @auth_id := last_insert_id();
-insert into users (authid,firstname,lastname) values (@auth_id,'Test','test');
+insert into users (authid,firstname,lastname,imagelocation) values (@auth_id,'Test','test','assets/img/profile/M6.jpg');
 SELECT @user_id := LAST_INSERT_ID( ); -- gives us user id from the insert above
 insert into address (city,province,country,userid,publicaddress) values ('Ottawa','Ontario','Canada',@user_id,true);
 insert into contact (email, phonenumber, userid, publicemail, publicphone) values ('minyi@yang.come','613-145-8090',@user_id,true,false);
