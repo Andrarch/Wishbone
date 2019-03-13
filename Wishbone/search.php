@@ -75,24 +75,63 @@
                     </div>
                 </div>
                 
-                <?php
-                    if(!empty($_SESSION['error'])){
-                        $msg = $_SESSION['error'];
-                        echo '<span style="color:red">'.$msg.'</span>';
-                    }
-                ?>
+                
             </div>
-        </div> 
-        
-        
-        <div class="row2">
-            <div class="col-md-7">
-                <h4 class="textbox__title2">You can search by name AND/OR by categories below</h4>
-            </div> 
         </div>
-       
 
-       <div class="row">  
+
+			<div class="row">
+				<div class="col-md-8">
+					<div>
+                <?php
+                if (! empty($_SESSION['error'])) {
+                    $msg = $_SESSION['error'];
+                    echo '<span style="color:red; font-size:150%">' . $msg . '</span>';
+                }
+                ?>
+                </div>
+
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-md-7">
+					<h4 class="textbox__title2">You can search by name AND/OR by
+						categories below</h4>
+				</div>
+			</div>
+        
+        
+        
+        <!-- form-01 -->
+<!--
+						<div class="form-01 consult-form js-consult-form__content">
+							<h2 class="form-01__title">Give Us Your Feedback</h2>
+							<form class="form-01__form">
+								<div class="form__item form__item--03">
+									<input type="text" name="name" placeholder="Your name"/>
+								</div>
+								<div class="form__item form__item--03">
+									<input type="text" name="phone" placeholder="Your Email"/>
+								</div>
+								<div class="form__item form__item--03">
+									<input type="email" name="email" placeholder="Your Email"/>
+								</div>
+								<div class="form__item">
+									<textarea rows="3" name="Your message" placeholder="Your message"></textarea>
+								</div>
+								<div class="form__button"><a class="btn btn-primary btn-w180" href="#">send message</a>
+								</div>
+							</form>
+						</div>
+-->
+        <!-- End / form-01 -->
+
+        
+
+
+			<div class="row">  
             <div class="col-md-2">
                 <div class="textbox">
                     <h2 class="textbox__title">Interest</h2>
@@ -180,7 +219,7 @@
     
     <?php
             }
-        ;
+        session_destroy();
     ?> 
     
      <!-- footer -->
