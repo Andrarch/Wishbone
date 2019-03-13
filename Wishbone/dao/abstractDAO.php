@@ -7,7 +7,7 @@ class AbstractDAO{
     protected static $DB_HOST = 'localhost';
     protected static $DB_USERNAME = 'root';
     protected static $DB_PASSWORD = '';
-    protected static $DB_DATABASE = 'WishBone';
+    protected static $DB_DATABASE = 'wishbone';
     
     function __construct(){
         try{
