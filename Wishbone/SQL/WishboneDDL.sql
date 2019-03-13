@@ -1,3 +1,6 @@
+drop table if exists experience;
+drop table if exists feeds;
+
 drop table if exists artprofile;
 drop table if exists artist_interest;
 drop table if exists interests;
@@ -31,6 +34,7 @@ CREATE TABLE users (
 	authid int not null,
     firstname varchar(50),
     lastname varchar(50),
+    imagelocation varchar(100),
 	FOREIGN KEY (authid) REFERENCES authentication(authid),
 	PRIMARY KEY (userid)
 ); 
@@ -143,8 +147,61 @@ text1 varchar(500),
 text2 varchar(500),
 text3 varchar(500),
 text4 varchar(500),
+ `socialid` varchar(25) DEFAULT NULL,
+  `shareurl` varchar(1000) DEFAULT NULL,
+  `bio` varchar(200) NOT NULL,
+  `urldes` text NOT NULL,
 primary key (profileid),
 FOREIGN KEY (artistid) REFERENCES artists(artistid)
 );
+
+CREATE TABLE `experience` (
+  `experienceid` int(11) NOT NULL,
+  `experiencetitle` varchar(30) NOT NULL,
+  `experiencedes` text NOT NULL,
+  `experiencetime` varchar(20) NOT NULL,
+  `profileid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `experience`
+--
+
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `experience`
+--
+ALTER TABLE `experience`
+  ADD PRIMARY KEY (`experienceid`),
+  ADD KEY `profileID` (`profileid`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `experience`
+--
+ALTER TABLE `experience`
+  MODIFY `experienceid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `experience`
+--
+ALTER TABLE `experience`
+  ADD CONSTRAINT `experiencepk` FOREIGN KEY (`profileid`) REFERENCES `artprofile` (`profileid`);
+  
+  create table feeds(
+userid int(11),
+feedtext longtext, 
+feeddate timestamp default current_timestamp);
 
 

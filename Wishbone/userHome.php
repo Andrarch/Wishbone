@@ -4,7 +4,7 @@ session_start();
    
 $user_check = $_SESSION['useremail'];
 
-$infoQuery ="SELECT users.userid, users.firstname, users.lastname 
+$infoQuery ="SELECT users.imagelocation, users.userid, users.firstname, users.lastname 
 		FROM users JOIN authentication
  			ON authentication.authid = users.authid
  			WHERE authentication.email = '$user_check'";
@@ -13,7 +13,7 @@ $result = mysqli_query($connection, $infoQuery) or die(mysqli_error($connection)
 
 $row = mysqli_fetch_array($result, MYSQLI_ASSOC) or die(mysqli_error($connection));
 	
-	
+$Login_user_imagelocation=$row['imagelocation'];	
 $login_user_firstname = $row['firstname'];
 $login_user_lastname = $row['lastname'];
 $login_user_userid = $row['userid'];
@@ -90,7 +90,7 @@ $_SESSION['userlastname']=$login_user_lastname;
 	
 	<img src="wishbone pictures/oksana2.jpg" alt="oksana2" class="oksana2" style="width:100%">
      
-       <img src="http://chittagongit.com/images/default-user-icon/default-user-icon-8.jpg" alt="oksana" class="oksana" style="width:70%">
+       <img src=<?php echo "\"".$Login_user_imagelocation."\"" ?> alt="oksana" class="oksana" style="width:70%">
     </div>
 	 
 	

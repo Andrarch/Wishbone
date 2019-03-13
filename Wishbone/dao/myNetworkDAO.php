@@ -14,8 +14,8 @@ require_once('./model/myNetworkModel.php');
         
        
         public function getMyNetwork($userid){
-            session_start();
-            $temp =new myNetworkUser('', '', '', 0);
+            
+            $temp =new myNetworkUser('', '', '', 0,'assets/5733278274_2626612c70.jpg');
             $_SESSION['myNetworkSet']=array();
             $_SESSION['myNetworkSet'][0]=$temp;
             $_SESSION['myNetworkSet'][1]=$temp;
@@ -26,7 +26,7 @@ require_once('./model/myNetworkModel.php');
             $_SESSION['myNetworkSet'][6]=$temp;
             
             if(!$this->mysqli->connect_errno){
-                $query = "select connected_friends.leftid as leftid, connected_friends.rightid as rightid, leftside.firstname as leftFirst, leftside.lastname as leftLast, rightside.firstname as rightFirst, rightside.lastname as rightLast, connected_friends.confirmright as confirm
+                $query = "select leftside.imagelocation as imgl, rightside.imagelocation as imgr, connected_friends.leftid as leftid, connected_friends.rightid as rightid, leftside.firstname as leftFirst, leftside.lastname as leftLast, rightside.firstname as rightFirst, rightside.lastname as rightLast, connected_friends.confirmright as confirm
                     from connected_friends
                     inner join users leftside on connected_friends.leftid=leftside.userid
                     inner join users rightside on connected_friends.rightid=rightside.userid
@@ -38,7 +38,7 @@ require_once('./model/myNetworkModel.php');
                     $otherID='';
                     $userFName='';
                     $userLName='';
-                    
+                    $imageLocation='assets/5733278274_2626612c70.jpg';
                     while ($row = $result->fetch_object()){
                         if ($row->leftid==$userid){
                             if ($row->confirm==1){
@@ -50,7 +50,7 @@ require_once('./model/myNetworkModel.php');
                             $userFName=$row->rightFirst;
                             $userLName=$row->rightLast;
                             $otherID=$row->rightid;
-                          
+                            $imageLocation=$row->imgr;
                         }
                         if ($row->rightid==$userid){
                             if ($row->confirm==1){
@@ -62,9 +62,10 @@ require_once('./model/myNetworkModel.php');
                             $userFName=$row->leftFirst;
                             $userLName=$row->leftLast;
                             $otherID=$row->leftid;
+                            $imageLocation=$row->imgl;
                         }
                         
-                        $_SESSION['myNetworkSet'][(int)$count]=new myNetworkUser($userFName, $userLName, $otherID, $status);
+                        $_SESSION['myNetworkSet'][(int)$count]=new myNetworkUser($userFName, $userLName, $otherID, $status,$imageLocation);
                         $count++;
                         
                         
@@ -79,37 +80,39 @@ require_once('./model/myNetworkModel.php');
            
         }
         public function cancelRequest($userID,$id){
-            session_start();
+            
             if(isset($_SESSION['userID'])){
                 $userID=$_SESSION['userID'];
             }
             if(!$this->mysqli->connect_errno){
                 $query = "delete from connected_friends where leftid=".$userID." and rightid=".$id;                 
                 $result = mysqli_query($this->mysqli, $query);
-                
+                mysqli_free_result($result);
                 }
                 header( 'Location:myNetwork.php');
         }
         public function acceptRequest($userID,$id){
-            session_start();
+        
             if(isset($_SESSION['userID'])){
                 $userID=$_SESSION['userID'];
             }
             if(!$this->mysqli->connect_errno){
-                $query = "update from connected_friends set confirmright=1 where leftid=".$id." and rightid=".$userID;
+                $query = "update connected_friends set confirmright=1 where leftid=".$id." and rightid=".$userID;
                 $result = mysqli_query($this->mysqli, $query);
+                mysqli_free_result($result);
                 
             }
             header( 'Location:myNetwork.php');
         }
         public function sendRequest($userID,$id){
-            session_start();
+            
             if(isset($_SESSION['userID'])){
                 $userID=$_SESSION['userID'];
             }
             if(!$this->mysqli->connect_errno){
                 $query = "Insert into connected_friends (leftid, rightid, confirmright) values (".$userID.','.$id.','.'0)';
                 $result = mysqli_query($this->mysqli, $query);
+                mysqli_free_result($result);
                 
             }
             header( 'Location:myNetwork.php');
@@ -117,12 +120,12 @@ require_once('./model/myNetworkModel.php');
             
         }
         public function getMyNetworkSuggest($userid){
-            session_start();
-            $temp =new myNetworkUser('', '', '', 0);
+            
+            $temp =new myNetworkUser('', '', '', 0,'assets/5733278274_2626612c70.jpg');
             $_SESSION['myNetworkSetSug']=array();
-            $_SESSION['myNetworkSet'][0]=$temp;
-            $_SESSION['myNetworkSet'][1]=$temp;
-            $_SESSION['myNetworkSet'][2]=$temp;
+            $_SESSION['myNetworkSetSug'][0]=$temp;
+            $_SESSION['myNetworkSetSug'][1]=$temp;
+            $_SESSION['myNetworkSetSug'][2]=$temp;
             
             
             if(!$this->mysqli->connect_errno){
@@ -130,47 +133,67 @@ require_once('./model/myNetworkModel.php');
                     from address
                     inner join users on address.userid=users.userid
                     where city='Ottawa'"; */
-                    $query= "select * from users where userid not in (
-select leftid, rightid from connected_friends where leftid=".$userid." and rightid=".$userid.")";
-                    
-                if ($result = mysqli_query($this->mysqli, $query)) {
+                    $query= "select count(*) as num from users";
+                    $numRows=0;
                     $count=0;
-                    $status=0; /* Status 0 = nothing, 1 = linked, 2=request in, 3=request out */
-                    $otherID='';
-                    $userFName='';
-                    $userLName='';
-                    
-                    while ($row = $result->fetch_object()){
-                        if ($row->leftid==$userid){
-                            if ($row->confirm==1){
-                                $status=1;
-                            }
-                            else{
-                                $status=3;
-                            }
-                            $userFName=$row->rightFirst;
-                            $userLName=$row->rightLast;
-                            $otherID=$row->rightid;
-                            
+                if ($result = mysqli_query($this->mysqli, $query)) {
+                    $row = $result->fetch_object();
+                    $numRows=$row->num;
+                    mysqli_free_result($result);
+                    $looper=0;
+                    while($count<3){
+                        $looper++;
+                        if($looper>50){
+                            break;
                         }
-                        if ($row->rightid==$userid){
-                            if ($row->confirm==1){
-                                $status=1;
-                            }
-                            else{
-                                $status=2;
-                            }
-                            $userFName=$row->leftFirst;
-                            $userLName=$row->leftLast;
-                            $otherID=$row->leftid;
-                        }
+                        $query= "SELECT * FROM users, (
+                                        SELECT userid AS sid
+                                        FROM users
+                                        ORDER BY RAND( )
+                                        LIMIT 1
+                                    ) tmp
+                                WHERE users.userid = tmp.sid";
                         
-                        $_SESSION['myNetworkSet'][(int)$count]=new myNetworkUser($userFName, $userLName, $otherID, $status);
-                        $count++;
+                        
+                        $status=0; /* Status 0 = nothing, 1 = linked, 2=request in, 3=request out, 4=suggested */
+                        $otherID='';
+                        $userFName='';
+                        $userLName='';
+                        $imageLocation='assets/5733278274_2626612c70.jpg';
+                        
+                        if ($result = mysqli_query($this->mysqli, $query)) {
+                            $row = $result->fetch_object();
+                            $status=4;
+                            $userFName=$row->firstname;
+                            $userLName=$row->lastname;
+                            $otherID=$row->userid;
+                            $imageLocation=$row->imagelocation;
+                            $found=0;
+                            foreach($_SESSION['myNetworkSet'] as $net){
+                                if ($net->getUserID()==$otherID){
+                                    $found=1;
+                                }
+                              
+                            }
+                            if($otherID==$_SESSION['userid']){
+                                $found=1;
+                            }
+                            foreach($_SESSION['myNetworkSetSug'] as $net){
+                                if ($net->getUserID()==$otherID){
+                                    $found=1;
+                                }
+                                
+                            }
+                            if($found==0){
+                                $_SESSION['myNetworkSetSug'][(int)$count]=new myNetworkUser($userFName, $userLName, $otherID, $status,$imageLocation);
+                                $count++;
+                            }
+                            mysqli_free_result($result);
+                        }
                         
                         
                     }
-                    mysqli_free_result($result);
+                   
                     
                     
                 }

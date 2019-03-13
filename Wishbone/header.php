@@ -15,8 +15,7 @@ class header{
                     <!-- consult-menu -->
 					<ul class=\"consult-menu\">
 						<li><a href=\"index.html\">Home</a></li>
-				        <li><a href=\"chat.php\">My Messages</a></li>
-						<li><a href=\"mynetwork.php\">My Network</a></li>
+				        <li><a href=\"mynetwork.php\">My Network</a></li>
 						<li><a href=\"profile.php\">My Profile</a>
 						<li><a href=\"userHome.php\">My Page</a>
 						<li><a href=\"search.php\">Search</a>

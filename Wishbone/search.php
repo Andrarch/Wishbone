@@ -180,7 +180,7 @@
     
     <?php
             }
-        session_destroy();
+        ;
     ?> 
     
      <!-- footer -->

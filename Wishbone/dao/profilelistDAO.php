@@ -17,7 +17,7 @@ class profilelistDAO extends abstractDAO{
 
  		//get the userfirstname,userlastname
         $getnames = $this->mysqli->query(
-        	'SELECT firstname,lastname
+        	'SELECT firstname,lastname, imagelocation
         	 FROM users
         	 WHERE userid ='.$userid);
         if (!$getnames) {
@@ -27,9 +27,11 @@ class profilelistDAO extends abstractDAO{
 		$names = mysqli_fetch_row($getnames);
 		$firstname = $names[0];
 		$lastname = $names[1];
+		$imagelocation=$names[2];
 		$getnames->free();
 		$profilelists['firstname'] = $firstname;
 		$profilelists['lastname'] = $lastname;
+		$profilelists['imagelocation']=$imagelocation;
 
         //get the artistid
         $getartid = $this->mysqli->query(

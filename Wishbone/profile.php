@@ -3,7 +3,12 @@
 	session_start();
 	$userid = $_SESSION['userid'];
 	$profilelistDAO = new profilelistDAO(); 
+	if(isset($_GET['id'])){
+	    $userid=$_GET['id'];
+	}
 	$profilelists = $profilelistDAO->getProfilelists($userid); 
+
+	
 ?>
 
 <!DOCTYPE html>
@@ -81,7 +86,7 @@
 							<div class="row mb-">
 								<div class="col-4"></div>
 								<div class="col-4">
-									<img src="assets/img/profile/pro-photo.jpg" alt="profile-photo" class="pro-photo"/>
+									<img src="<?php echo $profilelists['imagelocation']?>" alt="profile-photo" class="pro-photo"/>
 								</div>
 								<div class="col-4"></div>
 							</div>
