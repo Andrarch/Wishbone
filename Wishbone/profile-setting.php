@@ -2,6 +2,8 @@
 <?php 
 	session_start();
 	$userid = $_SESSION['userid'];
+	$profilelistDAO = new profilelistDAO();
+	$profilelists = $profilelistDAO->getProfilelists($userid);
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,38 +27,12 @@
 	<body>
 		<div class="page-wrap">
 		<!-- header -->
-			<header class="header">
-				<div class="container">
-					<div class="header__logo"><a class="logo" href="index.html">WISHBONE</a></div>
-					
-					<!-- consult-nav -->
-					<nav class="consult-nav">
-							
-						<!-- consult-menu -->
-						<ul class="consult-menu">
-							<li>
-								<a href="index.html">Home</a>
-							</li>
-							<li class="menu-item-has-children current-menu-item">
-								<a href="entertainer.html">Profile</a>
-								<ul class="sub-menu">
-									<li>
-										<a href="entertainer.html">Find Entertainer</a>
-									</li>
-									<li>
-										<a href="#">Become Entertainer</a>
-									</li>
-								</ul>
-							</li>
-							<li><a href="event.html">Events</a></li>
-							<li><a href="about.html">about</a></li>
-							<li><a href="contact.html">contact</a></li>
-						</ul><!-- consult-menu -->
-						
-					</nav><!-- End / consult-nav -->
-					
-				</div>
-			</header><!-- End / header -->
+			<?php 
+				 include('header.php');
+				 $header=new header();
+				 $header->getHeader();
+			 ?>
+			<!-- End / header -->
 			</div>
 	<?php 
 	   $hasError = false;
@@ -116,6 +92,9 @@
 	              $updateinfo = array($_POST["userFirstName"], $_POST["userLastName"], $_POST["userEmail"], $_POST["userPhoneNumber"],$_POST["city"],$_POST["role"],$_POST["bio"],$_POST["url"],$_POST["urldes"],$_POST["experiencetitle"],$_POST["experiencetime"],$_POST["experiencedes"]);
 	          	  //var_dump($updateinfo); exit;
 	              $addSuccess = $profilelistDAO->updateProfilelists($updateinfo,$userid);
+	              if($addSuccess==="Record updated successfully"){
+	              		header('Location: successful.php');
+	              }
 	              
 	          }
 	       
@@ -127,7 +106,7 @@
 					 <form action="#" method="POST">
 		                <span class="logintitle"><h4>Edit your info</h4></span>
 		                <span>Please enter your FirstName:</span><span class="text-danger">*</span>
-		                <input class="form-control" name="userFirstName" placeholder="Please enter your FirstName" required>
+		                <input class="form-control" name="userFirstName" value="<?php echo $profilelists['firstname']?>" required>
 		                <?php 
 							if(isset($errorMessages['firstNameError'])){
 								echo '<span style=\'color:red\'>' . $errorMessages['firstNameError'] .'</span>';
@@ -135,7 +114,7 @@
 						?>
 
 		                <span>Please enter your LastName:</span><span class="text-danger">*</span>
-		                <input class="form-control" name="userLastName" placeholder="Please enter your LastName" required>
+		                <input class="form-control" name="userLastName" value="<?php echo $profilelists['lastname']?>" required>
 		                <?php 
 							if(isset($errorMessages['lastNameError'])){
 								echo '<span style=\'color:red\'>' . $errorMessages['lastNameError'] .'</span>';
@@ -143,7 +122,7 @@
 						?>
 
  						<span>Please enter your Email:</span><span class="text-danger">*</span>
-		                <input class="form-control" name="userEmail" placeholder="Please enter your Email" required>
+		                <input class="form-control" name="userEmail" value="<?php echo $profilelists['email']?>" required>
 		                <?php 
 							if(isset($errorMessages['EmailError'])){
 								echo '<span style=\'color:red\'>' . $errorMessages['EmailError'] .'</span>';
@@ -151,7 +130,7 @@
 						?>
 
 		                <span>Please enter your phoneNumber:</span><span class="text-danger">*</span>
-		                <input class="form-control" name="userPhoneNumber" placeholder="Please enter your phoneNumber" required>
+		                <input class="form-control" name="userPhoneNumber" value="<?php echo $profilelists['phone']?>"  required>
 		                <?php 
 							if(isset($errorMessages['phoneNumberError'])){
 								echo '<span style=\'color:red\'>' . $errorMessages['phoneNumberError'] .'</span>';
@@ -168,7 +147,7 @@
 		                <br>
 
 						<span>Please enter your definition of yourself:</span><span class="text-danger">*</span>
-		                <input class="form-control" name="role" placeholder="eg: artist" required>
+		                <input class="form-control" name="role" value="<?php echo $profilelists['role']?>" required>
 		                <?php 
 							if(isset($errorMessages['roleError'])){
 								echo '<span style=\'color:red\'>' . $errorMessages['roleError'] .'</span>';
@@ -176,7 +155,7 @@
 						?>
 
 						<span>Please enter your bio:</span><span class="text-danger">*</span>
-		                <input class="form-control" name="bio" placeholder="eg: I am a foodie" required>
+		                <input class="form-control" name="bio" value="<?php echo $profilelists['bio']?>" required>
 		                <?php 
 							if(isset($errorMessages['bioError'])){
 								echo '<span style=\'color:red\'>' . $errorMessages['bioError'] .'</span>';
@@ -184,14 +163,15 @@
 						?>
 
 		                <span>Please enter your work as an url(if you have one):</span>
-		                <input class="form-control" name="url" placeholder="eg: https://www.youtube.com/">
+		                <input class="form-control" name="url" value="<?php echo $profilelists['url']?>">
 
 		                 <span>Please enter your url description(if you have one):</span>
-		                 <textarea class="form-control" name="urldes" placeholder="Please enter your url description"> 
-						</textarea>
+		                 <textarea class="form-control" name="urldes"> 
+		                 	<?php echo $profilelists['urldes']?>
+						 </textarea>
 
 						<span>Please enter your work title:</span><span class="text-danger">*</span>
-		                <input class="form-control" name="experiencetitle" placeholder="Please enter your work title" required>
+		                <input class="form-control" name="experiencetitle" value="<?php echo$profilelists['experience']->getExperienceTitle()?>" required>
 		                <?php 
 							if(isset($errorMessages['extitleError'])){
 								echo '<span style=\'color:red\'>' . $errorMessages['extitleError'] .'</span>';
@@ -199,22 +179,22 @@
 						?>
 
 		                <span>Please enter your work experience time:</span><span class="text-danger">*</span>
-		                <input class="form-control" name="experiencetime" placeholder="eg: 2017.04-now" required>
+		                <input class="form-control" name="experiencetime" value="<?php echo$profilelists['experience']->getExperienceTime()?>" required>
 		                 <?php 
 							if(isset($errorMessages['extimeError'])){
 								echo '<span style=\'color:red\'>' . $errorMessages['extimeError'] .'</span>';
 							}
 						?>
-
+						
 		                <span>Please describe your work experience:(if you want to say more about your work)</span>
-		                <textarea class="form-control" name="experiencedes" placeholder="Please enter your work experience"> 
+		                <textarea class="form-control" name="experiencedes"> 
+		                	<?php echo $profilelists['experience']->getExperienceDes()?>
 						</textarea>
 
 						<div class="text-center">
 			                <button type="submit" class="btn btn-warning">Save</button>
-			                <button class="btn btn-warning" onclick="window.location.href='profile.php'" >Cancel</button>
-						</div>
-		  				
+			                <input type="button" class="btn btn-warning" onclick="window.location.href='profile.php'" value="Cancel">
+						</div>	
 		            </form>
 		            <?php
 		            	echo '<p class="text-center text-danger">'.$addSuccess.'</p>';

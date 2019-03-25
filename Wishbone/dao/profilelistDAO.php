@@ -14,10 +14,9 @@ class profilelistDAO extends abstractDAO{
 
 	public function getProfilelists($userid){
 		$profilelists = Array();
-
- 		//get the userfirstname,userlastname
+ 		//get the userfirstname,userlastname,imagelocation
         $getnames = $this->mysqli->query(
-        	'SELECT firstname,lastname, imagelocation
+        	'SELECT firstname,lastname,imagelocation
         	 FROM users
         	 WHERE userid ='.$userid);
         if (!$getnames) {

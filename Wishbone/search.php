@@ -204,7 +204,7 @@
        </div> 
        
        <div class="col-md-3">
-           <button type="button" class="viewProfilebtn" onclick="window.location.href='profile.php?id=4'">View Profile</button>
+           <button type="button" class="viewProfilebtn" onclick="window.location.href='profile.php'">View Profile</button>
        </div>    
     </div>
     <?php

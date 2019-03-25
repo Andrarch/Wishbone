@@ -6,9 +6,10 @@
 	if(isset($_GET['id'])){
 	    $userid=$_GET['id'];
 	}
-	$profilelists = $profilelistDAO->getProfilelists($userid); 
-
-	
+	if(isset($_POST['id'])){
+		$userid=$_GET['id'];
+	}
+	$profilelists = $profilelistDAO->getProfilelists($userid);
 ?>
 
 <!DOCTYPE html>
@@ -33,45 +34,12 @@
 	
 	<body>
 		<div class="page-wrap">
+			<!-- header-->
 			 <?php 
 				 include('header.php');
 				 $header=new header();
 				 $header->getHeader();
 			 ?>
-			<!-- header -->
-			<!-- <header class="header">
-				<div class="container">
-					<div class="header__logo"><a class="logo" href="index.html">WISHBONE</a></div>
-					<nav class="consult-nav">			
-						<ul class="consult-menu">
-							<li>
-								<a href="index.html">Home</a>
-							</li>
-
-							<li class="menu-item-has-children current-menu-item">
-								<a href="entertainer.html">Profile</a>
-								<ul class="sub-menu">
-									<li>
-										<a href="entertainer.html">Find Entertainer</a>
-									</li>
-									<li>
-										<a href="#">Become Entertainer</a>
-									</li>
-								</ul>
-							</li>
-							<li>
-								<a href="event.html">Events</a>
-							</li>
-							<li><a href="about.html">about</a>
-							<li><a href="contact.html">contact</a>
-							</li>
-						</ul>
-						
-					</nav>
-					
-				</div>
-			</header> -->
-			<!-- End / header -->
 			
 			<!-- Content-->
 			<div class="md-content">
@@ -112,7 +80,9 @@
 													<div class="social-01__style-02 margn-center">
 														<nav class="social-01__navSocial">
 															<a class="social-01__item text-center" href="#"><i class="fa fa-facebook"></i></a>
+
 															<a class="social-01__item text-center" href="#"><i class="fa fa-youtube"></i></a>
+
 															<a class="social-01__item text-center" href="#"><i class="fa fa-instagram"></i></a>
 															<a class="social-01__item text-center" href="profile-setting.php"><i class="fa fa-cog"></i></a>
 														</nav>
@@ -128,6 +98,7 @@
 															}
 														?></p>
 													</blockquote>
+
 												</div>
 												<h3 class="orange">My Experience</h3>
 												<p>
@@ -147,8 +118,10 @@
 											<div class="post-01__media">
 												<div>
 												<?php
-													echo '<iframe width="100%" scrolling="no" frameborder="no" src='.$profilelists['url'].'></iframe>';
+													echo '<iframe width="100%" sandbox="allow-scripts" frameborder="no" src='.$profilelists['url'].'><p>Your browser does not support iframes.</p>
+													</iframe>';
 												?>
+
 												</div>
 											</div>
 										</div><!-- End /  -->
