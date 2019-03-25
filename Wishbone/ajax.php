@@ -1,11 +1,13 @@
 <?php
+session_start();
+
 include 'Database.class.php';
 
 $conn = new Database("wishbone", "root", "");
 
-if (isset($_REQUEST['action'])) {
+if (isset($_REQUEST['action']) && isset($_SESSION["userid"])) {
     
-    $senderid = 2;
+    $senderid = $_SESSION["userid"];
     $receiverid = intval( $_GET["receiverid"] );
     $response = array();
 
