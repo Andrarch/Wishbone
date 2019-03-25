@@ -24,6 +24,8 @@ require_once('./model/authentication.php');
                 $stmt = $this->mysqli->prepare($query1);
                 $stmt->bind_param('ss', $email,$pass);
                 $stmt->execute();
+                
+                // string md5( string )
 				
 				$query2 = 'INSERT INTO users(authid, firstname, lastname)
 							VALUES(LAST_INSERT_ID(),?,?)';

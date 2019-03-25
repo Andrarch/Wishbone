@@ -1,10 +1,14 @@
 <?php
-//session_start();
+
+//exit(md5("password"));
+session_start();
 $receiverid = intval( $_GET["receiverid"] );
+
+// user_home.php
 
 //printf("<pre>%s</pre>", print_r($_SESSION, true));
 
-if( $receiverid == 0 )
+if( $receiverid == 0 || !isset($_SESSION["userid"]) )
 {
     header("HTTP/1.1 404 Not Found");
     header("Location: 404.html");
@@ -23,11 +27,7 @@ if( $receiver == null )
     exit("404 not found");
 }
 
-?>
-
-
- 
- <!DOCTYPE html>
+?><!DOCTYPE html>
 <html>
 <head>
 <title>Contact</title>

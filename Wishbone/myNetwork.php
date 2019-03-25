@@ -25,27 +25,51 @@ include('header.php');
   </head>
   <body>
  <?php 
+ session_start();
  $header=new header();
  $header->getHeader();
+
+ if (!isset($_SESSION['userid'])){
+     header("Location: index.html");
+ }
+ 
  
  ?>
  
  
    <div class="myNetwork" style="margin-top: 100px"> 
 	<?php 
-	session_start();
+	
+	
 	$myNet=new myNetworkDAO();
+
+	$myNetNum=0;
+	$sugNum=0;
 	$myNet->getMyNetwork($_SESSION['userid']);
-	$start=0;
+	if(isset($_GET['Cancel'])){
+	    $temp=$_GET['Cancel'];
+	    $myNet->cancelRequest($_SESSION['userid'], ($_SESSION['myNetworkSet'][$temp]->getUserID()));
+	}
+	if(isset($_GET['Pending'])){
+	    $myNet->acceptRequest($_SESSION['userid'], ($_SESSION['myNetworkSet'][$_GET['Pending']]->getUserID()));
+	}
+	if(isset($_GET['Suggest'])){
+	    $myNet->sendRequest($_SESSION['userid'],  ($_SESSION['myNetworkSetSug'][$_GET['Suggest']]->getUserID()));
+	}
+	
+	
+	$myNet->getMyNetwork($_SESSION['userid']);
+	$myNet->getMyNetworkSuggest($_SESSION['userid']);
 	?>
 	
 	
     <ul id="hexGrid">
       <?php 
       
-      $_SESSION['myNetworkSet'][0]->generateMyNetworkCell();
-      $_SESSION['myNetworkSet'][1]->generateMyNetworkCell();
-      
+      $_SESSION['myNetworkSet'][$myNetNum]->generateMyNetworkCell($myNetNum);
+      $myNetNum++;
+      $_SESSION['myNetworkSet'][$myNetNum]->generateMyNetworkCell($myNetNum);
+      $myNetNum++;
       ?>
       
    <!--   <li class="hexButton">
@@ -58,86 +82,43 @@ include('header.php');
 
         </div>
       </li>
-      <li class="hexSuggest">
-        <div class="hexIn">
-
-          <a class="hexLink" href="#">
-            <img src="https://farm7.staticflickr.com/6217/6216951796_e50778255c.jpg" alt="" />
-        
-                <h1>First Last</h1>
-              	<p>
-                <button class=msgBtn onclick="location.href='chat.php?receiverid=2'" type="button">Request to add2</button>
-				</p>
-          </a>
-        </div>
-      </li>
+      
       <?php 
-            $_SESSION['myNetworkSet'][2]->generateMyNetworkCell();
-            $_SESSION['myNetworkSet'][3]->generateMyNetworkCell();
-            $_SESSION['myNetworkSet'][4]->generateMyNetworkCell();
+            $_SESSION['myNetworkSetSug'][$sugNum]->generateMyNetworkCell($sugNum);
+            $sugNum++;
+            $_SESSION['myNetworkSet'][$myNetNum]->generateMyNetworkCell($myNetNum);
+            $myNetNum++;
+            $_SESSION['myNetworkSet'][$myNetNum]->generateMyNetworkCell($myNetNum);
+            $myNetNum++;
+            $_SESSION['myNetworkSet'][$myNetNum]->generateMyNetworkCell($myNetNum);
+            $myNetNum++;
             
       ?>
       <li class="hex">
         <div class="hexIn">
         </div>
       </li>
-      <li class="hexNone">
-        <div class="hexIn">
-          <a class="hexLink" href="#">
-            <img src="https://farm7.staticflickr.com/6139/5986939269_10721b8017.jpg" alt="" />
-        
-                <h1>First Last</h1>
-              	<p>
-                <button class=msgBtn onclick="location.href='chat.php?receiverid=2'" type="button">Request to add</button>
-          		</p>
-          </a>
-        </div>
-      </li>
-      
-      <li class="hex">
-        <div class="hexIn">
-          <a class="hexLink" href="#">
-            <img src="https://farm4.staticflickr.com/3165/5733278274_2626612c70.jpg" alt="" />
-        
-                <h1>First Last</h1>
-              	<p>
-                <button class=msgBtn onclick="location.href='chat.php?receiverid=2'" type="button">Message</button>
-          		</p>
-          </a>
-        </div>
-      </li>
-      <li class="hexPending">
-        <div class="hexIn">
-          <a class="hexLink" href="#">
-            <img src="https://farm8.staticflickr.com/7163/6822904141_50277565c3.jpg" alt="" />
-         
-                <h1>First Last</h1>
-              	<p>
-                <button class=msgBtn onclick="location.href='chat.php?receiverid=2'" type="button">Accept Request</button>
-          		</p>
-          </a>
-        </div>
-      </li>
+        <?php 
+            $_SESSION['myNetworkSetSug'][$sugNum]->generateMyNetworkCell($sugNum);
+            $sugNum++;
+            $_SESSION['myNetworkSet'][$myNetNum]->generateMyNetworkCell($myNetNum);
+            $myNetNum++;
+            $_SESSION['myNetworkSet'][$myNetNum]->generateMyNetworkCell($myNetNum);
+            $myNetNum++;
+
+            
+      ?>
       <li class="hex">
         <div class="hexIn">
 
         </div>
       </li>
-      <li class="hexSuggest">
-        <div class="hexIn">
-          <a class="hexLink" href="#">
-            <img src="https://farm8.staticflickr.com/7187/6895047173_d4b1a0d798.jpg" alt="" />
-        
-                <h1>First Last</h1>
-              	<p>
-                <button class=msgBtn onclick="location.href='chat.php?receiverid=2'" type="button">Request to add</button>
-          		</p>
-          </a>
-        </div>
-      </li>
-     </ul> 
+        <?php 
+            $_SESSION['myNetworkSetSug'][$sugNum]->generateMyNetworkCell($sugNum);
+  
+        ?>
+      </ul> 
      </div>
-     
      
      <footer class="footer">
 		<div class="footer__main">
