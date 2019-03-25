@@ -183,3 +183,32 @@ button:hover, a:hover {
 	padding-bottom: 20px !important;
 	height: 200px;
 }
+.buttonSearchFeed{
+	width:20px;
+	height:20px;
+	padding:0;
+	border:none;
+	margin-left:280px;
+	background-color:rgba(248,247,216,0.7);
+	margin-top:-25px;
+	
+}
+.searchFeed{
+	padding-left: 280px;
+	width:40%;
+	margin:0 auto;
+	margin-bottom:10px;
+	margin-top:-25px;
+	border:0;
+	
+
+	
+}
+.input{
+	background-color:rgba(248,247,216,0.7);
+	width:300px;
+	height:30px;
+	
+	margin-top: 20px;
+	
+}
