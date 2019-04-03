@@ -9,7 +9,7 @@ $sql ="insert into feeds values(3, $data,current_time())";
 $result = $conn->query($sql);
 $link = mysqli_connect("localhost", "root", "", "WishBone");
 $insert=mysqli_query($link, "insert into feeds (userid, feedtext, feeddate) values (3, '$data', current_time())");
-echo "<script>location.href='/wishbone/userHome.php'</script>";
+echo "<script>location.href='userHome.php'</script>";
 
 
 if(empty($data)){
