@@ -1,6 +1,10 @@
  <?php
+<<<<<<< HEAD
 include('config.php');
 	include('header.php');
+=======
+	include('config.php');
+>>>>>>> branch 'master' of https://github.com/Andrarch/Wishbone.git
 	include('header.php');
 session_start();
    

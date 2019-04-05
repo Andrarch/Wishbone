@@ -29,8 +29,6 @@
  $header=new header();
  $header->getHeader();
  ?>
-    
-    
    <div class="mycontent" style="margin-top: 100px">
    
 <div class="leftContent">
