@@ -88,6 +88,10 @@ require_once('./model/myNetworkModel.php');
                 $query = "delete from connected_friends where leftid=".$userID." and rightid=".$id;                 
                 $result = mysqli_query($this->mysqli, $query);
                 mysqli_free_result($result);
+                $query = "delete from connected_friends where leftid=".$id." and rightid=".$userID;
+                $result = mysqli_query($this->mysqli, $query);
+                mysqli_free_result($result);
+                
                 }
                 header( 'Location:myNetwork.php');
         }

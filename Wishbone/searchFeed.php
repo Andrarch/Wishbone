@@ -24,7 +24,7 @@ $_SESSION['userlastname']=$login_user_lastname;
  $_SESSION['userid']=$login_user_userid;
  	mysqli_close($connection);
  ?>
- 
+
 <html>
 <head>
 
@@ -53,6 +53,7 @@ $_SESSION['userlastname']=$login_user_lastname;
 <div class="page-wrap">
 
 	<?php
+	
  $header=new header();
  $header->getHeader();
  ?>

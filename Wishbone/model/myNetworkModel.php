@@ -91,6 +91,7 @@
                 echo "<img class='myNet' src=\"".$this->getImageLocation()."\" alt=\"\" />";
                 echo "<h1>".$this->getUserFName()." ".$this->getUserLName()."</h1><p>";
                 echo "<button class=msgBtn onclick=\"location.href='myNetwork.php?Pending=".$var. "' \" type=\"button\">Accept Request</button>";
+                echo "<button class=msgBtn onclick=\"location.href='myNetwork.php?Cancel=".$var. "'\" type=\"button\">Deny Request</button>";
                 echo "</p> </a> </div> </li>";
             }
             if ($this->getStatus()==3){
