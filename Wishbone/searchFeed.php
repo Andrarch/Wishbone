@@ -30,7 +30,7 @@
  $header->getHeader();
  ?>
    <div class="mycontent" style="margin-top: 100px">
-   
+
 <div class="leftContent">
 	<div class="card">
 	<div class="pictureBack">
