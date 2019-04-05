@@ -2,7 +2,9 @@
 session_start();
 include ('dao/searchDAO.php');
 
+
 $name = $_POST['search_text'];
+$_SESSION['error']='';
 
 $arrResult = array();
 $interestSelected = ! empty($_POST['interest']);
@@ -14,14 +16,11 @@ if (strlen($name) == 0 && ! $interestSelected && ! $artTypeSelected && ! $locati
     $_SESSION['error'] = 'You have to choose at least one option';
     
 } else if (preg_match("/^.*\d{1,}.*$/", $name)) {
-    $_SESSION['error'] = 'Name cannot include numbers';
+    $_SESSION['error'] = 'Name cannot contain numbers';
     
 } else if (strlen($name) == 1) {
-    $_SESSION['error'] = 'Name should include more than one letter';
+    $_SESSION['error'] = 'Name cannot contain one letter';
 }
-// else if(!preg_match("/^[A-Za-z_\-']{0,}$/", $name)){
-// $_SESSION['error'] = 'Name should include letters or dash or underscore or apostrophe';
-// }
 
 
 if ($interestSelected && ! $artTypeSelected && ! $locationSelected) {
@@ -87,12 +86,12 @@ class SearchClass {
         $resultArr = array();
         $len = count($arr);
         for ($i = 0; $i < $len; $i ++) {
-            $sql = "Select u.firstname, u.lastname from users u where u.userid = " . $arr[$i];
+            $sql = "Select u.firstname, u.lastname, u.userid from users u where u.userid = " . $arr[$i];
             $result = $this->conn->query($sql);
 
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    array_push($resultArr, $row["firstname"] . ' ' . $row['lastname']);
+                    array_push($resultArr, $row["firstname"] . ' ' . $row['lastname'].' '.$row['userid']);
                 }
             }
         }
@@ -101,21 +100,17 @@ class SearchClass {
     
 
     public function getByOneName($name){
- //       $arrResult = array();
         $sql = "select u.userid, u.firstname, u.lastname from users u where u.firstname = '$name' or u.lastname = '$name'";
         return $this->getFilledArray($sql);
     }
 
     public function getByName($firstname, $lastname){
- //       $arrResult = array();
         $sql = "select u.userid, u.firstname, u.lastname from users u where u.lastname = '$lastname' and u.firstname = '$firstname'";
         return $this->getFilledArray($sql);
     }
 
     
-    public function getLocation($name, $idArray)
-    {
-//        $arrResult = array();
+    public function getLocation($name, $idArray){
         if (strlen($name) == 0) {
             $sql = " select distinct u.userid, u.firstname, u.lastname from users u, address a 
                       where u.userid = a.userid and (";
@@ -141,7 +136,6 @@ class SearchClass {
 
     
     public function getArtType($name, $idArray) {
- //       $arrResult = array();
         if (strlen($name) == 0) {
             $sql = "select distinct u.userid, u.firstname, u.lastname from users u, artists a, artist_artform aa, artforms af 
                     where u.userid = a.userid and aa.artistid = a.artistid and af.artformid = aa.artformid and (";
@@ -160,13 +154,11 @@ class SearchClass {
         $items = $this->getAddedItem("artType", "af.formname");
         $sql = $sql . $items . ')';
         $sql = $this->getUsersIdString($idArray, $sql);
-        // echo $sql;
         return $this->getFilledArray($sql);
     }
 
     
     public function getInterest($name, $idArray) {
- //       $arrResult = array();
         if (strlen($name) == 0) {
             $sql = "select u.userid, u.firstname, u.lastname from users u, artists a, artist_interest ai, interests i 
                     where u.userid = a.userid and a.artistid = ai.artistid and ai.interestid = i.interestid and (";

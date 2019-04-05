@@ -25,40 +25,14 @@
 <form action="http://localhost:8728/Wishbone/insertPost.php" method="post"> 
 <div class="page-wrap">
 
-		<!-- header -->
-		<header class="header1">
-			<div class="container">
-				<div class="header__logo">
-					<a style="color: #f39c12; font-size: 25px; font-weight: 700;"
-						href="index.html">WISHBONE</a>
-				</div>
-                <nav class="consult-nav">
-
-					<!-- consult-menu -->
-					<ul class="consult-menu">
-						<li><a href="index.html">Home</a></li>
-								<li><a href="chat.php">My Messages</a></li>
-						<li><a href="mynetwork.php">My Network</a></li>
-						<li><a href="profile.php">My Profile</a>
-						<li><a href="userHome.php">My Page</a>
-						<li><a href="search.php">Search</a>
-						<li><a href="logout.php">Log out</a>
-					</ul>
-					<!-- consult-menu -->
-
-					<div class="navbar-toggle">
-						<span></span><span></span><span></span>
-					</div>
-				</nav>
-				<!-- End / consult-nav -->
-			</div>
-		</header>
+	<?php
+ $header=new header();
+ $header->getHeader();
+ ?>
     
-    </div>
     
+   <div class="mycontent" style="margin-top: 100px">
    
-   <div class="mycontent">
-
 <div class="leftContent">
 	<div class="card">
 	<div class="pictureBack">
@@ -82,7 +56,7 @@
 	</div> 
 	</div>
 	<div class="rightContent">
-	<form action ="http://localhost:8728/Wishbone/insertPost.php" method="post" width=100px>
+	<form action ="insertPost.php" method="post" width=100px>
 		<div class="posts">
 			<textarea class="serverText" placeholder="type your post" name= "dataPost" required></textarea>
   <div class="button">
@@ -91,7 +65,7 @@
   	</div>
   	</form>
   	<div class="searchFeed" height=50px>
-  	<form action="http://localhost:8728/Wishbone/searchFeed.php">
+  	<form action="searchFeed.php">
   	
   	<input class ="input" name="input" height=60px width=250px>
   	<button class="buttonSearchFeed"> <img alt="" src="assets/img/search-icon.png" width=20px height=20px>
