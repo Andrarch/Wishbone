@@ -72,11 +72,7 @@ include('header.php');
       $myNetNum++;
       ?>
       
-   <!--   <li class="hexButton">
-        <div class="hexButtonIn">
-        	 <button type="button">Click Me!</button> 
-        	 <button type="button">Click Me!</button> 
-        </div> -->
+
       <li class="hex">
         <div class="hexIn">
 
