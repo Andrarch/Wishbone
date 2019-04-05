@@ -453,43 +453,7 @@ body {
   
 }
 
-/*
- @media (max-width: 1200px) and (min-width:901px) { /* <- 4-3  hexagons per row 
-  #hexGrid{
-    grid-template-columns: repeat(8,1fr);
-    padding-bottom: 5.5%;
-  }
-  .hex:nth-child(7n+5){ /* first hexagon of even rows 
-    grid-column-start: 2;
-  }
-}
 
-@media (max-width: 900px) and (min-width:601px) { /* <- 3-2  hexagons per row 
-  #hexGrid{
-    grid-template-columns: repeat(6,1fr);
-    padding-bottom: 7.4%;
-  }
-  .hex:nth-child(5n+4){ /* first hexagon of even rows 
-    grid-column-start: 2;
-  }
-}
-
-@media (max-width: 600px) { /* <- 2-1  hexagons per row 
-#hexGrid{
-  grid-template-columns: repeat(4,1fr);
-  padding-bottom: 11.2%;
-  grid-gap:5px;
-}
-.hex:nth-child(3n+3){ /* first hexagon of even rows 
-  grid-column-start: 2;
-}
-}
-
-@media (max-width: 400px) {
-  #hexGrid {
-      font-size: 13px;
-  }
-}*/
 
 
 
