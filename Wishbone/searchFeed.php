@@ -57,8 +57,6 @@ $_SESSION['userlastname']=$login_user_lastname;
  $header=new header();
  $header->getHeader();
  ?>
-    
-   
    <div class="mycontent" style="margin-top: 100px">
 
 <div class="leftContent">

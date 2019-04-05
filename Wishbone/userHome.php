@@ -1,5 +1,10 @@
  <?php
+<<<<<<< HEAD
+include('config.php');
+	include('header.php');
+=======
 	include('config.php');
+>>>>>>> branch 'master' of https://github.com/Andrarch/Wishbone.git
 	include('header.php');
 session_start();
    
@@ -84,9 +89,7 @@ $_SESSION['userlastname']=$login_user_lastname;
 	<div class="rightContent">
 	<form action ="insertPost.php" method="post">
 		<div class="posts">
-			<textarea class="serverText" name= "dataPost">
-   Type your post here
-  </textarea>
+			<textarea class="serverText" placeholder="type your post" name= "dataPost" required></textarea>
   <div class="button">
   <button class ="createPost" type="submit">Create Post</button> 
   	</div>
@@ -104,6 +107,7 @@ $_SESSION['userlastname']=$login_user_lastname;
 	    <div class="centerFeed">
 
 	    	<?php
+	    	
 	    		require_once('dao/user_home_dao.php');
 	    		$dao = new user_home_dao();
 				$conn = $dao->getMysqli();
@@ -119,6 +123,7 @@ $_SESSION['userlastname']=$login_user_lastname;
 				    echo "0 results";
 				}
 				$conn->close();
+				
 
 	    	?>
 	   

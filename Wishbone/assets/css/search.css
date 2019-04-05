@@ -3,15 +3,8 @@
 /* CSS Document */
 /* Bordered form */
 
-/*
-body{
-    background:#E5E5E5; 
-}
-*/
-
 .row {
-    padding-left: 20px;
-    
+    padding-left: 20px;    
 }
 
 .row2 {
@@ -28,8 +21,6 @@ body{
     width: 80%;
     border: 3px solid #F19938;
     padding: 20px;
-/*    border-radius: 15px;*/
-    
 }
 
 .searchbtn {
@@ -40,33 +31,28 @@ body{
     border: none;
     cursor: pointer;
     width: 10%; 
-/*    border-radius: 15px;*/
 }
 
 .searchbtn:hover {
     color: #fff;
-    background-color: #333333;
-    
+    background-color: #333333;   
 }
 
 .viewProfilebtn {
     background-color: #F19938;
     color: white;
     padding: 5px;
-/*    margin: 8px 0;*/
     border: none;
     cursor: pointer;
     width: 30%; 
     margin-top:  5px;
     margin-bottom: 10px;
-/*    border-radius: 15px;*/
 }
 
 .viewProfilebtn:hover {
     color: #fff;
     background-color: #333333;
 }
-
 
 .textboxList {
     padding-left: 10px;
@@ -79,15 +65,12 @@ body{
     box-shadow: 0 15px 50px 0 rgba(0, 0, 0, .2);
 }
 
-
 .textbox {
     padding: 10px;
     margin: 20px 0;
     background-color: white;
     text-align: left;
     transition: all ease .3s;
-/*    border-radius: 15px;*/
-/*    border: 3px solid #F19938;*/
 }
 
 .textbox:hover {
@@ -112,20 +95,4 @@ body{
     font-weight: bold;
     text-align: left;  
 }
-
-.w3-panel w3-card {
-    background-color: white;
-    transition: all ease .3s;
-    border: 3px solid #F19938;
-}
-
-
-
-
-
-
-
-
-/* ..........   all ........... */
-
 
