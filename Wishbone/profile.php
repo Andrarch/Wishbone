@@ -22,7 +22,6 @@
 	    	$token = false;
 	    }
 	}
-	var_dump("token:".$token);
 
 	$profilelists = $profilelistDAO->getProfilelists($userid);
 ?>
