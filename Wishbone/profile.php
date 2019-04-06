@@ -9,7 +9,9 @@
 	    if($userid===$userid_get){
 	    	$userid=$_GET['id'];
 	    }else{
-	    $userid=$_GET['id'];
+
+	    	$userid=$_GET['id'];
+
 	    	$token = false;
 	    }
 	}
@@ -22,6 +24,7 @@
 	    	$token = false;
 	    }
 	}
+
 	$profilelists = $profilelistDAO->getProfilelists($userid);
 ?>
 

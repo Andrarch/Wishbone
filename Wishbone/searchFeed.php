@@ -98,7 +98,7 @@ $_SESSION['userlastname']=$login_user_lastname;
   	</form>
   	</div>
 		
-	    <div class="centerFeed">
+	    <div class="centerFeed">  
 
 	    	<?php
 // 	    		require_once('dao/user_home_dao.php');
@@ -135,7 +135,7 @@ $_SESSION['userlastname']=$login_user_lastname;
 				        $bodytag=str_ireplace($needle, "<b> $needle </b>", $rows['feedtext']);
 				        echo $bodytag;
 				        echo "<br>";				        
-				
+
 				    }
 				}
 				$arr = $keywords = preg_split("/[\s,]+/", $searchFeed);
