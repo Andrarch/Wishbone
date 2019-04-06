@@ -3,11 +3,24 @@
 	session_start();
 	$userid = $_SESSION['userid'];
 	$profilelistDAO = new profilelistDAO(); 
+	$token = true;
 	if(isset($_GET['id'])){
+	    $userid_get=$_GET['id'];
+	    if($userid===$userid_get){
+	    	$userid=$_GET['id'];
+	    }else{
 	    $userid=$_GET['id'];
+	    	$token = false;
+	    }
 	}
 	if(isset($_POST['id'])){
-		$userid=$_GET['id'];
+		$userid_post=$_POST['id'];
+		 if($userid===$userid_post){
+	    	$userid=$_POST['id'];
+	    }else{
+	    	$userid=$_POST['id'];
+	    	$token = false;
+	    }
 	}
 	$profilelists = $profilelistDAO->getProfilelists($userid);
 ?>
@@ -84,7 +97,13 @@
 															<a class="social-01__item text-center" href="#"><i class="fa fa-youtube"></i></a>
 
 															<a class="social-01__item text-center" href="#"><i class="fa fa-instagram"></i></a>
-															<a class="social-01__item text-center" href="profile-setting.php"><i class="fa fa-cog"></i></a>
+													<?php 
+														if($token)
+															echo'
+																<a class="social-01__item text-center" href="profile-setting.php"><i class="fa fa-cog"></i>
+																</a>';
+														
+													?>
 														</nav>
 													</div>
 												</div>

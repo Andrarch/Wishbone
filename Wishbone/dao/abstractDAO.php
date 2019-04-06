@@ -2,7 +2,7 @@
 
 class AbstractDAO{
 	protected $mysqli;
-    
+	
 
 	protected static $DB_HOST= "localhost";
 	protected static $DB_USERNAME = "root";

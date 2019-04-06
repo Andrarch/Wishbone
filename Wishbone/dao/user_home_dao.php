@@ -3,7 +3,7 @@
 //mysqli_report(MYSQLI_REPORT_STRICT);
 
 class user_home_dao{
-	protected $mysqli;
+    protected $mysqli;
     
     protected static $DB_HOST= "localhost";
 	protected static $DB_USERNAME = "root";
@@ -21,7 +21,8 @@ class user_home_dao{
 	
 	public function getMysqli(){
 		return $this->mysqli;	
-	}
+}
 }
 new user_home_dao();
+
 ?>

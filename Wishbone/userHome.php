@@ -71,8 +71,7 @@ $_SESSION['userlastname']=$login_user_lastname;
 	 
 	
 	  <p class="title"><?php echo $login_user_firstname.' '.$login_user_lastname?></p>
-	  <p>Dancer</p>
-	  <p>Ottawa</p>
+
 	  <div class="networkPic">
 		  <a href="#"><i class="fa fa-twitter"></i></a> 
 		  <a href="#"><i class="fa fa-linkedin"></i></a> 

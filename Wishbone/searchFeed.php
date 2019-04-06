@@ -70,8 +70,7 @@ $_SESSION['userlastname']=$login_user_lastname;
 	 
 	
 	  <p class="title"><?php echo $login_user_firstname.' '.$login_user_lastname?></p>
-	  <p>Dancer</p>
-	  <p>Ottawa</p>
+	  
 	  <div class="networkPic">
 		  <a href="#"><i class="fa fa-twitter"></i></a> 
 		  <a href="#"><i class="fa fa-linkedin"></i></a> 
@@ -93,7 +92,7 @@ $_SESSION['userlastname']=$login_user_lastname;
   	<div class="searchFeed" height=50px>
   	<form action="searchFeed.php">
   	
-  	<input class ="input" name="input" height=60px width=250px>
+  	<input class ="input" name="input" placeholder= "search" height=60px width=250px>
   	<button class="buttonSearchFeed"> <img alt="" src="assets/img/search-icon.png" width=20px height=20px>
   	</button>
   	</form>
@@ -123,7 +122,22 @@ $_SESSION['userlastname']=$login_user_lastname;
 				$searchFeed=$_GET['input'];
 			
 				$link = mysqli_connect("localhost", "root", "", "wishbone");
+				if(preg_match("/[\d]+/", $searchFeed)){
+				    
+				    $select=mysqli_query($link, "select u.firstname, u.lastname, f.feedtext, f.feeddate from users u, feeds f where f.userid = u.userid and (f.feeddate like '$searchFeed%') order by feeddate DESC");
+				    
+				    while ($rows=mysqli_fetch_assoc($select)){
+				        
+				        echo '<p><b>'.$rows["feeddate"].'  '.$rows["firstname"].'  '.$rows["lastname"].'</b></p>';
+				        $haystack=$rows['feedtext'];
+				        $needle=$searchFeed;
+				        $pos=stripos($rows['feedtext'],$needle);
+				        $bodytag=str_ireplace($needle, "<b> $needle </b>", $rows['feedtext']);
+				        echo $bodytag;
+				        echo "<br>";				        
 				
+				    }
+				}
 				$arr = $keywords = preg_split("/[\s,]+/", $searchFeed);
 				if(sizeof($arr)==1){
 				    $select=mysqli_query($link, "select u.firstname, u.lastname, f.feedtext, f.feeddate from users u, feeds f where f.userid = u.userid and (f.feedtext like '%$searchFeed%' or u.firstname like '%$searchFeed%' or u.lastname like '%$searchFeed%') order by feeddate DESC");

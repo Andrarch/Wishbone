@@ -1,7 +1,7 @@
 <?php
 
 class SearchDAO{
-	protected $mysqli;
+    protected $mysqli;
     
 
     protected static $DB_HOST = 'localhost';
