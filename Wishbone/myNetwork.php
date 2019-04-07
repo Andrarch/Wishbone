@@ -32,7 +32,7 @@ include('header.php');
  if (!isset($_SESSION['userid'])){
      header("Location: index.html");
  }
- 
+ $blank= new myNetworkUser('a','a','a','a','a');
  
  ?>
  
@@ -65,54 +65,34 @@ include('header.php');
 	
     <ul id="hexGrid">
       <?php 
+      while(sizeof( $_SESSION['myNetworkSet'])>$myNetNum+1){
+          
       
       $_SESSION['myNetworkSet'][$myNetNum]->generateMyNetworkCell($myNetNum);
       $myNetNum++;
       $_SESSION['myNetworkSet'][$myNetNum]->generateMyNetworkCell($myNetNum);
       $myNetNum++;
-      ?>
-      
-
-      <li class="hex">
-        <div class="hexIn">
-
-        </div>
-      </li>
-      
-      <?php 
-            $_SESSION['myNetworkSetSug'][$sugNum]->generateMyNetworkCell($sugNum);
-            $sugNum++;
-            $_SESSION['myNetworkSet'][$myNetNum]->generateMyNetworkCell($myNetNum);
-            $myNetNum++;
-            $_SESSION['myNetworkSet'][$myNetNum]->generateMyNetworkCell($myNetNum);
-            $myNetNum++;
-            $_SESSION['myNetworkSet'][$myNetNum]->generateMyNetworkCell($myNetNum);
-            $myNetNum++;
-            
-      ?>
-      <li class="hex">
-        <div class="hexIn">
-        </div>
-      </li>
-        <?php 
-            $_SESSION['myNetworkSetSug'][$sugNum]->generateMyNetworkCell($sugNum);
-            $sugNum++;
-            $_SESSION['myNetworkSet'][$myNetNum]->generateMyNetworkCell($myNetNum);
-            $myNetNum++;
-            $_SESSION['myNetworkSet'][$myNetNum]->generateMyNetworkCell($myNetNum);
-            $myNetNum++;
-
-            
-      ?>
-      <li class="hex">
-        <div class="hexIn">
-
-        </div>
-      </li>
-        <?php 
-            $_SESSION['myNetworkSetSug'][$sugNum]->generateMyNetworkCell($sugNum);
+      $blank->genSpace();
   
-        ?>
+      $_SESSION['myNetworkSetSug'][$sugNum%5]->generateMyNetworkCell($sugNum%5);
+      $sugNum++;
+      
+      if(sizeof( $_SESSION['myNetworkSet'])>$myNetNum+1){
+          $_SESSION['myNetworkSet'][$myNetNum]->generateMyNetworkCell($myNetNum);
+          $myNetNum++;
+          $_SESSION['myNetworkSet'][$myNetNum]->generateMyNetworkCell($myNetNum);
+          $myNetNum++;
+          $_SESSION['myNetworkSet'][$myNetNum]->generateMyNetworkCell($myNetNum);
+          $myNetNum++;
+          $blank->genSpace();
+          $_SESSION['myNetworkSetSug'][$sugNum%5]->generateMyNetworkCell($sugNum%5);
+          $sugNum++;
+      }
+      
+      
+      }
+      ?>
+ 
       </ul> 
      </div>
      

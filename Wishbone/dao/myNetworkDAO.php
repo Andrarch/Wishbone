@@ -71,7 +71,10 @@ require_once('./model/myNetworkModel.php');
                         
                     }
                     mysqli_free_result($result);
-                    
+                    while (sizeof($_SESSION['myNetworkSet'])%5!=2 and sizeof($_SESSION['myNetworkSet'])%5!=0  ){
+                        $_SESSION['myNetworkSet'][(int)$count]=new myNetworkUser('', '', '', 0,'assets/5733278274_2626612c70.jpg');
+                        $count++;
+                    }
                     
                 }
                 
@@ -130,7 +133,8 @@ require_once('./model/myNetworkModel.php');
             $_SESSION['myNetworkSetSug'][0]=$temp;
             $_SESSION['myNetworkSetSug'][1]=$temp;
             $_SESSION['myNetworkSetSug'][2]=$temp;
-            
+            $_SESSION['myNetworkSetSug'][3]=$temp;
+            $_SESSION['myNetworkSetSug'][4]=$temp;
             
             if(!$this->mysqli->connect_errno){
               /*  $query = "select users.userid, users.firstname, users.lastname
@@ -145,7 +149,7 @@ require_once('./model/myNetworkModel.php');
                     $numRows=$row->num;
                     mysqli_free_result($result);
                     $looper=0;
-                    while($count<3){
+                    while($count<5){
                         $looper++;
                         if($looper>50){
                             break;
@@ -191,6 +195,7 @@ require_once('./model/myNetworkModel.php');
                             if($found==0){
                                 $_SESSION['myNetworkSetSug'][(int)$count]=new myNetworkUser($userFName, $userLName, $otherID, $status,$imageLocation);
                                 $count++;
+                                $looper=0;
                             }
                             mysqli_free_result($result);
                         }

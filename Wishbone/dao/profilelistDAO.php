@@ -41,8 +41,8 @@ class profilelistDAO extends abstractDAO{
 		    echo 'Could not run query: ' . mysql_error();
 		    exit;
 		}
-		$artistid = mysqli_fetch_row($getartid);
-		$artistid = $artistid[0];
+		$artistidFetch = mysqli_fetch_row($getartid);
+		$artistid = $artistidFetch[0];
 		$getartid->free();
 		$profilelists[] = $artistid;
 

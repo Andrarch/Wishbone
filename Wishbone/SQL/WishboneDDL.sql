@@ -149,8 +149,8 @@ text3 varchar(500),
 text4 varchar(500),
  `socialid` varchar(25) DEFAULT NULL,
   `shareurl` varchar(1000) DEFAULT NULL,
-  `bio` varchar(200) NOT NULL,
-  `urldes` text NOT NULL,
+  `bio` varchar(200) NOT NULL DEFAULT "enter bio",
+  `urldes` text NOT NULL Default "enter description",
 primary key (profileid),
 FOREIGN KEY (artistid) REFERENCES artists(artistid)
 );

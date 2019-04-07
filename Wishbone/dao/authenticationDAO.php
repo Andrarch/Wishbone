@@ -43,6 +43,7 @@ require_once('./model/authentication.php');
 				//$stmt3->close();
 
 				$query4 = 'INSERT INTO artprofile(artistid) VALUES (LAST_INSERT_ID())';
+				
 				$stmt4 = $this->mysqli->prepare($query4);
 				$stmt4->execute();
 				//$stmt4->close();
@@ -76,6 +77,30 @@ require_once('./model/authentication.php');
 						$stmt7->bind_param('i', $artistId);
 						$stmt7->execute();
 						$stmt7->close();
+					}
+					$query8 = 'SELECT profileid FROM artprofile WHERE artistid= ?';
+					
+					if(false === $this->mysqli->prepare($query8)){
+					    die('prepare() failed: ' . htmlspecialchars($this->mysqli->error));
+					}else{
+					    $stmt8 = $this->mysqli->prepare($query8);
+					    $stmt8->bind_param('i', $artistId);
+					    $stmt8->execute();
+					   
+					    $stmt8->bind_result($profileId);
+					    $stmt8->fetch();
+					    $stmt8->close();
+					    
+		
+					}
+					$query9 = "INSERT INTO experience (experiencetitle,experiencedes,experiencetime ,profileid) VALUES ('title','description','time',?)";
+					if(false === $this->mysqli->prepare($query9)){
+					    die('prepare() failed: ' . htmlspecialchars($this->mysqli->error));
+					}else{
+					    $stmt9 = $this->mysqli->prepare($query9);
+					    $stmt9->bind_param('i', $profileId);
+					    $stmt9->execute();
+					    $stmt9->close();
 					}
 					
 					

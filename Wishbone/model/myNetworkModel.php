@@ -114,7 +114,13 @@
             }
          
         }
- 
+        public static function genSpace(){
+            echo "    <li class='hex'>";
+            echo "<div class='hexIn'>";
+            
+            echo "</div>";
+            echo "</li>";
+        }
         
     }
 ?>
