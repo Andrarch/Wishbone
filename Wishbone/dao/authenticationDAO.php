@@ -26,37 +26,69 @@ require_once('./model/authentication.php');
                 $stmt->execute();
                 //$stmt->close();
                 
+                $querya='select authid from authentication where email = ?';
+                $stmta = $this->mysqli->prepare($querya);
+                $stmta->bind_param('s', $email);
+                $stmta->execute();
+                $stmta->bind_result($authId);
+                $stmta->fetch();
+                $stmta->close();
+                    
+                
 				
 				$query2 = 'INSERT INTO users(authid, firstname, lastname)
-							VALUES(LAST_INSERT_ID(),?,?)';
+							VALUES(?,?,?)';
 				$firstname = $Registrant->getRegistrantFirstName();
 				$lastname = $Registrant->getRegistrantLastName();
 				$stmt2 = $this->mysqli->prepare($query2);
-				$stmt2->bind_param('ss', $firstname,$lastname);
+				$stmt2->bind_param('sss',$authId, $firstname,$lastname);
 				$stmt2->execute();
 				//$stmt2->close();
 				
-				$query3 = 'INSERT INTO artists(userid) SELECT userid FROM users WHERE firstname = ? AND lastname = ?';
+				$querya='SELECT userid FROM users WHERE authid = ?';
+				$stmta = $this->mysqli->prepare($querya);
+				$stmta->bind_param('s', $authId);
+				$stmta->execute();
+				$stmta->bind_result($userID);
+				$stmta->fetch();
+				$stmta->close();
+				
+				$query3 = 'INSERT INTO artists(userid) VALUES(?)';
 				$stmt3 = $this->mysqli->prepare($query3);
-				$stmt3->bind_param('ss', $firstname, $lastname);
+				$stmt3->bind_param('s',$userID);
 				$stmt3->execute();
 				//$stmt3->close();
+				
+				$queryb = 'INSERT INTO address (userid) VALUES(?)';
+				$stmtb = $this->mysqli->prepare($queryb);
+				$stmtb->bind_param('s',$userID);
+				$stmtb->execute();
+				//$stmtb->close();
+				
+				$queryc = 'INSERT INTO contact (userid) VALUES(?)';
+				$stmtc = $this->mysqli->prepare($queryc);
+				$stmtc->bind_param('s',$userID);
+				$stmtc->execute();
+				//$stmtc->close();
+				
 
-				$query4 = 'INSERT INTO artprofile(artistid) VALUES (LAST_INSERT_ID())';
+
 				
-				$stmt4 = $this->mysqli->prepare($query4);
-				$stmt4->execute();
-				//$stmt4->close();
-				
-				$query5 = 'SELECT artists.artistid FROM artists INNER JOIN users ON users.userid = artists.userid WHERE users.firstname = ? AND users.lastname = ?';
+				$query5 = 'SELECT artistid FROM artists WHERE userID = ?';
 				
 				if($stmt5 = $this->mysqli->prepare($query5)){
-					$stmt5->bind_param('ss', $firstname, $lastname);
+					$stmt5->bind_param('s', $userID);
 					$stmt5->execute();
 					$stmt5->bind_result($artistId);
 					$stmt5->fetch();
 					$stmt5->close();
+					echo $artistId;
+					$query4 = 'INSERT INTO artprofile(artistid) VALUES (?)';
 					
+					$stmt4 = $this->mysqli->prepare($query4);
+					$stmt4->bind_param('i',$artistId);
+					$stmt4->execute();
+					//$stmt4->close();
 										
 					$query6 = 'INSERT INTO artist_artform (artformid, artistid) VALUES (1,?)';
 					
@@ -165,7 +197,7 @@ require_once('./model/authentication.php');
 				}else if($stmt6->error){
 					return $stmt6->error;
 				}else if($stmt7->error)
-					return $stmt67->error;
+					return $stmt7->error;
 				else{
 					return $Registrant->getRegistrantFirstName().' '.$Registrant->getRegistrantLastName().' '.$Registrant->getRegistrantEmail().' added successfully';
 				}
