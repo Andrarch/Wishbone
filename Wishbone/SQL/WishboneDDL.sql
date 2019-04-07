@@ -156,7 +156,7 @@ FOREIGN KEY (artistid) REFERENCES artists(artistid)
 );
 
 CREATE TABLE `experience` (
-  `experienceid` int(11) NOT NULL,
+  `experienceid` int(11) NOT NULL auto_increment,
   `experiencetitle` varchar(30) NOT NULL,
   `experiencedes` text NOT NULL,
   `experiencetime` varchar(20) NOT NULL,
