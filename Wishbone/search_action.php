@@ -1,70 +1,70 @@
 <?php
-session_start();
-include ('dao/searchDAO.php');
+//session_start();
+ include_once ('dao/searchDAO.php');
 
 
-$name = $_POST['search_text'];
-$_SESSION['error']='';
+// $name = $_POST['search_text'];
+// $_SESSION['error']='';
 
-$arrResult = array();
-$interestSelected = ! empty($_POST['interest']);
-$artTypeSelected = ! empty($_POST['artType']);
-$locationSelected = ! empty($_POST['location']);
-$ob = new SearchClass();
+// $arrResult = array();
+// $interestSelected = ! empty($_POST['interest']);
+// $artTypeSelected = ! empty($_POST['artType']);
+// $locationSelected = ! empty($_POST['location']);
+// $ob = new SearchClass();
 
-if (strlen($name) == 0 && ! $interestSelected && ! $artTypeSelected && ! $locationSelected) {
-    $_SESSION['error'] = 'You have to choose at least one option';
+// if (strlen($name) == 0 && ! $interestSelected && ! $artTypeSelected && ! $locationSelected) {
+//     $_SESSION['error'] = 'You have to choose at least one option';
     
-} else if (preg_match("/^.*\d{1,}.*$/", $name)) {
-    $_SESSION['error'] = 'Name cannot contain numbers';
+// } else if (preg_match("/^.*\d{1,}.*$/", $name)) {
+//     $_SESSION['error'] = 'Name cannot contain numbers';
     
-} else if (strlen($name) == 1) {
-    $_SESSION['error'] = 'Name cannot contain one letter';
-}
-
-
-if ($interestSelected && ! $artTypeSelected && ! $locationSelected) {
-    $arrResult = $ob->getInterest($name, null);
-    
-} else if (! $interestSelected && $artTypeSelected && ! $locationSelected) {
-    $arrResult = $ob->getArtType($name, null);
-    
-} else if (! $interestSelected && ! $artTypeSelected && $locationSelected) {
-    $arrResult = $ob->getLocation($name, null);
-    
-} else if ($interestSelected && $artTypeSelected && ! $locationSelected) {
-    $arrResult = $ob->getInterest($name, null);
-    
-    $arrResult = $ob->getArtType($name, $arrResult);
-} else if ($interestSelected && ! $artTypeSelected && $locationSelected) {
-    $arrResult = $ob->getInterest($name, null);
-    
-    $arrResult = $ob->getLocation($name, $arrResult);
-} else if (! $interestSelected && $artTypeSelected && $locationSelected) {
-    $arrResult = $ob->getArtType($name, null); 
-    $arrResult = $ob->getLocation($name, $arrResult);
-    
-} else if ($interestSelected && $artTypeSelected && $locationSelected) {
-    $arrResult = $ob->getInterest($name, null);  
-    $arrResult = $ob->getArtType($name, $arrResult);
-    $arrResult = $ob->getLocation($name, $arrResult);
-    
-} else {
-    $arrName = preg_split('/ /', $name, - 1, PREG_SPLIT_NO_EMPTY);
-    $len = count($arrName);
-    if ($len >= 2) {
-        $firstname = $arrName[0];
-        $lastname = $arrName[1];
-        $arrResult = $ob->getByName($firstname, $lastname);
-    } else if ($len == 1) {
-        $arrResult = $ob->getByOneName($arrName[0]);
-    }
-}
+// } else if (strlen($name) == 1) {
+//     $_SESSION['error'] = 'Name cannot contain one letter';
+// }
 
 
-$_SESSION['array'] = $ob->getUserData($arrResult);
+// if ($interestSelected && ! $artTypeSelected && ! $locationSelected) {
+//     $arrResult = $ob->getInterest($name, null);
+    
+// } else if (! $interestSelected && $artTypeSelected && ! $locationSelected) {
+//     $arrResult = $ob->getArtType($name, null);
+    
+// } else if (! $interestSelected && ! $artTypeSelected && $locationSelected) {
+//     $arrResult = $ob->getLocation($name, null);
+    
+// } else if ($interestSelected && $artTypeSelected && ! $locationSelected) {
+//     $arrResult = $ob->getInterest($name, null);
+    
+//     $arrResult = $ob->getArtType($name, $arrResult);
+// } else if ($interestSelected && ! $artTypeSelected && $locationSelected) {
+//     $arrResult = $ob->getInterest($name, null);
+    
+//     $arrResult = $ob->getLocation($name, $arrResult);
+// } else if (! $interestSelected && $artTypeSelected && $locationSelected) {
+//     $arrResult = $ob->getArtType($name, null); 
+//     $arrResult = $ob->getLocation($name, $arrResult);
+    
+// } else if ($interestSelected && $artTypeSelected && $locationSelected) {
+//     $arrResult = $ob->getInterest($name, null);  
+//     $arrResult = $ob->getArtType($name, $arrResult);
+//     $arrResult = $ob->getLocation($name, $arrResult);
+    
+// } else {
+//     $arrName = preg_split('/ /', $name, - 1, PREG_SPLIT_NO_EMPTY);
+//     $len = count($arrName);
+//     if ($len >= 2) {
+//         $firstname = $arrName[0];
+//         $lastname = $arrName[1];
+//         $arrResult = $ob->getByName($firstname, $lastname);
+//     } else if ($len == 1) {
+//         $arrResult = $ob->getByOneName($arrName[0]);
+//     }
+// }
 
-header('Location: search.php');
+
+// $_SESSION['array'] = $ob->getUserData($arrResult);
+
+// header('Location: search.php');
 
 
 

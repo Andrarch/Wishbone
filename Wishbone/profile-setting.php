@@ -137,7 +137,7 @@
 							}
 						?>
 
-		               	<div>Please select your City and Province:(the deafualt value will be Ottawa)</div>
+		               	<div>Please select your City and Province:(the default value will be Ottawa)</div>
 		                <select class="col-3" name="city">
 		                	  <option value="Ottawa,Ontario" selected>Ottawa,ON</option>
 							  <option value="Toronto,Ontario">Toronto,ON</option>

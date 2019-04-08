@@ -1,4 +1,4 @@
-use wishbone;
+
 insert into artforms (formname) values ('musician');
 SELECT @art_musician := LAST_INSERT_ID( );
 insert into artforms (formname) values ('dancer');
@@ -16,7 +16,7 @@ SELECT @art_photographer := LAST_INSERT_ID( );
 insert into artforms (formname) values ('blogger');
 SELECT @art_blogger := LAST_INSERT_ID( );
 
-use wishbone;
+
 insert into interests (interestname) values ('event');
 SELECT @int_event := LAST_INSERT_ID( );
 insert into interests (interestname)values ('music');
@@ -30,7 +30,7 @@ SELECT @int_party := LAST_INSERT_ID( );
 
 
 
-use wishbone;
+
 insert into authentication (email,pass) values ('andrew@archibald.com','password');
 SELECT @auth_id := last_insert_id();
 insert into users (authid,firstname,lastname,imagelocation) values (@auth_id,'Andrew','Archibald','assets/img/profile/M1.jpg');
@@ -44,9 +44,9 @@ insert into artists (userid) values(@user_id);
 SELECT @art_id := LAST_INSERT_ID( ); 
 insert into artist_interest (interestid,artistid) values (@int_event,@art_id);
 insert into artist_artform (artformid,artistid) values (@art_dancer,@art_id);
-insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`, `bio`, `urldes`) values (@art_id,'Hobby','Hockey','Swimming','Skating','Hobby', 'https://www.youtube.com/watch?v=gTCrKJZyAh0&list=RD8GmYYyzT_Rs&index=12', 'i am a foodie', ' \r\n				test2		');
+insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`, `bio`, `urldes`) values (@art_id,'Hobby','Hockey','Swimming','Skating','Hobby', 'edwardtarte', 'i am a foodie', ' \r\n				test2		');
 
-use wishbone;
+
 insert into authentication (email,pass) values ('mike@smith.com','password');
 SELECT @auth_id := last_insert_id();
 insert into users (authid,firstname,lastname,imagelocation) values (@auth_id,'Mike','Smith','assets/img/profile/M2.jpg');
@@ -60,9 +60,9 @@ insert into artists (userid) values(@user_id);
 SELECT @art_id := LAST_INSERT_ID( ); 
 insert into artist_interest (interestid,artistid) values (@int_festival,@art_id);
 insert into artist_artform (artformid,artistid) values (@art_photographer,@art_id);
-insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`, `bio`, `urldes`) values (@art_id,'Hobby','Hockey','Swimming','Skating','Hobby', 'https://www.youtube.com/watch?v=gTCrKJZyAh0&list=RD8GmYYyzT_Rs&index=12', 'i am a foodie', ' \r\n				test2		');
+insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`, `bio`, `urldes`) values (@art_id,'Hobby','Hockey','Swimming','Skating','Hobby', 'davie504', 'i am a foodie', ' \r\n				test2		');
 
-use wishbone;
+
 insert into authentication (email,pass) values ('oksana@shapoval.com','password');
 SELECT @auth_id := last_insert_id();
 insert into users (authid,firstname,lastname,imagelocation) values (@auth_id,'Oksana','Shapoval','assets/img/profile/pro-photo.jpg');
@@ -76,9 +76,9 @@ insert into artists (userid) values(@user_id);
 SELECT @art_id := LAST_INSERT_ID( ); 
 insert into artist_interest (interestid,artistid) values (@int_concert,@art_id);
 insert into artist_artform (artformid,artistid) values (@art_dancer,@art_id);
-insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`, `bio`, `urldes`) values (@art_id,'Hobby','Hockey','Swimming','Skating','Hobby', 'https://www.youtube.com/watch?v=gTCrKJZyAh0&list=RD8GmYYyzT_Rs&index=12', 'i am a foodie', ' \r\n				test2		');
+insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`, `bio`, `urldes`) values (@art_id,'Hobby','Hockey','Swimming','Skating','Hobby', 'BobRossInc', 'i am a foodie', ' \r\n				test2		');
 
-use wishbone;
+
 insert into authentication (email,pass) values ('svetlana@netchaeva.com','password');
 SELECT @auth_id := last_insert_id();
 insert into users (authid,firstname,lastname,imagelocation) values (@auth_id,'Svetlana','Netchaeva','assets/img/profile/F1.jpg');
@@ -92,9 +92,9 @@ insert into artists (userid) values(@user_id);
 SELECT @art_id := LAST_INSERT_ID( ); 
 insert into artist_interest (interestid,artistid) values (@int_concert,@art_id);
 insert into artist_artform (artformid,artistid) values (@art_musician,@art_id);
-insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`, `bio`, `urldes`) values (@art_id,'Hobby','Hockey','Swimming','Skating','Hobby', 'https://www.youtube.com/watch?v=gTCrKJZyAh0&list=RD8GmYYyzT_Rs&index=12', 'i am a foodie', ' \r\n				test2		');
+insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`, `bio`, `urldes`) values (@art_id,'Hobby','Hockey','Swimming','Skating','Hobby', 'davie504', 'i am a foodie', ' \r\n				test2		');
 
-use wishbone;
+
 insert into authentication (email,pass) values ('zeyang@hu.com','password');
 SELECT @auth_id := last_insert_id();
 insert into users (authid,firstname,lastname,imagelocation) values (@auth_id,'Zyang','Hu','assets/img/profile/M3.jpg');
@@ -108,9 +108,9 @@ insert into artists (userid) values(@user_id);
 SELECT @art_id := LAST_INSERT_ID( ); 
 insert into artist_interest (interestid,artistid) values (@int_event,@art_id);
 insert into artist_artform (artformid,artistid) values (@art_singer,@art_id);
-insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`, `bio`, `urldes`) values (@art_id,'Hobby','Hockey','Swimming','Skating','Hobby', 'https://www.youtube.com/watch?v=gTCrKJZyAh0&list=RD8GmYYyzT_Rs&index=12', 'i am a foodie', ' \r\n				test2		');
+insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`, `bio`, `urldes`) values (@art_id,'Hobby','Hockey','Swimming','Skating','Hobby', 'davie504', 'i am a foodie', ' \r\n				test2		');
 
-use wishbone;
+
 insert into authentication (email,pass) values ('minyi@yang.com','password');
 SELECT @auth_id := last_insert_id();
 insert into users (authid,firstname,lastname,imagelocation) values (@auth_id,'Minyi','Yang','assets/img/profile/M4.jpg');
@@ -124,9 +124,9 @@ insert into artists (userid) values(@user_id);
 SELECT @art_id := LAST_INSERT_ID( ); 
 insert into artist_interest (interestid,artistid) values (@int_festival,@art_id);
 insert into artist_artform (artformid,artistid) values (@art_dancer,@art_id);
-insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`, `bio`, `urldes`) values (@art_id,'Hobby','Hockey','Swimming','Skating','Hobby', 'https://www.youtube.com/watch?v=gTCrKJZyAh0&list=RD8GmYYyzT_Rs&index=12', 'i am a foodie', ' \r\n				test2		');
+insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`, `bio`, `urldes`) values (@art_id,'Hobby','Hockey','Swimming','Skating','Hobby', 'BobRossInc', 'i am a foodie', ' \r\n				test2		');
 
-use wishbone;
+
 insert into authentication (email,pass) values ('ksenia@lopukhina.com','password');
 SELECT @auth_id := last_insert_id();
 insert into users (authid,firstname,lastname,imagelocation) values (@auth_id,'Ksenia','Lopukhina','assets/img/profile/F3.jpg');
@@ -140,10 +140,10 @@ insert into artists (userid) values(@user_id);
 SELECT @art_id := LAST_INSERT_ID( ); 
 insert into artist_interest (interestid,artistid) values (@int_party,@art_id);
 insert into artist_artform (artformid,artistid) values (@art_actor,@art_id);
-insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`, `bio`, `urldes`) values (@art_id,'Hobby','Hockey','Swimming','Skating','Hobby', 'https://www.youtube.com/watch?v=gTCrKJZyAh0&list=RD8GmYYyzT_Rs&index=12', 'i am a foodie', ' \r\n				test2		');
+insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`, `bio`, `urldes`) values (@art_id,'Hobby','Hockey','Swimming','Skating','Hobby', 'BobRossInc', 'i am a foodie', ' \r\n				test2		');
 
 
-use wishbone;
+
 insert into authentication (email,pass) values ('name1@nam1.com','password');
 SELECT @auth_id := last_insert_id();
 insert into users (authid,firstname,lastname,imagelocation) values (@auth_id,'name','name1','assets/img/profile/M5.jpg');
@@ -157,9 +157,9 @@ insert into artists (userid) values(@user_id);
 SELECT @art_id := LAST_INSERT_ID( ); 
 insert into artist_interest (interestid,artistid) values (@int_party,@art_id);
 insert into artist_artform (artformid,artistid) values (@art_actor,@art_id);
-insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`, `bio`, `urldes`) values (@art_id,'Hobby','Hockey','Swimming','Skating','Hobby', 'https://www.youtube.com/watch?v=gTCrKJZyAh0&list=RD8GmYYyzT_Rs&index=12', 'i am a foodie', ' \r\n				test2		');
+insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`, `bio`, `urldes`) values (@art_id,'Hobby','Hockey','Swimming','Skating','Hobby', '', 'i am a foodie', ' \r\n				test2		');
 
-use wishbone;
+
 insert into authentication (email,pass) values ('name11@n1am1.com','password');
 SELECT @auth_id := last_insert_id();
 insert into users (authid,firstname,lastname,imagelocation) values (@auth_id,'nam1e','name11','assets/img/profile/M6.jpg');
@@ -173,9 +173,9 @@ insert into artists (userid) values(@user_id);
 SELECT @art_id := LAST_INSERT_ID( ); 
 insert into artist_interest (interestid,artistid) values (@int_party,@art_id);
 insert into artist_artform (artformid,artistid) values (@art_actor,@art_id);
-insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`, `bio`, `urldes`) values (@art_id,'Hobby','Hockey','Swimming','Skating','Hobby', 'https://www.youtube.com/watch?v=gTCrKJZyAh0&list=RD8GmYYyzT_Rs&index=12', 'i am a foodie', ' \r\n				test2		');
+insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`, `bio`, `urldes`) values (@art_id,'Hobby','Hockey','Swimming','Skating','Hobby', ' ', 'i am a foodie', ' \r\n				test2		');
 
-use wishbone;
+
 insert into authentication (email,pass) values ('na5me1@na5m1.com','password');
 SELECT @auth_id := last_insert_id();
 insert into users (authid,firstname,lastname,imagelocation) values (@auth_id,'nam1e','nam1e1','assets/img/profile/F4.jpg');
@@ -189,9 +189,9 @@ insert into artists (userid) values(@user_id);
 SELECT @art_id := LAST_INSERT_ID( ); 
 insert into artist_interest (interestid,artistid) values (@int_party,@art_id);
 insert into artist_artform (artformid,artistid) values (@art_actor,@art_id);
-insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`, `bio`, `urldes`) values (@art_id,'Hobby','Hockey','Swimming','Skating','Hobby', 'https://www.youtube.com/watch?v=gTCrKJZyAh0&list=RD8GmYYyzT_Rs&index=12', 'i am a foodie', ' \r\n				test2		');
+insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`, `bio`, `urldes`) values (@art_id,'Hobby','Hockey','Swimming','Skating','Hobby', ' ', 'i am a foodie', ' \r\n				test2		');
 
-use wishbone;
+
 insert into authentication (email,pass) values ('na123me1@nam211.com','password');
 SELECT @auth_id := last_insert_id();
 insert into users (authid,firstname,lastname,imagelocation) values (@auth_id,'na221me','na23me1','assets/img/profile/F5.jpg');
@@ -205,9 +205,9 @@ insert into artists (userid) values(@user_id);
 SELECT @art_id := LAST_INSERT_ID( ); 
 insert into artist_interest (interestid,artistid) values (@int_party,@art_id);
 insert into artist_artform (artformid,artistid) values (@art_actor,@art_id);
-insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`, `bio`, `urldes`) values (@art_id,'Hobby','Hockey','Swimming','Skating','Hobby', 'https://www.youtube.com/watch?v=gTCrKJZyAh0&list=RD8GmYYyzT_Rs&index=12', 'i am a foodie', ' \r\n				test2		');
+insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`, `bio`, `urldes`) values (@art_id,'Hobby','Hockey','Swimming','Skating','Hobby', ' ', 'i am a foodie', ' \r\n				test2		');
 
-use wishbone;
+
 insert into authentication (email,pass) values ('test@test.com','password');
 SELECT @auth_id := last_insert_id();
 insert into users (authid,firstname,lastname,imagelocation) values (@auth_id,'Test','test','assets/img/profile/M6.jpg');
@@ -221,7 +221,7 @@ insert into artists (userid) values(@user_id);
 SELECT @art_id := LAST_INSERT_ID( ); 
 insert into artist_interest (interestid,artistid) values (@int_festival,@art_id);
 insert into artist_artform (artformid,artistid) values (@art_dancer,@art_id);
-insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`, `bio`, `urldes`) values (@art_id,'Hobby','Hockey','Swimming','Skating','Hobby', 'https://www.youtube.com/watch?v=gTCrKJZyAh0&list=RD8GmYYyzT_Rs&index=12', 'i am a foodie', ' \r\n				test2		');
+insert into artprofile (artistid, text1,text2,text3,text4,`socialid`, `shareurl`, `bio`, `urldes`) values (@art_id,'Hobby','Hockey','Swimming','Skating','Hobby', ' ', 'i am a foodie', ' \r\n				test2		');
 
 Insert into connected_friends (leftid, rightid, confirmright) values (5,1,0);
 Insert into connected_friends (leftid, rightid, confirmright) values (1,3,0);

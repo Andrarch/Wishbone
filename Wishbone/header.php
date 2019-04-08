@@ -14,12 +14,11 @@ class header{
                 <nav class=\"consult-nav\">
                     <!-- consult-menu -->
 					<ul class=\"consult-menu\">
-						<li><a href=\"index.html\">Home</a></li>
-				        <li><a href=\"mynetwork.php\">My Network</a></li>
+						<li><a href=\"userHome.php\">Home</a></li>
+				        <li><a href=\"myNetwork.php\">My Network</a></li>
 						<li><a href=\"profile.php\">My Profile</a>
-						<li><a href=\"userHome.php\">My Page</a>
 						<li><a href=\"search.php\">Search</a>
-						<li><a href=\"logOut.php\">Log out</a>
+						<li><a href=\"logout.php\">Log out</a>
 					</ul>
 					<!-- consult-menu -->
                     <div class=\"navbar-toggle\">

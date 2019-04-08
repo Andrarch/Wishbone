@@ -3,7 +3,7 @@ require_once('abstractDAO.php');
 require_once('./model/authentication.php');
 
     class AuthenticationDAO extends AbstractDAO {
-    
+        
         function __construct() {
             try{
                 parent::__construct();
@@ -15,7 +15,13 @@ require_once('./model/authentication.php');
         
 
         public function addNewRegistrant($Registrant){
-			
+            $imageLoc=array('assets/img/profile/M1.jpg','assets/img/profile/M2.jpg','assets/img/profile/M3.jpg',
+                'assets/img/profile/M4.jpg','assets/img/profile/M5.jpg','assets/img/profile/M6.jpg','assets/img/profile/M7.jpg',
+                'assets/img/profile/M8.jpg','assets/img/profile/M9.jpg','assets/img/profile/F1.jpg','assets/img/profile/F2.jpg',
+                'assets/img/profile/F3.jpg','assets/img/profile/F4.jpg','assets/img/profile/F5.jpg','assets/img/profile/F6.jpg'
+            );
+            
+            
             if(!$this->mysqli->connect_errno){
                 $query1 = 'INSERT INTO authentication
                             (email, pass) VALUES(?,?)';
@@ -36,12 +42,13 @@ require_once('./model/authentication.php');
                     
                 
 				
-				$query2 = 'INSERT INTO users(authid, firstname, lastname)
-							VALUES(?,?,?)';
+				$query2 = 'INSERT INTO users(authid, firstname, lastname,imagelocation)
+							VALUES(?,?,?,?)';
+				$loc=$imageLoc[rand(0,14)];
 				$firstname = $Registrant->getRegistrantFirstName();
 				$lastname = $Registrant->getRegistrantLastName();
 				$stmt2 = $this->mysqli->prepare($query2);
-				$stmt2->bind_param('sss',$authId, $firstname,$lastname);
+				$stmt2->bind_param('ssss',$authId, $firstname,$lastname,$loc);
 				$stmt2->execute();
 				//$stmt2->close();
 				
