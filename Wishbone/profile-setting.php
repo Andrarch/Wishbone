@@ -162,10 +162,10 @@
 							}
 						?>
 
-		                <span>Please enter your work as an url(if you have one):</span>
+		                <span>Please enter Youtube channel name (optional):</span>
 		                <input class="form-control" name="url" value="<?php echo $profilelists['url']?>">
 
-		                 <span>Please enter your url description(if you have one):</span>
+		                 <span>Please enter your channel description (optional):</span>
 		                 <textarea class="form-control" name="urldes"> 
 		                 	<?php echo $profilelists['urldes']?>
 						 </textarea>

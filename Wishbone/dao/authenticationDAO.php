@@ -89,7 +89,7 @@ require_once('./model/authentication.php');
 					$stmt5->bind_result($artistId);
 					$stmt5->fetch();
 					$stmt5->close();
-					echo $artistId;
+					//echo $artistId;
 					$query4 = 'INSERT INTO artprofile(artistid) VALUES (?)';
 					
 					$stmt4 = $this->mysqli->prepare($query4);
@@ -191,23 +191,23 @@ require_once('./model/authentication.php');
 				// $stmt5->execute();
 				
 				
-				if($stmt->error){
-					return $stmt->error;
-				}else if($stmt2->error){
-					return $stmt2->error;
-				}else if($stmt3->error){
-					return $stmt3->error;
-				}else if($stmt4->error){
-					return $stmt4->error;
-				}else if($stmt5->error){
-					return $stmt5->error;
-				}else if($stmt6->error){
-					return $stmt6->error;
-				}else if($stmt7->error)
-					return $stmt7->error;
-				else{
+// 				if($stmt->error){
+// 					return $stmt->error;
+// 				}else if($stmt2->error){
+// 					return $stmt2->error;
+// 				}else if($stmt3->error){
+// 					return $stmt3->error;
+// 				}else if($stmt4->error){
+// 					return $stmt4->error;
+// 				}else if($stmt5->error){
+// 					return $stmt5->error;
+// 				}else if($stmt6->error){
+// 					return $stmt6->error;
+// 				}else if($stmt7->error){
+// 					return $stmt7->error;
+// 				}else{
 					return $Registrant->getRegistrantFirstName().' '.$Registrant->getRegistrantLastName().' '.$Registrant->getRegistrantEmail().' added successfully';
-				}
+//				}
 
             }else{
                 return 'Could not connect to Database';
