@@ -33,7 +33,7 @@
 				
 				require_once("config.php");
 			
-				$useremmail = $userpassword = "";
+				$useremail = $userpassword = $fmsg = "";
 				
 				if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["useremail"]) && isset($_POST["userpassword"])){
 					$useremail = test_input($_POST["useremail"]);
@@ -120,6 +120,7 @@
 												<!-- form-search -->
 												<div class="form-search">
 													<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+														<?php echo $fmsg?>
 														<input class="form-control" type="email" id="useremail" name="useremail" placeholder="Please enter your user email..."/>
 														<input class="form-control" type="password" id="userpassword" name="userpassword" placeholder="Password..."/>
 														<div class="form__button">
