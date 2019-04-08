@@ -49,8 +49,7 @@
 						header('Location: userHome.php');
 						mysqli_close($connection);
 					}else{
-						$fmsg = "Invalid Login Credentials.";
-						
+						$fmsg = "Invalid Login Credentials.";						
 					}
 					
 				}
