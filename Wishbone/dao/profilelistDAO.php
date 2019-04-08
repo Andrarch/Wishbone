@@ -220,17 +220,34 @@ class profilelistDAO extends abstractDAO{
 		$getprofileid->free();
 	
 
+// 		$sql_user = "UPDATE users SET lastname='$userFirstName', firstname='$userLastName' WHERE userid=$userid";
+// 		$sql_contact = "UPDATE contact SET email='$userEmail', phonenumber='$userPhoneNumber' WHERE userid=$userid";
+// 		$sql_address = "UPDATE address SET city='$city', province='$province' WHERE userid=$userid";
+// 		$sql_profile = "UPDATE artprofile SET shareurl='$url', bio='$bio', urldes='$urldes'  WHERE profileid=$profileid";
+// 		$sql_experience = "UPDATE experience SET experiencetitle='$experiencetitle', experiencetime='$experiencetime', experiencedes='$experiencedes' WHERE profileid=$profileid";
+
+// 		$res_user = $this->mysqli->query($sql_user);
+// 		$res_contact = $this->mysqli->query($sql_contact);
+// 		$sql_address = $this->mysqli->query($sql_address);
+// 		$sql_profile = $this->mysqli->query($sql_profile);
+// 		$sql_experience = $this->mysqli->query($sql_experience);
+
 		$sql_user = "UPDATE users SET lastname='$userFirstName', firstname='$userLastName' WHERE userid=$userid";
 		$sql_contact = "UPDATE contact SET email='$userEmail', phonenumber='$userPhoneNumber' WHERE userid=$userid";
 		$sql_address = "UPDATE address SET city='$city', province='$province' WHERE userid=$userid";
 		$sql_profile = "UPDATE artprofile SET shareurl='$url', bio='$bio', urldes='$urldes'  WHERE profileid=$profileid";
 		$sql_experience = "UPDATE experience SET experiencetitle='$experiencetitle', experiencetime='$experiencetime', experiencedes='$experiencedes' WHERE profileid=$profileid";
-
+		$sql_rem_artform = "DELETE FROM artist_artform WHERE artistid=$userid";
+		$sql_add_artform = "Insert into artist_artform (artformid,artistid) values ($role,$artistid)";
+		
+		
 		$res_user = $this->mysqli->query($sql_user);
 		$res_contact = $this->mysqli->query($sql_contact);
 		$sql_address = $this->mysqli->query($sql_address);
 		$sql_profile = $this->mysqli->query($sql_profile);
 		$sql_experience = $this->mysqli->query($sql_experience);
+		$sql_rem_artform = $this->mysqli->query($sql_rem_artform);
+		$sql_add_artform = $this->mysqli->query($sql_add_artform);
 
 		if($res_user && $res_contact && $sql_address && $sql_profile && $sql_experience){
 		    return "Record updated successfully";
