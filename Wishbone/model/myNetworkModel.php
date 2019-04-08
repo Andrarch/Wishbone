@@ -79,7 +79,7 @@
                 echo "<a class=\"hexLink\" href=\"#\">";
                 echo "<img class='myNet' src=\"".$this->getImageLocation()."\" alt=\"\" />";
                 echo "<h1>".$this->getUserFName()." ".$this->getUserLName()."</h1><p>";
-                echo "<button class=msgBtn onclick=\"location.href='chat.php?receiverid=".$this->getUserID(). "'\" type=\"button\">Message ".$this->getUserFName()."</button><br><br>";
+                echo "<button class=msgBtn onclick=\"location.href='chat.php?receiverid=".$this->getUserID(). "'\" type=\"button\">Message ".$this->getUserFName()."</button>";
                 echo "<button class=msgBtn onclick=\"location.href='profile.php?id=".$this->getUserID()."' \" type=\"button\">".$this->getUserFName()."'s Profile</button>";
                 
                 echo "</p> </a> </div> </li>";
@@ -114,7 +114,13 @@
             }
          
         }
- 
+        public static function genSpace(){
+            echo "    <li class='hex'>";
+            echo "<div class='hexIn'>";
+            
+            echo "</div>";
+            echo "</li>";
+        }
         
     }
 ?>

@@ -16,7 +16,7 @@ if( $receiverid == 0 || !isset($_SESSION["userid"]) )
 }
 
 include 'Database.class.php';
-$conn = new Database("wishbone", "root", "");
+$conn = new Database("wisasdone", "roasdt", "asd");
 
 $receiver = $conn->selectOne("SELECT * FROM `users` WHERE `userid` = ?", $receiverid);
 

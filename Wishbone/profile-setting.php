@@ -137,7 +137,7 @@
 							}
 						?>
 
-		               	<div>Please select your City and Province:(the deafualt value will be Ottawa)</div>
+		               	<div>Please select your City and Province:(the default value will be Ottawa)</div>
 		                <select class="col-3" name="city">
 		                	  <option value="Ottawa,Ontario" selected>Ottawa,ON</option>
 							  <option value="Toronto,Ontario">Toronto,ON</option>
@@ -162,10 +162,10 @@
 							}
 						?>
 
-		                <span>Please enter your work as an url(if you have one):</span>
+		                <span>Please enter Youtube channel name (optional):</span>
 		                <input class="form-control" name="url" value="<?php echo $profilelists['url']?>">
 
-		                 <span>Please enter your url description(if you have one):</span>
+		                 <span>Please enter your channel description (optional):</span>
 		                 <textarea class="form-control" name="urldes"> 
 		                 	<?php echo $profilelists['urldes']?>
 						 </textarea>

@@ -19,11 +19,11 @@ drop table if exists authentication; -- Remark this out for old table
 Table for Authentication - may later be moved so it is only table on server directly exposed
 */
 CREATE TABLE authentication (
-	authid int not null auto_increment,
-	email varchar(50) unique,
-	pass varchar(50),
+    authid int not null auto_increment,
+    email varchar(50) unique,
+    pass varchar(50),
 
-	primary key (authid)
+    primary key (authid)
 );
 
 /*
@@ -31,12 +31,12 @@ User table - generic user for service - without gigs or artist connect functiona
 */
 CREATE TABLE users (
     userid int not null auto_increment,
-	authid int not null,
+    authid int not null,
     firstname varchar(50),
     lastname varchar(50),
     imagelocation varchar(100),
-	FOREIGN KEY (authid) REFERENCES authentication(authid),
-	PRIMARY KEY (userid)
+    FOREIGN KEY (authid) REFERENCES authentication(authid),
+    PRIMARY KEY (userid)
 ); 
 
 
@@ -44,7 +44,7 @@ CREATE TABLE users (
 Address information of a user
 */
 CREATE TABLE address (
-	addressid int not null auto_increment,
+    addressid int not null auto_increment,
     city varchar(50),
     province varchar(50),
     country varchar(50),
@@ -148,9 +148,9 @@ text2 varchar(500),
 text3 varchar(500),
 text4 varchar(500),
  `socialid` varchar(25) DEFAULT NULL,
-  `shareurl` varchar(1000) DEFAULT NULL,
-  `bio` varchar(200) NOT NULL,
-  `urldes` text NOT NULL,
+  `shareurl` varchar(50) DEFAULT "",
+  `bio` varchar(200) NOT NULL DEFAULT "enter bio",
+  `urldes` varchar(200) NOT NULL Default "enter description",
 primary key (profileid),
 FOREIGN KEY (artistid) REFERENCES artists(artistid)
 );
@@ -160,7 +160,8 @@ CREATE TABLE `experience` (
   `experiencetitle` varchar(30) NOT NULL,
   `experiencedes` text NOT NULL,
   `experiencetime` varchar(20) NOT NULL,
-  `profileid` int(11) NOT NULL
+  `profileid` int(11) NOT NULL,
+  primary key (experienceid)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -176,7 +177,7 @@ CREATE TABLE `experience` (
 -- Indexes for table `experience`
 --
 ALTER TABLE `experience`
-  ADD PRIMARY KEY (`experienceid`),
+ 
   ADD KEY `profileID` (`profileid`);
 
 --

@@ -1,4 +1,5 @@
 <?php
+include_once("dao/server.php");
 
 class Database
 {
@@ -7,9 +8,9 @@ class Database
     public function __construct($dbname, $username, $password, $port = 3306, $host = "localhost", $charset = "utf8")
     {
         $this->DBH = new PDO(
-            sprintf("mysql:host=%s;port=%d;dbname=%s;charset=%s", $host, $port, $dbname, $charset ),
-            $username,
-            $password
+            sprintf("mysql:host=%s;port=%d;dbname=%s;charset=%s",Server::getDB_HOST(), $port, Server::getDB_DATABASE(), $charset ),
+            Server::getDB_USERNAME(),
+            Server::getDB_PASSWORD()
             ); 
     }
     

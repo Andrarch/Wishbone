@@ -1,6 +1,7 @@
 <?php
 	include('config.php');
 	include('header.php');
+	include_once 'dao/server.php';
 session_start();
    
 $user_check = $_SESSION['useremail'];
@@ -121,7 +122,7 @@ $_SESSION['userlastname']=$login_user_lastname;
 				
 				$searchFeed=$_GET['input'];
 			
-				$link = mysqli_connect("localhost", "root", "", "wishbone");
+				$link = mysqli_connect(Server::getDB_HOST(), Server::getDB_USERNAME(), Server::getDB_PASSWORD(), Server::getDB_DATABASE());
 				if(preg_match("/[\d]+/", $searchFeed)){
 				    
 				    $select=mysqli_query($link, "select u.firstname, u.lastname, f.feedtext, f.feeddate from users u, feeds f where f.userid = u.userid and (f.feeddate like '$searchFeed%') order by feeddate DESC");

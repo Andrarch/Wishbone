@@ -140,8 +140,13 @@
 											<div class="post-01__media">
 												<div>
 												<?php
-													echo '<iframe width="100%" sandbox="allow-scripts" frameborder="no" src='.$profilelists['url'].'><p>Your browser does not support iframes.</p>
-													</iframe>';
+												if (strlen($profilelists['url'])>3){
+													echo '<iframe id="ytplayer" type="text/html" width="640" height="360"
+  src="https://www.youtube.com/embed?listType=user_uploads&list='.$profilelists['url'].'" frameborder="0"></iframe>';
+												    
+												   // echo '<iframe width="100%" sandbox="allow-scripts" frameborder="no" src='.$profilelists['url'].'><p>Your browser does not support iframes.</p>
+													// </iframe>';
+												}
 												?>
 
 												</div>
