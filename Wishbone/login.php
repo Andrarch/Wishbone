@@ -29,8 +29,7 @@
 				if ( isset( $_SESSION['useremail'] ) ) {
 					header("Location: userHome.php");
 				}
-				
-				
+								
 				require_once("config.php");
 			
 				$useremail = $userpassword = $fmsg = "";
