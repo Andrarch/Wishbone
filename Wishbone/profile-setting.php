@@ -218,7 +218,8 @@
 						</div>	
 		            </form>
 		            <?php
-		            	echo '<p class="text-center text-danger">'.$addSuccess.'</p>';
+		            if(defined($addSuccess))	
+		            echo '<p class="text-center text-danger">'.$addSuccess.'</p>';
 		            ?>
 	        	</div>
 			</div>
