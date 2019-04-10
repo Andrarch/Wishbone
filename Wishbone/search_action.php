@@ -1,72 +1,5 @@
 <?php
-//session_start();
  include_once ('dao/searchDAO.php');
-
-
-// $name = $_POST['search_text'];
-// $_SESSION['error']='';
-
-// $arrResult = array();
-// $interestSelected = ! empty($_POST['interest']);
-// $artTypeSelected = ! empty($_POST['artType']);
-// $locationSelected = ! empty($_POST['location']);
-// $ob = new SearchClass();
-
-// if (strlen($name) == 0 && ! $interestSelected && ! $artTypeSelected && ! $locationSelected) {
-//     $_SESSION['error'] = 'You have to choose at least one option';
-    
-// } else if (preg_match("/^.*\d{1,}.*$/", $name)) {
-//     $_SESSION['error'] = 'Name cannot contain numbers';
-    
-// } else if (strlen($name) == 1) {
-//     $_SESSION['error'] = 'Name cannot contain one letter';
-// }
-
-
-// if ($interestSelected && ! $artTypeSelected && ! $locationSelected) {
-//     $arrResult = $ob->getInterest($name, null);
-    
-// } else if (! $interestSelected && $artTypeSelected && ! $locationSelected) {
-//     $arrResult = $ob->getArtType($name, null);
-    
-// } else if (! $interestSelected && ! $artTypeSelected && $locationSelected) {
-//     $arrResult = $ob->getLocation($name, null);
-    
-// } else if ($interestSelected && $artTypeSelected && ! $locationSelected) {
-//     $arrResult = $ob->getInterest($name, null);
-    
-//     $arrResult = $ob->getArtType($name, $arrResult);
-// } else if ($interestSelected && ! $artTypeSelected && $locationSelected) {
-//     $arrResult = $ob->getInterest($name, null);
-    
-//     $arrResult = $ob->getLocation($name, $arrResult);
-// } else if (! $interestSelected && $artTypeSelected && $locationSelected) {
-//     $arrResult = $ob->getArtType($name, null); 
-//     $arrResult = $ob->getLocation($name, $arrResult);
-    
-// } else if ($interestSelected && $artTypeSelected && $locationSelected) {
-//     $arrResult = $ob->getInterest($name, null);  
-//     $arrResult = $ob->getArtType($name, $arrResult);
-//     $arrResult = $ob->getLocation($name, $arrResult);
-    
-// } else {
-//     $arrName = preg_split('/ /', $name, - 1, PREG_SPLIT_NO_EMPTY);
-//     $len = count($arrName);
-//     if ($len >= 2) {
-//         $firstname = $arrName[0];
-//         $lastname = $arrName[1];
-//         $arrResult = $ob->getByName($firstname, $lastname);
-//     } else if ($len == 1) {
-//         $arrResult = $ob->getByOneName($arrName[0]);
-//     }
-// }
-
-
-// $_SESSION['array'] = $ob->getUserData($arrResult);
-
-// header('Location: search.php');
-
-
 
 class SearchClass {
 
@@ -81,7 +14,6 @@ class SearchClass {
         }
     }
     
-
     public function getUserData($arr) {
         $resultArr = array();
         $len = count($arr);
@@ -98,7 +30,6 @@ class SearchClass {
         return $resultArr;
     }
     
-
     public function getByOneName($name){
         $sql = "select u.userid, u.firstname, u.lastname from users u where u.firstname = '$name' or u.lastname = '$name'";
         return $this->getFilledArray($sql);
@@ -108,8 +39,7 @@ class SearchClass {
         $sql = "select u.userid, u.firstname, u.lastname from users u where u.lastname = '$lastname' and u.firstname = '$firstname'";
         return $this->getFilledArray($sql);
     }
-
-    
+  
     public function getLocation($name, $idArray){
         if (strlen($name) == 0) {
             $sql = " select distinct u.userid, u.firstname, u.lastname from users u, address a 
@@ -126,15 +56,14 @@ class SearchClass {
                         and u.lastname = '$arrName[1]' and (";
             }
         }
-
+        
         $items = $this->getAddedItem("location", "a.province");
         $sql = $sql . $items . ')';
         $sql = $this->getUsersIdString($idArray, $sql);
 
         return $this->getFilledArray($sql);
     }
-
-    
+   
     public function getArtType($name, $idArray) {
         if (strlen($name) == 0) {
             $sql = "select distinct u.userid, u.firstname, u.lastname from users u, artists a, artist_artform aa, artforms af 
@@ -156,7 +85,6 @@ class SearchClass {
         $sql = $this->getUsersIdString($idArray, $sql);
         return $this->getFilledArray($sql);
     }
-
     
     public function getInterest($name, $idArray) {
         if (strlen($name) == 0) {
@@ -195,8 +123,7 @@ class SearchClass {
         }
         return $sql;
     }
-
-    
+   
     public function getAddedItem($itemType, $sqlText) {
         $list = "";
         $arr = $_POST[$itemType];
@@ -211,7 +138,6 @@ class SearchClass {
         return $list;
     }
     
-
     public function getFilledArray($sql) {
         $arrResult = array();
         $result = $this->conn->query($sql);

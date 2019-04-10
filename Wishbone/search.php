@@ -1,18 +1,19 @@
-<?php 
-    session_start();
-    include_once ('dao/searchDAO.php');
-    include_once ('search_action.php');
-    
-    if (!empty($_POST)){
+<?php
+session_start();
+include_once ('dao/searchDAO.php');
+include_once ('search_action.php');
+
+if (! empty($_POST)) {
     $name = $_POST['search_text'];
-    $_SESSION['error']='';
-    
+
+    $_SESSION['error'] = '';
+
     $arrResult = array();
     $interestSelected = ! empty($_POST['interest']);
     $artTypeSelected = ! empty($_POST['artType']);
     $locationSelected = ! empty($_POST['location']);
     $ob = new SearchClass();
-    
+
     if (strlen($name) == 0 && ! $interestSelected && ! $artTypeSelected && ! $locationSelected) {
         $_SESSION['error'] = 'You have to choose at least one option';
         
@@ -22,8 +23,7 @@
     } else if (strlen($name) == 1) {
         $_SESSION['error'] = 'Name cannot contain one letter';
     }
-    
-    
+
     if ($interestSelected && ! $artTypeSelected && ! $locationSelected) {
         $arrResult = $ob->getInterest($name, null);
         
@@ -35,12 +35,12 @@
         
     } else if ($interestSelected && $artTypeSelected && ! $locationSelected) {
         $arrResult = $ob->getInterest($name, null);
-        
         $arrResult = $ob->getArtType($name, $arrResult);
+        
     } else if ($interestSelected && ! $artTypeSelected && $locationSelected) {
         $arrResult = $ob->getInterest($name, null);
-        
         $arrResult = $ob->getLocation($name, $arrResult);
+        
     } else if (! $interestSelected && $artTypeSelected && $locationSelected) {
         $arrResult = $ob->getArtType($name, null);
         $arrResult = $ob->getLocation($name, $arrResult);
@@ -61,18 +61,13 @@
             $arrResult = $ob->getByOneName($arrName[0]);
         }
     }
-    
-    
     $_SESSION['array'] = $ob->getUserData($arrResult);
     
-    
-    }
-    else{
-        unset($_SESSION['array']);
-    }
-    
-    
-    ?>
+} else {
+    unset($_SESSION['array']);
+}
+
+?>
 <!doctype html>
 <html>
 
@@ -102,7 +97,6 @@
 <style>
 body {
 	background: #E5E5E5;
-	/*            margin-top:20px;*/
 }
 
 .block {
@@ -120,9 +114,7 @@ body {
 include ('header.php');
 $header = new header();
 $header->getHeader();
-
-?>
-   
+?>  
 					<a style="color: #f39c12; font-size: 25px; font-weight: 700;"
 		href="index.html">WISHBONE</a>
 
@@ -170,9 +162,8 @@ $header->getHeader();
 						<input type="checkbox" name="interest[]" value="Event"> event<br>
 						<input type="checkbox" name="interest[]" value="Music"> music<br>
 						<input type="checkbox" name="interest[]" value="Concert"> concert<br>
-						<input type="checkbox" name="interest[]" value="Festival">
-						festival<br> <input type="checkbox" name="interest[]"
-							value="Party"> party<br> <br>
+						<input type="checkbox" name="interest[]" value="Festival">festival<br> 
+						<input type="checkbox" name="interest[]" value="Party"> party<br> <br>
 					</div>
 				</div>
 
@@ -182,12 +173,11 @@ $header->getHeader();
 						<input type="checkbox" name="artType[]" value="Musician"> musician<br>
 						<input type="checkbox" name="artType[]" value="Dancer"> dancer<br>
 						<input type="checkbox" name="artType[]" value="Painter"> painter<br>
-						<input type="checkbox" name="artType[]" value="Actor"> actor<br> <input
-							type="checkbox" name="artType[]" value="Model"> model<br> <input
-							type="checkbox" name="artType[]" value="Singer"> singer<br> <input
-							type="checkbox" name="artType[]" value="Photographer">
-						photographer<br> <input type="checkbox" name="artType[]"
-							value="Blogger"> blogger<br> <br>
+						<input type="checkbox" name="artType[]" value="Actor"> actor<br> 
+						<input type="checkbox" name="artType[]" value="Model"> model<br> 
+						<input type="checkbox" name="artType[]" value="Singer"> singer<br> 
+						<input type="checkbox" name="artType[]" value="Photographer"> photographer<br> 
+						<input type="checkbox" name="artType[]" value="Blogger"> blogger<br> <br>
 					</div>
 				</div>
 
@@ -195,28 +185,23 @@ $header->getHeader();
 					<div class="textbox">
 						<h2 class="textbox__title">Location</h2>
 						<input type="checkbox" name="location[]" value="Alberta"> Alberta<br>
-						<input type="checkbox" name="location[]" value="British Columbia">
-						British Columbia<br> <input type="checkbox" name="location[]"
-							value="Manitoba"> Manitoba<br> <input type="checkbox"
-							name="location[]" value="New Brunswick"> New Brunswick<br> <input
-							type="checkbox" name="location[]"
-							value="Newfoundland and Labrador"> NF and Labrador<br> <input
-							type="checkbox" name="location[]" value="Nova Scotia"> Nova
-						Scotia<br> <input type="checkbox" name="location[]"
-							value="Ontario"> Ontario<br> <input type="checkbox"
-							name="location[]" value="Prince Edward Island"> PEI<br> <input
-							type="checkbox" name="location[]" value="Quebec"> Quebec<br> <input
-							type="checkbox" name="location[]" value="Saskatchewan">
-						Saskatchewan<br> <input type="checkbox" name="location[]"
-							value="Northwest Territories"> Northwest Ter.<br> <input
-							type="checkbox" name="location[]" value="Nunavut"> Nunavut<br> <input
-							type="checkbox" name="location[]" value="Yukon"> Yukon<br> <br>
+						<input type="checkbox" name="location[]" value="British Columbia"> British Columbia<br> 
+						<input type="checkbox" name="location[]" value="Manitoba"> Manitoba<br> 
+						<input type="checkbox" name="location[]" value="New Brunswick"> New Brunswick<br> 
+						<input type="checkbox" name="location[]" value="Newfoundland and Labrador"> NF and Labrador<br> 
+						<input type="checkbox" name="location[]" value="Nova Scotia"> Nova Scotia<br> 
+						<input type="checkbox" name="location[]" value="Ontario"> Ontario<br> 
+						<input type="checkbox" name="location[]" value="Prince Edward Island"> PEI<br> 
+						<input type="checkbox" name="location[]" value="Quebec"> Quebec<br> 
+						<input type="checkbox" name="location[]" value="Saskatchewan"> Saskatchewan<br> 
+						<input type="checkbox" name="location[]" value="Northwest Territories"> Northwest Ter.<br> 
+						<input type="checkbox" name="location[]" value="Nunavut"> Nunavut<br> 
+						<input type="checkbox" name="location[]" value="Yukon"> Yukon<br> <br>
 					</div>
 				</div>
 			</div>
- 		</form>
+		</form>
 	</div>
-
 
 	<div class="row">
 		<div class="col-md-8">
@@ -242,7 +227,7 @@ $header->getHeader();
 
 		<div class="col-md-3">
 			<button type="button" class="viewProfilebtn"
-			onclick="window.location.href='profile.php?id=<?php echo $str_arr[2]?>'">View Profile</button>
+				onclick="window.location.href='profile.php?id=<?php echo $str_arr[2]?>'">View Profile</button>
 		</div>
 	</div>
     
@@ -273,7 +258,7 @@ $header->getHeader();
 							Management, ratings/ reviews, communication and payments.</p>
 					</div>
 				</div>
- 				<div
+				<div
 					class="col-sm-6 col-md-4 col-lg-3 col-xl-2 offset-0 offset-sm-0 offset-md-0 offset-lg-0 offset-xl-1 ">
 					<div class="footer__item">
 						<!-- widget-text__widget -->
