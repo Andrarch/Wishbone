@@ -30,7 +30,7 @@
 	   $hasError = false;
 	   $profilelistDAO = new profilelistDAO();
 	   $errorMessages = Array();
-	   
+	   $addSuccess='';
 	   if(isset($_POST["userFirstName"]) ||
 	      isset($_POST["userLastName"]) ||
 	      isset($_POST["userEmail"]) ||
